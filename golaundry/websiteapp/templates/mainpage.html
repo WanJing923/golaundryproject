@@ -1,0 +1,128 @@
+<!-- Lau Wan Jing: This is the page for visitors and users before login -->
+
+<!DOCTYPE html>
+    <html>
+        {% block content %}
+        {% load static %}
+
+        <head>
+            <!-- <p> Lau Wan Jing: https://www.w3schools.com/css/css_howto.asp --add external css </p> -->
+            <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        </head>
+
+        <body>
+
+        <div>
+
+            <!-- Lau Wan Jing: https://www.tutorialspoint.com/How-to-set-background-color-in-HTML -- Add background color 
+                https://www.w3schools.com/csS/tryit.asp?filename=trycss_navbar_horizontal_black_fixed -- fixed narvarbar -->
+
+            <ul>
+                <p class="p1">E-Tutor</p>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a>Home Page</a></li>
+            </ul>
+
+            <!-- Lau Wan Jing: second narvar bar as tab -->
+
+            <div class="tab">
+
+                <!-- Lau Wan Jing: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_navbar_icon -->
+                <i class="fa fa-fw fa-book"style="font-size:25px;"></i>
+                <button onclick="visitor()">Course List</button>
+
+                <!-- Lau Wan Jing: https://www.w3schools.com/icons/tryit.asp?filename=tryicons_fa-comments -->
+                <i class="fa fa-comments"style="font-size:25px;"></i>
+                <button onclick="visitor()">Discussion Board</button>
+
+                <i class="fa fa-star"style="font-size:25px;"></i>
+                <button onclick="visitor()">Grades</button>
+
+                <i class="fa fa-fw fa-trophy"style="font-size:25px;"></i>
+                <button onclick="visitor()">Quizzes</button>
+
+                <i class="fa fa-fw fa-tasks"style="font-size:25px;"></i>
+                <button onclick="visitor()">To-Do List</button>
+
+            </div>
+
+            <script type = "text/javascript">
+                // Lau Wan Jing: https://sebhastian.com/javascript-display-text/ -- alert box
+                function visitor() {
+                    alert("You may not access to this feature. Please sign in now.");
+                }
+            </script>
+
+            <!-- Lau Wan Jing: https://www.w3schools.com/html/tryit.asp?filename=tryhtml_images_float -- Insert images 
+            https://docs.djangoproject.com/en/4.0/howto/static-files/ -- static file -->
+            <img src="{% static 'img/INTILogo.png' %}" alt="Inti Penang Logo"
+                style="float:right;width:160px;height:50px;"
+            >
+            
+            <br>
+            <br>
+            <br>
+
+            <p class="p2">
+                Welcome to E-Tutor!
+                <br>
+                Enjoy your college life!
+            </p>
+            
+            <!-- Lau Wan Jing: https://www.w3schools.com/w3css/w3css_cards.asp -- cards -->
+            
+            <div class=container>
+                <div class="card">
+                    <img src="{% static 'img/homepage1.png' %}" alt="Ask Question" style="width:110px;height:110px;padding:20px 20px">
+                    <div class="cardcontent">
+                        <p>Free to ask questions when you are facing problems in academic.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="{% static 'img/homepage2.png' %}" alt="Discussion" style="width:140px;height:110px;padding:20px 20px">
+                    <div class="cardcontent">
+                        <p>Have a discussion between classmates to solve your problems.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="{% static 'img/homepage3.png' %}" alt="Lecturer" style="width:140px;height:110px;padding:20px 20px">
+                    <div class="cardcontent">
+                        <p>Get help from your professional lecturers to learn more here!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="p2">
+                {{currenttitle}}
+            </p>
+
+            <div class=container>
+
+                <!-- Lau Wan Jing:https://www.section.io/engineering-education/embedding-a-video-into-a-webpage-using-html-and-css/ -- insert the youtube video -->
+
+                <iframe width="300" height="200" src={{file1url}} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                <!-- Lau Wan Jing:https://blog.hubspot.com/website/html-space -- spaces between videos -->
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <iframe width="300" height="200" src={{file2url}} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            </div>
+
+            <!-- Lau Wan Jing: https://www.w3schools.com/howto/howto_css_icon_bar.asp -- icon bar bottom right -->
+            <div class="icon-bar">
+                <a><i class="fa fa-fw fa-power-off" onclick="visitor()"></i></a>
+                <a><i class="fa fa-fw fa-wrench" onclick="visitor()"></i></a>
+                <a href="/helpdesk"><i class="fa fa-fw fa-question"></i></a> 
+            </div>
+
+        </div>
+        </body>
+        {% endblock content %}
+    </html>

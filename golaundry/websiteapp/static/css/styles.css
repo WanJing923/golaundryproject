@@ -1,0 +1,433 @@
+/* Lau Wan Jing:
+https://www.w3schools.com/Css/css_navbar_horizontal.asp -- Develop navigation bar
+https://www.javatpoint.com/how-to-bold-text-in-css -- font weight to bold
+https://www.tutorialspoint.com/How-to-set-background-color-in-HTML -- Add background color 
+*/
+
+/* body */
+body {background-color:#195860;}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.image-container {
+  position: relative;
+  padding: 20px;
+  text-align: center;
+  display: inline-block;
+}
+
+.overlay-image {
+  position: absolute;
+  top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  z-index: 1; /* Place the overlay image on top */
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/*Lau Wan Jing: https://www.w3schools.com/w3css/w3css_cards.asp -- cards*/
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);;
+  transition: 0.3s;
+  width: 500px;
+  height:300px;
+  text-align: center;
+  margin-right: 30px;
+}
+
+.cardcontent {
+  padding: 20px 20px;
+  text-align: center;
+  color: white;
+}
+
+.container {
+  padding: 70px 400px;
+  height: auto;
+  text-align: center;
+  display: flex;
+}
+
+
+
+
+
+
+
+
+.p1 {
+  color: #C0AB88;
+  text-align: center;
+  font-family: Courgette;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-shadow: 2px 2px black;
+  font-style: italic;
+}
+
+.p2 {
+    font-family: "Times New Roman", Times, serif;
+    font-size: larger;
+    font-weight: bold;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    display: block;
+    color: black;
+}
+
+/* Page title: Log In, Register, Home Page, .... */
+.p3 {
+    font-family: "Times New Roman", Times, serif;
+    font-size: xx-large;
+    font-weight: bold;
+    padding: 0px;
+    margin: 0px;
+    text-align: left;
+    display: block;
+    color: black;
+    /* Lau Wan Jing: https://www.w3schools.com/Css/tryit.asp?filename=trycss_text-indent -- indentation of text */
+    text-indent: 15px;
+}
+
+/* Normal words, instructions*/
+.p4 {
+    font-family: "Times New Roman", Times, serif;
+    font-size: medium;
+    padding: 0px;
+    margin: 0px;
+    text-align: left;
+    display: block;
+    color: black;
+}
+
+/* Input words */
+.p5 {
+    font-family: "Times New Roman", Times, serif;
+    font-size: normal;
+    font-weight: bold;
+    padding: 0px;
+    margin: 0px;
+    text-align: left;
+    display: block;
+    color: black;
+}
+
+/* First navigation bar */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    font-family: "Times New Roman", Times, serif;
+ }
+
+ li {
+    float: right;
+    display: inline;
+ }
+
+ /* Items on navigation bar */
+ li a {
+    display: block;
+    font-size: medium;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+    font-family: "Times New Roman", Times, serif;
+ }
+
+ li a:hover {
+    background-color: rgb(144, 215, 248);
+ }
+
+ li a {
+    display: margin;
+    padding: 20px;
+    background-color: black;
+}
+
+/* Lau Wan Jing: Second navigation bar-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_tabs_open */
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #c9f1fd;
+    text-align: center;
+  }
+  
+  /* Style the buttons inside the tab */
+  .tab button {
+    background-color: inherit;
+    border: none;
+    display: inline;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    font-family: "Times New Roman", Times, serif;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: rgb(170, 209, 235);
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background-color: #ccc;
+  }
+
+/* Lau Wan Jing: https://www.w3schools.com/csS/css3_buttons.asp -- button 
+    https://www.w3schools.com/css/tryit.asp?filename=trycss_image_text_bottom_left --bottom button*/
+
+.button {
+    background-color: #3d8af7;
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: solid;
+    display: block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    position: absolute;
+    bottom: 8px;
+ }
+
+ .button:hover {
+    background-color: rgb(57, 43, 255);
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+ }
+
+ .button:active {
+    background-color: black;
+    box-shadow: 0 5px #666;
+    transform: translateY(2px);
+}
+
+.submit {
+    background-color: #0844a4;
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: solid;
+    display: block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    float: right;
+    font-family: 'Times New Roman', Times, serif;
+ }
+
+ .submit:hover {
+    background-color: rgb(57, 43, 255);
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+ }
+
+ .submit:active {
+    background-color: black;
+    box-shadow: 0 5px #666;
+    transform: translateY(2px);
+}
+
+.buttoncontainer {
+  padding: 0;
+  height: auto;
+  text-align: left;
+  display: inline;
+  position: absolute;
+  bottom: 8px;
+  width: 99%;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+
+
+
+
+
+
+
+.icon-bar {
+    width: 150px;
+    background-color: #333;
+    overflow: auto;
+    position: fixed;
+    bottom: 0;
+    right:0;
+    border: 3px solid black;
+  }
+  
+  .icon-bar a {
+    float: right;
+    width: 50px;
+    text-align: center;
+    padding: 5px 0;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 25px;
+    display: block;
+  }
+  
+  .icon-bar a:hover {
+    background-color: #c9f1fd;
+}
+
+/*Lau Wan Jing:https://www.w3schools.com/Css/tryit.asp?filename=trycss_table_fancy-- todolist table*/
+#tasktable {
+  font-family: "Times New Roman", Times, serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#tasktable td, #tasktable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#tasktable tr:nth-child(even){background-color: #f2f2f2;}
+
+#tasktable tr:hover {background-color: #ddd;}
+
+#tasktable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #bcf3df;
+  color: black;
+}
+
+/* The container */
+.containercheckbox {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.containercheckbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: rgb(228, 55, 55);
+}
+
+/* On mouse-over, add a grey background color */
+.containercheckbox:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input[type=checkbox]:checked ~ .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid rgb(218, 112, 112);
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
