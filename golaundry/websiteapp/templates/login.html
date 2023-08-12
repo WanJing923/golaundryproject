@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+{% include 'messages.html' %}
+
+<body>
+    <center>
+        <div>
+
+            <!-- GoLaundry logo center -->
+            <div class="image-container">
+                <img src="{% static 'img/Go-Laundry.png' %}" alt="Go-Laundry Logo">
+            </div>
+
+            <br>
+
+
+            <!-- background -->
+            <div class="image-container">
+                <img src="{% static 'img/white.png' %}" alt="white" style="height:500px;border-radius:2%;">
+                <img src="{% static 'img/loginBackground.png' %}" alt="login background" class="overlay-image"
+                    style="height:500px;border-radius:2%;">
+
+                <!-- Login form -->
+                <div class="centered">
+                    <div class="card">
+                        <div class="cardcontent">
+                            <div class="container">
+                                <p>Architect & Engineer</p>
+                              </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <!-- Lau Wan Jing: https://www.youtube.com/watch?v=OTmQOjsl0eg&ab_channel=Telusko -- crsf token -->
+
+            <!-- <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+
+                <input type="text" name="staffid" value="" size="50"/>
+
+                <br>
+                <br>
+
+                <p class="p5">
+                    Password
+                </p>
+
+                <input type="password" name="password" value="" size="50"/>
+
+            
+
+                <br>
+                <br>
+
+                <!-- Lau Wan Jing: https://stackoverflow.com/questions/524992/how-to-implement-a-back-link-on-django-templates --back button by Author:Kalanos -->
+            <!-- <div class=buttoncontainer>
+                    <a href="{{request.META.HTTP_REFERER|escape}}" class="button">Cancel</a>
+                    <input type="submit" class="submit" value="Submit"></input>
+                </div> </form> -->
+
+            {% endblock content %}
+
+        </div>
+
+
+    </center>
+
+    <body>
+        <html>
