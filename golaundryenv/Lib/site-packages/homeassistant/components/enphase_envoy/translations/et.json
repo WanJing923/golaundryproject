@@ -1,0 +1,74 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Seade on juba h\u00e4\u00e4lestatud",
+            "reauth_successful": "Taastuvastamine \u00f5nnestus"
+        },
+        "error": {
+            "cannot_connect": "\u00dchendamine nurjus",
+            "invalid_auth": "Tuvastamise viga",
+            "unknown": "Tundmatu viga"
+        },
+        "flow_title": "{serial} ({host})",
+        "step": {
+            "user": {
+                "data": {
+                    "host": "Host",
+                    "password": "Salas\u00f5na",
+                    "username": "Kasutajanimi"
+                },
+                "description": "Uuemate mudelite puhul sisesta kasutajanimi \"envoy\" ilma salas\u00f5nata. Vanemate mudelite puhul sisesta kasutajanimi \"installer\" ilma salas\u00f5nata. K\u00f5igi teiste mudelite puhul sisesta kehtiv kasutajanimi ja salas\u00f5nal."
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "communicating": {
+                "name": "Suhtleb"
+            },
+            "dc_switch": {
+                "name": "Alalisvoolu l\u00fcliti"
+            },
+            "grid_status": {
+                "name": "V\u00f5rgu olek"
+            },
+            "operating": {
+                "name": "T\u00f6\u00f6tab"
+            }
+        },
+        "sensor": {
+            "current_power_consumption": {
+                "name": "Praegune energiatarve"
+            },
+            "current_power_production": {
+                "name": "Praegune elektrienergia tootmine"
+            },
+            "daily_consumption": {
+                "name": "Energia tarbimine t\u00e4na"
+            },
+            "daily_production": {
+                "name": "Energia tootmine t\u00e4na"
+            },
+            "last_reported": {
+                "name": "Viimati teatatud"
+            },
+            "lifetime_consumption": {
+                "name": "Eluaegne energia tarbimine"
+            },
+            "lifetime_production": {
+                "name": "Eluaegne energia tootmine"
+            },
+            "seven_days_consumption": {
+                "name": "Energia tarbimine  viimase seitsme p\u00e4eva jooksul"
+            },
+            "seven_days_production": {
+                "name": "Energia tootmine viimase seitsme p\u00e4eva jooksul"
+            }
+        },
+        "switch": {
+            "grid_enabled": {
+                "name": "V\u00f5rk on lubatud"
+            }
+        }
+    }
+}

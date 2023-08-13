@@ -1,0 +1,36 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Seade on juba h\u00e4\u00e4lestatud",
+            "already_in_progress": "Seadistamine on juba k\u00e4imas",
+            "unknown": "Tundmatu viga"
+        },
+        "error": {
+            "cannot_connect": "\u00dchendamine nurjus"
+        },
+        "flow_title": "{name}",
+        "step": {
+            "discovery_confirm": {
+                "description": "Kas soovid seadistada {name}?"
+            },
+            "user": {
+                "data": {
+                    "host": ""
+                },
+                "description": "Sisesta oma Roku teave."
+            }
+        }
+    },
+    "services": {
+        "search": {
+            "description": "Emuleerib otsinguekraani avamist ja otsingu m\u00e4rks\u00f5na sisestamist.",
+            "fields": {
+                "keyword": {
+                    "description": "Otsitav m\u00e4rks\u00f5na.",
+                    "name": "M\u00e4rks\u00f5na"
+                }
+            },
+            "name": "Otsing"
+        }
+    }
+}

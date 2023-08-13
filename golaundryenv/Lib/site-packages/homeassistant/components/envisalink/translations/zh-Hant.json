@@ -1,0 +1,11 @@
+{
+    "services": {
+        "invoke_custom_function": {
+            "fields": {
+                "pgm": {
+                    "name": "PGM"
+                }
+            }
+        }
+    }
+}

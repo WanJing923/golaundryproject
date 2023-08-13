@@ -1,0 +1,16 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "data": {
+                    "altitude": "Nadmorsk\u00e1 v\u00fd\u0161ka",
+                    "latitude": "Zemepisn\u00e1 \u0161\u00edrka",
+                    "longitude": "Zemepisn\u00e1 d\u013a\u017eka",
+                    "name": "API k\u013e\u00fa\u010d",
+                    "radius": "Okruh"
+                },
+                "description": "Vypl\u0148te miesto na sledovanie."
+            }
+        }
+    }
+}

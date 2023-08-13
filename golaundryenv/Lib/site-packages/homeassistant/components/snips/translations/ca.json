@@ -1,0 +1,11 @@
+{
+    "services": {
+        "say_action": {
+            "fields": {
+                "text": {
+                    "name": "Text"
+                }
+            }
+        }
+    }
+}

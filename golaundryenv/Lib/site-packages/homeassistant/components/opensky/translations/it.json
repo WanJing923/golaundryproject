@@ -1,0 +1,16 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "data": {
+                    "altitude": "Altitudine",
+                    "latitude": "Latitudine",
+                    "longitude": "Logitudine",
+                    "name": "Chiave API",
+                    "radius": "Raggio"
+                },
+                "description": "Inserisci la posizione da tracciare."
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "data": {
+                    "altitude": "Altitud",
+                    "latitude": "Latitud",
+                    "longitude": "Longitud",
+                    "name": "Clau API",
+                    "radius": "Radi"
+                },
+                "description": "Introdueix la ubicaci\u00f3 per fer-ne el seguiment."
+            }
+        }
+    }
+}

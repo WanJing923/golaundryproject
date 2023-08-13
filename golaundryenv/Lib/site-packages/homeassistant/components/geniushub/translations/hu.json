@@ -1,0 +1,46 @@
+{
+    "services": {
+        "set_switch_override": {
+            "description": "Egy adott id\u0151tartamra fel\u00fclb\u00edr\u00e1lja a kapcsol\u00f3t.",
+            "fields": {
+                "duration": {
+                    "description": "A fel\u00fclb\u00edr\u00e1l\u00e1s id\u0151tartama. Opcion\u00e1lis, alap\u00e9rtelmezett 1 \u00f3ra, maximum 24 \u00f3ra.",
+                    "name": "Id\u0151tartam"
+                }
+            },
+            "name": "Kapcsol\u00f3 fel\u00fclb\u00edr\u00e1lat be\u00e1ll\u00edt\u00e1sa"
+        },
+        "set_zone_mode": {
+            "description": "\u00c1ll\u00edtsa be a z\u00f3n\u00e1t egy \u00fczemm\u00f3dba.",
+            "fields": {
+                "entity_id": {
+                    "description": "A z\u00f3na entity_id azonos\u00edt\u00f3ja.",
+                    "name": "Entit\u00e1s"
+                },
+                "mode": {
+                    "description": "Az al\u00e1bbiak egyike: ki, id\u0151z\u00edt\u0151 vagy l\u00e1bnyom.",
+                    "name": "M\u00f3d"
+                }
+            },
+            "name": "Z\u00f3na m\u00f3d be\u00e1ll\u00edt\u00e1sa"
+        },
+        "set_zone_override": {
+            "description": "Fel\u00fclb\u00edr\u00e1lja a z\u00f3na alap\u00e9rt\u00e9k\u00e9t egy adott id\u0151tartamra.",
+            "fields": {
+                "duration": {
+                    "description": "A fel\u00fclb\u00edr\u00e1l\u00e1s id\u0151tartama. Opcion\u00e1lis, alap\u00e9rtelmezett 1 \u00f3ra, maximum 24 \u00f3ra.",
+                    "name": "Id\u0151tartam"
+                },
+                "entity_id": {
+                    "description": "A z\u00f3na entity_id azonos\u00edt\u00f3ja.",
+                    "name": "Entit\u00e1s"
+                },
+                "temperature": {
+                    "description": "A c\u00e9lh\u0151m\u00e9rs\u00e9klet.",
+                    "name": "H\u0151m\u00e9rs\u00e9klet"
+                }
+            },
+            "name": "Z\u00f3na fel\u00fclb\u00edr\u00e1lat be\u00e1ll\u00edt\u00e1sa"
+        }
+    }
+}

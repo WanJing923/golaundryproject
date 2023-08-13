@@ -1,0 +1,61 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Za\u0159\u00edzen\u00ed je ji\u017e nastaveno",
+            "authorize_url_timeout": "\u010casov\u00fd limit autoriza\u010dn\u00edho URL vypr\u0161el",
+            "no_url_available": "Nen\u00ed k dispozici \u017e\u00e1dn\u00e1 adresa URL. Informace o t\u00e9to chyb\u011b naleznete [v sekci n\u00e1pov\u011bdy]({docs_url})",
+            "reauth_successful": "Op\u011btovn\u00e9 ov\u011b\u0159en\u00ed bylo \u00fasp\u011b\u0161n\u00e9",
+            "unknown": "Neo\u010dek\u00e1van\u00e1 chyba"
+        },
+        "error": {
+            "cannot_connect": "Nepoda\u0159ilo se p\u0159ipojit",
+            "unknown": "Neo\u010dek\u00e1van\u00e1 chyba"
+        },
+        "step": {
+            "manual_entry": {
+                "data": {
+                    "api_key": "Kl\u00ed\u010d API",
+                    "host": "Hostitel"
+                }
+            },
+            "pick_implementation": {
+                "title": "Vyberte metodu ov\u011b\u0159en\u00ed"
+            }
+        }
+    },
+    "services": {
+        "chart": {
+            "fields": {
+                "device_id": {
+                    "name": "Za\u0159\u00edzen\u00ed"
+                },
+                "icon_type": {
+                    "description": "Typ ikony, kter\u00e1 se m\u00e1 zobrazit, ozna\u010duj\u00edc\u00ed povahu ozn\u00e1men\u00ed.",
+                    "name": "Typ ikony"
+                },
+                "priority": {
+                    "description": "Priorita ozn\u00e1men\u00ed. Pokud je za\u0159\u00edzen\u00ed spu\u0161t\u011bno v re\u017eimu spo\u0159i\u010de obrazovky nebo kiosku, budou p\u0159ij\u00edm\u00e1na pouze ozn\u00e1men\u00ed s kritickou prioritou.",
+                    "name": "Priorita"
+                },
+                "sound": {
+                    "description": "Zvuk ozn\u00e1men\u00ed, kter\u00fd se m\u00e1 p\u0159ehr\u00e1t.",
+                    "name": "Zvuk"
+                }
+            },
+            "name": "Zobrazen\u00ed grafu"
+        },
+        "message": {
+            "fields": {
+                "icon_type": {
+                    "description": "Typ ikony, kter\u00e1 se m\u00e1 zobrazit, ozna\u010duj\u00edc\u00ed povahu ozn\u00e1men\u00ed.",
+                    "name": "Typ ikony"
+                },
+                "message": {
+                    "description": "Zpr\u00e1va, kter\u00e1 se m\u00e1 zobrazit.",
+                    "name": "Zpr\u00e1va"
+                }
+            },
+            "name": "Zobrazit zpr\u00e1vu"
+        }
+    }
+}

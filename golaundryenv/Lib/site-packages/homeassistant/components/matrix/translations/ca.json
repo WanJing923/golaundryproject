@@ -1,0 +1,20 @@
+{
+    "services": {
+        "send_message": {
+            "fields": {
+                "data": {
+                    "name": "Dades"
+                },
+                "message": {
+                    "description": "Missatge a enviar.",
+                    "name": "Missatge"
+                },
+                "target": {
+                    "description": "Llista de sales a les quals enviar el missatge.",
+                    "name": "Objectiu"
+                }
+            },
+            "name": "Envia missatge"
+        }
+    }
+}

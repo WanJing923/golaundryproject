@@ -1,0 +1,22 @@
+{
+    "selector": {
+        "level": {
+            "options": {
+                "critical": "Critique"
+            }
+        }
+    },
+    "services": {
+        "write": {
+            "fields": {
+                "level": {
+                    "name": "Niveau"
+                },
+                "message": {
+                    "name": "Message"
+                }
+            },
+            "name": "\u00c9crire"
+        }
+    }
+}

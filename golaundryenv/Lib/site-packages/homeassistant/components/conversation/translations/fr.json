@@ -1,0 +1,15 @@
+{
+    "services": {
+        "process": {
+            "fields": {
+                "language": {
+                    "name": "Langue"
+                },
+                "text": {
+                    "name": "Texte"
+                }
+            }
+        }
+    },
+    "title": "Conversation"
+}

@@ -1,0 +1,48 @@
+{
+    "config": {
+        "abort": {
+            "single_instance_allowed": "Zaten yap\u0131land\u0131r\u0131lm\u0131\u015f. Yaln\u0131zca tek bir konfig\u00fcrasyon m\u00fcmk\u00fcnd\u00fcr."
+        },
+        "step": {
+            "user": {
+                "description": "\u0130slami Namaz Vakitleri kurmak ister misiniz?",
+                "title": "\u0130slami Namaz Vakitlerini Ayarlay\u0131n"
+            }
+        }
+    },
+    "entity": {
+        "sensor": {
+            "asr": {
+                "name": "\u0130kindi namaz\u0131"
+            },
+            "dhuhr": {
+                "name": "\u00d6\u011fle namaz\u0131"
+            },
+            "fajr": {
+                "name": "Sabah namaz\u0131"
+            },
+            "isha": {
+                "name": "Yats\u0131 Namaz\u0131"
+            },
+            "maghrib": {
+                "name": "Ak\u015fam Namaz\u0131"
+            },
+            "midnight": {
+                "name": "Gece yar\u0131s\u0131"
+            },
+            "sunrise": {
+                "name": "G\u00fcn do\u011fumu zaman\u0131"
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "calculation_method": "Dua hesaplama y\u00f6ntemi"
+                }
+            }
+        }
+    },
+    "title": "\u0130slami Namaz Vakitleri"
+}

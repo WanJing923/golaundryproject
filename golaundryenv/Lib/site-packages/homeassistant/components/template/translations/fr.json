@@ -1,0 +1,8 @@
+{
+    "services": {
+        "reload": {
+            "description": "Recharge les entit\u00e9s de mod\u00e8le \u00e0 partir de la configuration YAML.",
+            "name": "Recharger"
+        }
+    }
+}

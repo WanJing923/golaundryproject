@@ -1,0 +1,83 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Az eszk\u00f6z m\u00e1r konfigur\u00e1lva van",
+            "cannot_connect": "Sikertelen csatlakoz\u00e1s",
+            "cct_unsupported": "Ez a WLED-eszk\u00f6z CCT-csatorn\u00e1kat haszn\u00e1l, amit ez az integr\u00e1ci\u00f3 nem t\u00e1mogat"
+        },
+        "error": {
+            "cannot_connect": "Sikertelen csatlakoz\u00e1s"
+        },
+        "flow_title": "{name}",
+        "step": {
+            "user": {
+                "data": {
+                    "host": "Hoszt"
+                },
+                "description": "A WLED be\u00e1ll\u00edt\u00e1sa a Home Assistantba val\u00f3 integr\u00e1ci\u00f3hoz."
+            },
+            "zeroconf_confirm": {
+                "description": "Szeretn\u00e9 hozz\u00e1adni WLED-et amelnyek a neve: `{name}` a Home Assistanthoz?",
+                "title": "Felfedezett WLED eszk\u00f6z"
+            }
+        }
+    },
+    "entity": {
+        "select": {
+            "live_override": {
+                "state": {
+                    "0": "Ki",
+                    "1": "Be",
+                    "2": "Am\u00edg az eszk\u00f6z \u00fajraindul"
+                }
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "keep_master_light": "Tartsa meg a f\u0151 vil\u00e1g\u00edt\u00e1st, ak\u00e1r 1 LED szegmenssel is."
+                }
+            }
+        }
+    },
+    "services": {
+        "effect": {
+            "description": "Szab\u00e1lyozza a WLED hat\u00e1s be\u00e1ll\u00edt\u00e1sait.",
+            "fields": {
+                "effect": {
+                    "description": "A WLED f\u00e9nyhat\u00e1s neve vagy azonos\u00edt\u00f3ja.",
+                    "name": "Hat\u00e1s"
+                },
+                "intensity": {
+                    "description": "A hat\u00e1s intenzit\u00e1sa. Sz\u00e1m 0 \u00e9s 255 k\u00f6z\u00f6tt.",
+                    "name": "Hat\u00e1sintenzit\u00e1s"
+                },
+                "palette": {
+                    "description": "A WLED f\u00e9ny paletta neve vagy azonos\u00edt\u00f3ja.",
+                    "name": "Sz\u00ednpaletta"
+                },
+                "reverse": {
+                    "description": "Ford\u00edtsa meg a hat\u00e1st. Igaz, ha meg akarja ford\u00edtani, egy\u00e9bk\u00e9nt hamis.",
+                    "name": "Ford\u00edtott hat\u00e1s"
+                },
+                "speed": {
+                    "description": "A hat\u00e1s sebess\u00e9ge.",
+                    "name": "Hat\u00e1s sebess\u00e9g"
+                }
+            },
+            "name": "Hat\u00e1s  be\u00e1ll\u00edt\u00e1sa"
+        },
+        "preset": {
+            "description": "Be\u00e1ll\u00edt egy el\u0151be\u00e1ll\u00edt\u00e1st a WLED eszk\u00f6z sz\u00e1m\u00e1ra.",
+            "fields": {
+                "preset": {
+                    "description": "A WLED el\u0151be\u00e1ll\u00edt\u00e1s azonos\u00edt\u00f3ja.",
+                    "name": "El\u0151b\u00e1l\u00edt\u00e1s azonos\u00edt\u00f3"
+                }
+            },
+            "name": "El\u0151be\u00e1ll\u00edt\u00e1s be\u00e1ll\u00edt\u00e1sa (elavult)"
+        }
+    }
+}

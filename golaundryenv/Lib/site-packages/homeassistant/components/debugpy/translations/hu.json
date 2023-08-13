@@ -1,0 +1,8 @@
+{
+    "services": {
+        "start": {
+            "description": "Elind\u00edtja a T\u00e1voli Python Hibakeres\u0151t.",
+            "name": "Ind\u00edt\u00e1s"
+        }
+    }
+}

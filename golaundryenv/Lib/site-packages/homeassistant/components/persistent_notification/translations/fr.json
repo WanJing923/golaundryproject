@@ -1,0 +1,15 @@
+{
+    "services": {
+        "create": {
+            "fields": {
+                "message": {
+                    "name": "Message"
+                },
+                "title": {
+                    "name": "Titre"
+                }
+            },
+            "name": "Cr\u00e9er"
+        }
+    }
+}

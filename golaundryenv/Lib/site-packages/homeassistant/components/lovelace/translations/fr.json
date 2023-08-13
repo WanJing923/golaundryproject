@@ -1,0 +1,15 @@
+{
+    "services": {
+        "reload_resources": {
+            "name": "Recharger les ressources"
+        }
+    },
+    "system_health": {
+        "info": {
+            "dashboards": "Tableaux de bord",
+            "mode": "Mode",
+            "resources": "Ressources",
+            "views": "Vues"
+        }
+    }
+}

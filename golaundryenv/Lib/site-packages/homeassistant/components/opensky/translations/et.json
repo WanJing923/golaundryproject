@@ -1,0 +1,16 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "data": {
+                    "altitude": "K\u00f5rgus",
+                    "latitude": "Laiuskraad",
+                    "longitude": "Pikkuskraad",
+                    "name": "API v\u00f5ti",
+                    "radius": "Raadius"
+                },
+                "description": "Sisesta j\u00e4lgitav asukoht."
+            }
+        }
+    }
+}

@@ -1,0 +1,69 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Enheten er allerede konfigurert",
+            "reauth_successful": "Re-autentisering var vellykket"
+        },
+        "error": {
+            "cannot_connect": "Tilkobling mislyktes",
+            "invalid_auth": "Ugyldig godkjenning",
+            "unknown": "Uventet feil"
+        },
+        "flow_title": "{serial} ({host})",
+        "step": {
+            "user": {
+                "data": {
+                    "host": "Vert",
+                    "password": "Passord",
+                    "username": "Brukernavn"
+                },
+                "description": "For nyere modeller, skriv inn brukernavnet \"envoy\" uten passord. For eldre modeller, skriv inn brukernavnet `installer` uten passord. For alle andre modeller, skriv inn et gyldig brukernavn og passord."
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "communicating": {
+                "name": "Kommuniserer"
+            },
+            "dc_switch": {
+                "name": "Likestr\u00f8msbryter"
+            },
+            "grid_status": {
+                "name": "Nettstatus"
+            },
+            "operating": {
+                "name": "Driver"
+            }
+        },
+        "sensor": {
+            "current_power_consumption": {
+                "name": "N\u00e5v\u00e6rende kraftforbruk"
+            },
+            "current_power_production": {
+                "name": "N\u00e5v\u00e6rende kraftproduksjon"
+            },
+            "daily_consumption": {
+                "name": "Energiforbruk i dag"
+            },
+            "daily_production": {
+                "name": "Energiproduksjon i dag"
+            },
+            "last_reported": {
+                "name": "Sist rapportert"
+            },
+            "lifetime_consumption": {
+                "name": "Energiforbruk siden oppstart"
+            },
+            "lifetime_production": {
+                "name": "Energiproduksjon siden oppstart"
+            },
+            "seven_days_consumption": {
+                "name": "Energiforbruk siste sju dager"
+            },
+            "seven_days_production": {
+                "name": "Energiproduksjon siste sju dager"
+            }
+        }
+    }
+}

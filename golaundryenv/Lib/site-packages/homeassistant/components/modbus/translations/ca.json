@@ -1,0 +1,44 @@
+{
+    "services": {
+        "reload": {
+            "description": "Recarrega totes les entitats modbus.",
+            "name": "Torna a carregar"
+        },
+        "restart": {
+            "name": "Reinicia"
+        },
+        "stop": {
+            "name": "Atura"
+        },
+        "write_coil": {
+            "fields": {
+                "address": {
+                    "name": "Adre\u00e7a"
+                },
+                "slave": {
+                    "description": "Adre\u00e7a de la unitat/esclau modbus.",
+                    "name": "Esclau"
+                },
+                "state": {
+                    "description": "Estat a escriure.",
+                    "name": "Estat"
+                }
+            }
+        },
+        "write_register": {
+            "fields": {
+                "address": {
+                    "name": "Adre\u00e7a"
+                },
+                "slave": {
+                    "description": "Adre\u00e7a de la unitat/esclau modbus.",
+                    "name": "Esclau"
+                },
+                "value": {
+                    "description": "Valor a escriure (\u00fanic o matriu/'array')",
+                    "name": "Valor"
+                }
+            }
+        }
+    }
+}

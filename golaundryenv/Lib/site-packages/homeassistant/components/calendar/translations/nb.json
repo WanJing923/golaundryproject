@@ -1,0 +1,42 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Kalender",
+            "state": {
+                "off": "Av",
+                "on": "P\u00e5"
+            },
+            "state_attributes": {
+                "all_day": {
+                    "name": "Hele dagen",
+                    "state": {
+                        "false": "Nei",
+                        "true": "Ja"
+                    }
+                },
+                "description": {
+                    "name": "Beskrivelse"
+                },
+                "end_time": {
+                    "name": "Sluttid"
+                },
+                "location": {
+                    "name": "Plassering"
+                },
+                "messages": {
+                    "name": "Melding"
+                },
+                "start_time": {
+                    "name": "Starttid"
+                }
+            }
+        }
+    },
+    "issues": {
+        "platform_integration_no_support": {
+            "description": "Plattformen {platform} for integrasjonen {domain} st\u00f8tter ikke plattform-oppsett.\n\nVennligst fjern den fra konfigurasjon din og omstart Home Assistant for \u00e5 fikse dette problemet.",
+            "title": "Plattform ikke st\u00f8ttet"
+        }
+    },
+    "title": "Kalender"
+}
