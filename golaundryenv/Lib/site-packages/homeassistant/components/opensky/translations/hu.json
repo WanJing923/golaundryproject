@@ -1,0 +1,16 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "data": {
+                    "altitude": "Magass\u00e1g",
+                    "latitude": "Sz\u00e9less\u00e9g",
+                    "longitude": "Hossz\u00fas\u00e1g",
+                    "name": "API kulcs",
+                    "radius": "Sug\u00e1r"
+                },
+                "description": "T\u00f6ltse ki a nyomon k\u00f6vetni k\u00edv\u00e1nt helyet."
+            }
+        }
+    }
+}

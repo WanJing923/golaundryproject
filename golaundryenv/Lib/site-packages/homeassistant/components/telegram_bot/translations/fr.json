@@ -1,0 +1,66 @@
+{
+    "services": {
+        "send_animation": {
+            "description": "Envoyer une animation.",
+            "fields": {
+                "username": {
+                    "description": "Nom d'utilisateur pour une URL n\u00e9cessitant une authentification HTTP.",
+                    "name": "Nom d'utilisateur"
+                }
+            }
+        },
+        "send_document": {
+            "fields": {
+                "password": {
+                    "description": "Mot de passe (ou jeton) pour une URL n\u00e9cessitant une authentification HTTP."
+                },
+                "username": {
+                    "description": "Nom d'utilisateur pour une URL n\u00e9cessitant une authentification HTTP.",
+                    "name": "Nom d'utilisateur"
+                }
+            }
+        },
+        "send_photo": {
+            "fields": {
+                "username": {
+                    "name": "Nom d'utilisateur"
+                }
+            }
+        },
+        "send_sticker": {
+            "fields": {
+                "password": {
+                    "name": "Mot de passe"
+                },
+                "url": {
+                    "name": "URL"
+                },
+                "username": {
+                    "name": "Nom d'utilisateur"
+                }
+            }
+        },
+        "send_video": {
+            "fields": {
+                "password": {
+                    "name": "Mot de passe"
+                },
+                "username": {
+                    "description": "Nom d'utilisateur pour une URL n\u00e9cessitant une authentification HTTP.",
+                    "name": "Nom d'utilisateur"
+                }
+            }
+        },
+        "send_voice": {
+            "fields": {
+                "password": {
+                    "description": "Mot de passe (ou jeton) pour une URL n\u00e9cessitant une authentification HTTP."
+                },
+                "username": {
+                    "description": "Nom d'utilisateur pour une URL n\u00e9cessitant une authentification HTTP.",
+                    "name": "Nom d'utilisateur"
+                }
+            }
+        }
+    }
+}

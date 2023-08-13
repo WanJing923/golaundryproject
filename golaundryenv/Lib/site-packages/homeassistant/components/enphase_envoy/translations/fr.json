@@ -1,0 +1,63 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "L'appareil est d\u00e9j\u00e0 configur\u00e9",
+            "reauth_successful": "La r\u00e9-authentification a r\u00e9ussi"
+        },
+        "error": {
+            "cannot_connect": "Connexion impossible\u00a0: {reason}",
+            "invalid_auth": "Authentification non valide : {reason}",
+            "unknown": "Erreur inattendue"
+        },
+        "flow_title": "{serial} ({host})",
+        "step": {
+            "user": {
+                "data": {
+                    "host": "H\u00f4te",
+                    "password": "Mot de passe",
+                    "username": "Nom d'utilisateur"
+                },
+                "description": "Pour la version 7.0 du micrologiciel et les versions ult\u00e9rieures, entrez les informations d'identification du cloud Enphase, pour les mod\u00e8les plus anciens, entrez le nom d'utilisateur \"installer\" sans mot de passe."
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "grid_status": {
+                "name": "\u00c9tat du r\u00e9seau"
+            },
+            "operating": {
+                "name": "en fonctionnement"
+            }
+        },
+        "sensor": {
+            "current_power_consumption": {
+                "name": "consommation d'\u00e9lectricit\u00e9 actuelle"
+            },
+            "current_power_production": {
+                "name": "Production d'\u00e9lectricit\u00e9 actuelle"
+            },
+            "daily_consumption": {
+                "name": "Consommation d'\u00e9nergie du jour"
+            },
+            "daily_production": {
+                "name": "Production d'\u00e9nergie du jour"
+            },
+            "last_reported": {
+                "name": "Dernier rapport"
+            },
+            "lifetime_consumption": {
+                "name": "Consommation d'\u00e9nergie totale"
+            },
+            "lifetime_production": {
+                "name": "Production d'\u00e9nergie totale"
+            },
+            "seven_days_consumption": {
+                "name": "Consommation d'\u00e9nergie des sept derniers jours"
+            },
+            "seven_days_production": {
+                "name": "Production d'\u00e9nergie des sept derniers jours"
+            }
+        }
+    }
+}

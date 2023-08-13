@@ -1,0 +1,83 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Il dispositivo \u00e8 gi\u00e0 configurato",
+            "cannot_connect": "Impossibile connettersi",
+            "cct_unsupported": "Questo dispositivo WLED utilizza i canali CCT, che non sono supportati da questa integrazione"
+        },
+        "error": {
+            "cannot_connect": "Impossibile connettersi"
+        },
+        "flow_title": "{name}",
+        "step": {
+            "user": {
+                "data": {
+                    "host": "Host"
+                },
+                "description": "Configura WLED per l'integrazione con Home Assistant."
+            },
+            "zeroconf_confirm": {
+                "description": "Vuoi aggiungere il WLED chiamato `{name}` a Home Assistant?",
+                "title": "Rilevato dispositivo WLED"
+            }
+        }
+    },
+    "entity": {
+        "select": {
+            "live_override": {
+                "state": {
+                    "0": "Spento/a",
+                    "1": "Acceso/a",
+                    "2": "Fino al riavvio del dispositivo"
+                }
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "keep_master_light": "Mantieni la luce principale, anche con 1 segmento LED."
+                }
+            }
+        }
+    },
+    "services": {
+        "effect": {
+            "description": "Controlla le impostazioni degli effetti di WLED.",
+            "fields": {
+                "effect": {
+                    "description": "Nome o ID dell'effetto luminoso WLED.",
+                    "name": "Effetto"
+                },
+                "intensity": {
+                    "description": "Intensit\u00e0 dell'effetto. Numero compreso tra 0 e 255.",
+                    "name": "Intensit\u00e0 dell'effetto"
+                },
+                "palette": {
+                    "description": "Nome o ID della tavolozza delle luci WLED.",
+                    "name": "Tavolozza"
+                },
+                "reverse": {
+                    "description": "Inverte l'effetto. Vero per invertire o falso altrimenti.",
+                    "name": "Effetto inverso"
+                },
+                "speed": {
+                    "description": "Velocit\u00e0 dell'effetto.",
+                    "name": "Velocit\u00e0 dell'effetto"
+                }
+            },
+            "name": "Imposta effetto"
+        },
+        "preset": {
+            "description": "Imposta una preimpostazione per il dispositivo WLED.",
+            "fields": {
+                "preset": {
+                    "description": "ID della preimpostazione WLED.",
+                    "name": "ID preimpostato"
+                }
+            },
+            "name": "Imposta preimpostazione (deprecato)"
+        }
+    }
+}

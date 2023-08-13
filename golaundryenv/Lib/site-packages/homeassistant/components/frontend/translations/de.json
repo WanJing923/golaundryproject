@@ -1,0 +1,30 @@
+{
+    "selector": {
+        "mode": {
+            "options": {
+                "dark": "Dunkel",
+                "light": "Hell"
+            }
+        }
+    },
+    "services": {
+        "reload_themes": {
+            "description": "L\u00e4dt Designs aus der YAML-Konfiguration neu.",
+            "name": "Designs neu laden"
+        },
+        "set_theme": {
+            "description": "Legt das Standarddesign fest, das Home Assistant verwendet. Kann von einem Benutzer \u00fcberschrieben werden.",
+            "fields": {
+                "mode": {
+                    "description": "Design-Modus.",
+                    "name": "Modus"
+                },
+                "name": {
+                    "description": "Name eines Designs.",
+                    "name": "Design"
+                }
+            },
+            "name": "Festlegen des Standarddesigns"
+        }
+    }
+}

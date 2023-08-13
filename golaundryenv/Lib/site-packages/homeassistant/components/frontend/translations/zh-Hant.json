@@ -1,0 +1,12 @@
+{
+    "services": {
+        "set_theme": {
+            "fields": {
+                "name": {
+                    "name": "\u4e3b\u984c"
+                }
+            },
+            "name": "\u8a2d\u5b9a\u9810\u8a2d\u4e3b\u984c"
+        }
+    }
+}

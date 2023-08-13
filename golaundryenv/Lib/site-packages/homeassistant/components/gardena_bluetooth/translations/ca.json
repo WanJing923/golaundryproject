@@ -1,0 +1,39 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "El dispositiu ja est\u00e0 configurat",
+            "no_devices_found": "No s'han trobat dispositius a la xarxa"
+        },
+        "step": {
+            "confirm": {
+                "description": "Vols configurar {name}?"
+            },
+            "user": {
+                "data": {
+                    "address": "Dispositiu"
+                },
+                "description": "Tria un dispositiu a configurar"
+            }
+        }
+    },
+    "entity": {
+        "button": {
+            "factory_reset": {
+                "name": "Restabliment de f\u00e0brica"
+            }
+        },
+        "sensor": {
+            "activation_reason": {
+                "name": "Motiu d'activaci\u00f3"
+            },
+            "remaining_open_timestamp": {
+                "name": "V\u00e0lvula tancant"
+            }
+        },
+        "switch": {
+            "state": {
+                "name": "Obert/a"
+            }
+        }
+    }
+}

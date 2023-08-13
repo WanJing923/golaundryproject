@@ -1,0 +1,69 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Il dispositivo \u00e8 gi\u00e0 configurato",
+            "reauth_successful": "La riautenticazione ha avuto successo"
+        },
+        "error": {
+            "cannot_connect": "Impossibile connettersi: {reason}",
+            "invalid_auth": "Autenticazione non valida: {reason}",
+            "unknown": "Errore imprevisto"
+        },
+        "flow_title": "{serial} ({host})",
+        "step": {
+            "user": {
+                "data": {
+                    "host": "Host",
+                    "password": "Password",
+                    "username": "Nome utente"
+                },
+                "description": "Per la versione firmware 7.0 e successive, inserisci le credenziali del cloud Enphase; per i modelli precedenti, inserisci il nome utente `installer` senza password."
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "communicating": {
+                "name": "Comunicante"
+            },
+            "dc_switch": {
+                "name": "Interruttore CC"
+            },
+            "grid_status": {
+                "name": "Stato della rete"
+            },
+            "operating": {
+                "name": "Operativo"
+            }
+        },
+        "sensor": {
+            "current_power_consumption": {
+                "name": "Consumo di potenza attuale"
+            },
+            "current_power_production": {
+                "name": "Produzione di potenza attuale"
+            },
+            "daily_consumption": {
+                "name": "Consumo energetico oggi"
+            },
+            "daily_production": {
+                "name": "Produzione di energia oggi"
+            },
+            "last_reported": {
+                "name": "Ultimo segnalato"
+            },
+            "lifetime_consumption": {
+                "name": "Consumo energetico nel corso della vita"
+            },
+            "lifetime_production": {
+                "name": "Produzione di energia nel corso della vita"
+            },
+            "seven_days_consumption": {
+                "name": "Consumo di energia negli ultimi sette giorni"
+            },
+            "seven_days_production": {
+                "name": "Produzione di energia negli ultimi sette giorni"
+            }
+        }
+    }
+}

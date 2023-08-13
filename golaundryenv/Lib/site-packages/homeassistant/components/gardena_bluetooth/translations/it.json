@@ -1,0 +1,64 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Il dispositivo \u00e8 gi\u00e0 configurato",
+            "no_devices_found": "Nessun dispositivo trovato sulla rete"
+        },
+        "error": {
+            "cannot_connect": "Impossibile connettersi: {error}"
+        },
+        "step": {
+            "confirm": {
+                "description": "Vuoi configurare {name}?"
+            },
+            "user": {
+                "data": {
+                    "address": "Dispositivo"
+                },
+                "description": "Scegli un dispositivo da configurare"
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "valve_connected_state": {
+                "name": "Collegamento valvola"
+            }
+        },
+        "button": {
+            "factory_reset": {
+                "name": "Ripristino delle impostazioni di fabbrica"
+            }
+        },
+        "number": {
+            "manual_watering_time": {
+                "name": "Tempo di irrigazione manuale"
+            },
+            "rain_pause": {
+                "name": "Pausa pioggia"
+            },
+            "remaining_open_set": {
+                "name": "Aperto per"
+            },
+            "remaining_open_time": {
+                "name": "Tempo di apertura rimanente"
+            },
+            "season_pause": {
+                "name": "Pausa stagionale"
+            }
+        },
+        "sensor": {
+            "activation_reason": {
+                "name": "Motivo di attivazione"
+            },
+            "remaining_open_timestamp": {
+                "name": "Chiusura della valvola"
+            }
+        },
+        "switch": {
+            "state": {
+                "name": "Aperto/a"
+            }
+        }
+    }
+}

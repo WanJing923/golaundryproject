@@ -1,0 +1,89 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Az eszk\u00f6z m\u00e1r konfigur\u00e1lva van",
+            "reauth_successful": "Az \u00fajrahiteles\u00edt\u00e9s sikeres volt.",
+            "unknown": "V\u00e1ratlan hiba t\u00f6rt\u00e9nt"
+        },
+        "error": {
+            "cannot_connect": "Sikertelen csatlakoz\u00e1s",
+            "invalid_auth": "\u00c9rv\u00e9nytelen hiteles\u00edt\u00e9s",
+            "unknown": "V\u00e1ratlan hiba t\u00f6rt\u00e9nt"
+        },
+        "flow_title": "{name}",
+        "step": {
+            "authenticate": {
+                "data": {
+                    "api_key": "API kulcs"
+                },
+                "description": "K\u00e9rem, adja meg a konfigur\u00e1ci\u00f3ban l\u00e9v\u0151, {name} API-kulcs\u00e1t."
+            },
+            "user": {
+                "data": {
+                    "api_key": "API kulcs",
+                    "host": "Hoszt",
+                    "port": "Port"
+                },
+                "description": "K\u00e9rem, adja meg kapcsolati adatait."
+            }
+        }
+    },
+    "services": {
+        "open_path": {
+            "description": "Megnyit egy f\u00e1jlt a szerveren az alap\u00e9rtelmezett alkalmaz\u00e1ssal.",
+            "fields": {
+                "bridge": {
+                    "description": "Az a szerver, amellyel kommunik\u00e1lni kell.",
+                    "name": "H\u00edd"
+                },
+                "path": {
+                    "description": "Megnyitand\u00f3 \u00fatvonal.",
+                    "name": "\u00datvonal"
+                }
+            },
+            "name": "\u00datvonal megnyit\u00e1sa"
+        },
+        "open_url": {
+            "description": "Megnyit egy URL-t a szerveren az alap\u00e9rtelmezett alkalmaz\u00e1ssal.",
+            "fields": {
+                "bridge": {
+                    "description": "Az a szerver, amellyel kommunik\u00e1lni kell.",
+                    "name": "H\u00edd"
+                },
+                "url": {
+                    "description": "Megnyitand\u00f3 URL.",
+                    "name": "URL"
+                }
+            },
+            "name": "URL megnyit\u00e1sa"
+        },
+        "send_keypress": {
+            "description": "Billenty\u0171le\u00fct\u00e9st k\u00fcld.",
+            "fields": {
+                "bridge": {
+                    "description": "A szerver, amelynek elk\u00fcldj\u00fck a parancsot.",
+                    "name": "H\u00edd"
+                },
+                "key": {
+                    "description": "Megnyomand\u00f3 billenty\u0171. A lista itt \u00e9rhet\u0151 el: http://robotjs.io/docs/syntax#keys.",
+                    "name": "Billenty\u0171"
+                }
+            },
+            "name": "Billenty\u0171le\u00fct\u00e9s k\u00fcld\u00e9se"
+        },
+        "send_text": {
+            "description": "Sz\u00f6veget k\u00fcld a szervernek, hogy be\u00edrja.",
+            "fields": {
+                "bridge": {
+                    "description": "A szerver, amelynek elk\u00fcldj\u00fck a parancsot.",
+                    "name": "H\u00edd"
+                },
+                "text": {
+                    "description": "Be\u00edrand\u00f3 sz\u00f6veg.",
+                    "name": "Sz\u00f6veg"
+                }
+            },
+            "name": "Billenty\u0171zet sz\u00f6veg k\u00fcld\u00e9se"
+        }
+    }
+}

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'websiteapp.apps.WebsiteappConfig',
     'crispy_forms',
+    'firebase_authentication',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -82,6 +83,18 @@ DATABASES = {
     }
 }
 
+FIREBASE_PATH = os.path.join(BASE_DIR, 'keyfile.json')
+
+FIREBASE_CONFIG = {
+    "apiKey": "AIzaSyBTIjB4Zz60jlnjVRNBeLEc8YDOVjsErRU",
+    "authDomain": "golaundry-906c7.firebaseapp.com",
+    "databaseURL": "https://golaundry-906c7-default-rtdb.firebaseio.com",
+    "projectId": "golaundry-906c7",
+    "storageBucket": "golaundry-906c7.appspot.com",
+    "messagingSenderId": "63734818081",
+    "appId": "1:63734818081:web:24fa422edc2802ac47ca60",
+    "measurementId": "G-2000030N7P",
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

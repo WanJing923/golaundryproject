@@ -1,0 +1,67 @@
+{
+    "services": {
+        "disable_audio": {
+            "description": "Keelab helivoo.",
+            "fields": {
+                "entity_id": {
+                    "description": "Kaamerate nimed v\u00f5i k\u00f5igi kaamerate puhul 'all'.",
+                    "name": "Olem"
+                }
+            },
+            "name": "Keela heli"
+        },
+        "disable_motion_recording": {
+            "description": "Keela klipi salvestamine kaamera salvestusruumi kui tuvastatakse liikumine.",
+            "fields": {
+                "entity_id": {
+                    "description": "Kaamerate nimed v\u00f5i k\u00f5igi kaamerate puhul 'all'.",
+                    "name": "Olem"
+                }
+            },
+            "name": "Keelab salvestamise liikumisel"
+        },
+        "disable_recording": {
+            "description": "Keelab pideva salvestamise kaamera salvestusruumi.",
+            "fields": {
+                "entity_id": {
+                    "description": "Kaamerate nimed v\u00f5i k\u00f5igi kaamerate puhul 'all'.",
+                    "name": "Olem"
+                }
+            },
+            "name": "Keela salvestamine"
+        },
+        "enable_audio": {
+            "description": "Lubab helivoo.",
+            "fields": {
+                "entity_id": {
+                    "description": "Kaamerate nimed v\u00f5i k\u00f5igi kaamerate puhul 'all'.",
+                    "name": "Olem"
+                }
+            },
+            "name": "Luba heli"
+        },
+        "enable_motion_recording": {
+            "description": "V\u00f5imaldab liikumise tuvastamisel klipi salvestada kaamera salvestusruumi.",
+            "fields": {
+                "entity_id": {
+                    "description": "Kaamerate nimed v\u00f5i k\u00f5igi kaamerate puhul 'all'.",
+                    "name": "Olem"
+                }
+            },
+            "name": "Lubab liikumise salvestamise"
+        },
+        "enable_recording": {
+            "description": "V\u00f5imaldab pidevat salvestamist kaamera m\u00e4llu.",
+            "fields": {
+                "entity_id": {
+                    "description": "Kaamerate nimed v\u00f5i k\u00f5igi kaamerate puhul 'all'.",
+                    "name": "Olem"
+                }
+            },
+            "name": "Luba salvestamine"
+        },
+        "goto_preset": {
+            "description": "Liigutab kaamera PTZ eelseadistusele."
+        }
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "services": {
+        "remove_tracking": {
+            "fields": {
+                "tracking_number": {
+                    "description": "J\u00e4lgimisnumber mis tuleb eemaldada."
+                }
+            },
+            "name": "Eemalda j\u00e4lgimine"
+        }
+    }
+}

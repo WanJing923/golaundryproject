@@ -1,0 +1,39 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Innputt valg",
+            "state_attributes": {
+                "editable": {
+                    "name": "Administrert via UI",
+                    "state": {
+                        "false": "Nei",
+                        "true": "Ja"
+                    }
+                },
+                "options": {
+                    "name": "Alternativer"
+                }
+            }
+        }
+    },
+    "services": {
+        "reload": {
+            "name": "Last p\u00e5 nytt"
+        },
+        "select_next": {
+            "fields": {
+                "cycle": {
+                    "name": "Sykle"
+                }
+            }
+        },
+        "select_previous": {
+            "fields": {
+                "cycle": {
+                    "name": "Sykle"
+                }
+            }
+        }
+    },
+    "title": "Innputt valg"
+}

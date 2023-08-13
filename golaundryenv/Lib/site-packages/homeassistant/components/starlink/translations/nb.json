@@ -1,0 +1,32 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Enheten er allerede konfigurert"
+        },
+        "error": {
+            "cannot_connect": "Tilkobling mislyktes"
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "ip_address": "IP-adresse"
+                }
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "power_save_idle": {
+                "name": "Inaktiv"
+            },
+            "roaming": {
+                "name": "Roaming-modus"
+            }
+        },
+        "sensor": {
+            "elevation": {
+                "name": "Elevasjon"
+            }
+        }
+    }
+}

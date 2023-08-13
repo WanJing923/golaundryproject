@@ -1,0 +1,72 @@
+{
+    "services": {
+        "reload": {
+            "description": "L\u00e4dt alle Modbus-Entit\u00e4ten neu.",
+            "name": "Neu laden"
+        },
+        "restart": {
+            "description": "Startet den Modbus-Hub neu (bei Ausf\u00fchrung Stopp, dann Start).",
+            "fields": {
+                "hub": {
+                    "description": "Name des Modbus-Hubs.",
+                    "name": "Hub"
+                }
+            },
+            "name": "Neu starten"
+        },
+        "stop": {
+            "description": "Stoppt den Modbus-Hub.",
+            "fields": {
+                "hub": {
+                    "description": "Name des Modbus-Hubs.",
+                    "name": "Hub"
+                }
+            },
+            "name": "Stopp"
+        },
+        "write_coil": {
+            "description": "Schreibt in einen Modbus-Coil.",
+            "fields": {
+                "address": {
+                    "description": "Adresse des Registers, in das geschrieben werden soll.",
+                    "name": "Adresse"
+                },
+                "hub": {
+                    "description": "Name des Modbus-Hubs.",
+                    "name": "Hub"
+                },
+                "slave": {
+                    "description": "Adresse der Modbus-Einheit/Slave.",
+                    "name": "Slave"
+                },
+                "state": {
+                    "description": "Zu schreibender Zustand.",
+                    "name": "Zustand"
+                }
+            },
+            "name": "Schreib-Coil"
+        },
+        "write_register": {
+            "description": "Schreibt in ein Modbus-Halteregister.",
+            "fields": {
+                "address": {
+                    "description": "Adresse des Bestandsregisters, in das geschrieben werden soll.",
+                    "name": "Adresse"
+                },
+                "hub": {
+                    "description": "Name des Modbus-Hubs.",
+                    "name": "Hub"
+                },
+                "slave": {
+                    "description": "Adresse der Modbus-Einheit/Slave.",
+                    "name": "Slave"
+                },
+                "value": {
+                    "description": "Zu schreibender Wert (Einzelwert oder Array).",
+                    "name": "Wert"
+                }
+            },
+            "name": "Register schreiben"
+        }
+    }
+}

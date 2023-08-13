@@ -1,0 +1,33 @@
+{
+    "services": {
+        "join": {
+            "fields": {
+                "master": {
+                    "description": "M\u00e4ngija ID millest peaks saama r\u00fchma p\u00f5hiseade.",
+                    "name": "P\u00f5hiseade"
+                }
+            },
+            "name": "Liitu"
+        },
+        "set_sleep_timer": {
+            "description": "Seadista Bluesoundi taimer. See suurendab taimerit sammude kaupa: 15, 30, 45, 60, 90, 0.",
+            "fields": {
+                "entity_id": {
+                    "description": "Olemite nimed millele on m\u00e4\u00e4ratud taimer.",
+                    "name": "Olem"
+                }
+            },
+            "name": "M\u00e4\u00e4ra unetaimer"
+        },
+        "unjoin": {
+            "description": "Eemalda m\u00e4ngija grupist.",
+            "fields": {
+                "entity_id": {
+                    "description": "Olemi nimi mis grupist eemaldatakse. Olenevalt platvormist.",
+                    "name": "Olem"
+                }
+            },
+            "name": "Lahku"
+        }
+    }
+}

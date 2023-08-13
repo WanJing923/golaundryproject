@@ -1,0 +1,14 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "\u00da\u010det je ji\u017e nastaven"
+        }
+    },
+    "selector": {
+        "device_class": {
+            "options": {
+                "ph": "pH"
+            }
+        }
+    }
+}

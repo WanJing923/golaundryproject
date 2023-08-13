@@ -1,0 +1,23 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Nyom\u00f3gomb",
+            "state_attributes": {
+                "editable": {
+                    "name": "Felhaszn\u00e1l\u00f3i fel\u00fclet \u00e1ltal kezelt",
+                    "state": {
+                        "false": "Nem",
+                        "true": "Igen"
+                    }
+                }
+            }
+        }
+    },
+    "services": {
+        "press": {
+            "description": "Ut\u00e1nozza a fizikai gombnyom\u00e1st az eszk\u00f6z\u00f6n.",
+            "name": "Gombnyom\u00e1s"
+        }
+    },
+    "title": "Nyom\u00f3gomb"
+}

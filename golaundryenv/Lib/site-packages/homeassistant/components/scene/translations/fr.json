@@ -1,0 +1,20 @@
+{
+    "services": {
+        "create": {
+            "fields": {
+                "entities": {
+                    "name": "\u00c9tat des entit\u00e9s"
+                }
+            },
+            "name": "Cr\u00e9er"
+        },
+        "reload": {
+            "description": "Recharge les sc\u00e8nes \u00e0 partir de la configuration YAML.",
+            "name": "Recharger"
+        },
+        "turn_on": {
+            "name": "Activer"
+        }
+    },
+    "title": "Sc\u00e8ne"
+}
