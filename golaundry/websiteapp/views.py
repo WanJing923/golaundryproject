@@ -13,10 +13,12 @@ config={
 }
 
 firebase=pyrebase.initialize_app(config)
-authe = firebase.auth()
+# auth = firebase.auth()
 database=firebase.database()
 
 # Create your views here.
 def login(request):
     return render(request, 'login.html')
 
+def newuser(request):
+    return render(request, 'newUsers.html')
