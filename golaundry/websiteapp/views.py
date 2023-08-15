@@ -20,5 +20,14 @@ database=firebase.database()
 def login(request):
     return render(request, 'login.html')
 
-def newuser(request):
+def newusers(request):
     return render(request, 'newUsers.html')
+
+def ratingsreports(request):
+    return render(request, 'reports.html')
+
+def helpcentermessages(request):
+    return render(request, 'helpMessage.html')
+
+def manageallusers(request):
+    return render(request, 'allUsers.html')

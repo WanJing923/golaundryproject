@@ -173,7 +173,7 @@ img {
   height: 100%;
   position: fixed;
   top: 0;
-  left: -300px;
+  left: -350px;
   background-color: #D6EFEE;
   overflow-x: hidden;
   transition: 0.3s;
@@ -218,7 +218,7 @@ img {
   margin: 20px 0;
   display: flex;
   position: relative;
-  display: flex; /* Use flexbox to align content horizontally */
+  display: flex;
   align-items: center;
 }
 
@@ -254,4 +254,87 @@ img {
   font-size: 20px;
   padding: 2px 7px;
   border-radius: 50%;
+}
+
+/* table for except help */
+.data-table {
+  margin-top: 30px;
+  width: 98%;
+  border-collapse: collapse;
+  border: 1px solid #C0AB88;
+  background-color: #f2f2f2;
+  border-radius: 10px; /* Add border radius */
+  overflow: hidden;
+}
+
+.data-table th, .data-table td {
+  border: 1px solid #C0AB88;
+  padding: 8px;
+  text-align: left;
+  font-size: 16px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.data-table th {
+  background-color: #f2f2f2;
+}
+
+.column1 {
+  width: 20%;
+}
+
+.column2 {
+  width: 25%;
+}
+
+.column3 {
+  width: 25%;
+}
+
+.column4 {
+  width: 20%;
+}
+
+.column5 {
+  width: 8%;
+}
+
+/* help message table */
+.help-table {
+  margin-top: 30px;
+  width: 98%;
+  border-collapse: collapse;
+  border: 1px solid #C0AB88;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  border-radius: 10px; /* Add border radius */
+  overflow: hidden;
+}
+
+.help-table th, .help-table td {
+  border: 1px solid #C0AB88;
+  padding: 8px;
+  text-align: left;
+  font-size: 16px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.help-table th {
+  background-color: #f2f2f2;
+}
+
+.help-column1 {
+  width: 20%;
+}
+
+.help-column2 {
+  width: 50%;
+}
+
+.help-column3 {
+  width: 18%;
+}
+
+.help-column4 {
+  width: 10%;
 }
