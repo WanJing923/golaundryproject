@@ -8,4 +8,5 @@ urlpatterns = [
     path('helpmessages/', views.helpcentermessages, name="helpmessages"),
     path('allusers/', views.manageallusers, name="allusers"),
     # path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('userdetails/', views.userdetails, name="userdetails"),
 ]

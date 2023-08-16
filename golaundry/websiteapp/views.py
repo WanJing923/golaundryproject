@@ -31,3 +31,6 @@ def helpcentermessages(request):
 
 def manageallusers(request):
     return render(request, 'allUsers.html')
+
+def userdetails(request):
+    return render(request, 'userDetails.html')

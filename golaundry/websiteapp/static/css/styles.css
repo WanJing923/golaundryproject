@@ -66,7 +66,7 @@ img {
   line-height: normal;
 }
 
-.submit {
+.login {
   background-color: #D6EFEE;
   border: none;
   color: black;
@@ -81,13 +81,13 @@ img {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.submit:hover {
+.login:hover {
   background-color: #D6EFEE;
   color: black;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
-.buttoncontainer {
+.loginbuttoncontainer {
   height: auto;
   display: block;
   margin: 0 auto;
@@ -112,6 +112,7 @@ img {
   background-color: #0C8292;
   display: flex;
   align-items: center;
+  position: relative;
   padding: 10px;
   grid-template-columns: auto 1fr auto;
 }
@@ -196,11 +197,7 @@ img {
   top: 15px;
   right: 15px;
   z-index: 1;
-}
-
-.close-button {
   margin-right: auto;
-  cursor: pointer;
 }
 
 .close-button img {
@@ -263,16 +260,18 @@ img {
   border-collapse: collapse;
   border: 1px solid #C0AB88;
   background-color: #f2f2f2;
-  border-radius: 10px; /* Add border radius */
+  border-radius: 10px;
+  /* Add border radius */
   overflow: hidden;
 }
 
-.data-table th, .data-table td {
+.data-table th,
+.data-table td {
   border: 1px solid #C0AB88;
   padding: 8px;
   text-align: left;
   font-size: 16px;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .data-table th {
@@ -307,16 +306,18 @@ img {
   border: 1px solid #C0AB88;
   background-color: #f2f2f2;
   border-radius: 10px;
-  border-radius: 10px; /* Add border radius */
+  border-radius: 10px;
+  /* Add border radius */
   overflow: hidden;
 }
 
-.help-table th, .help-table td {
+.help-table th,
+.help-table td {
   border: 1px solid #C0AB88;
   padding: 8px;
   text-align: left;
   font-size: 16px;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .help-table th {
@@ -337,4 +338,118 @@ img {
 
 .help-column4 {
   width: 10%;
+}
+
+.back-button {
+  position: absolute;
+  left: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-button a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-size: 25px;
+  transition: color 0.3s;
+}
+
+/* User details title */
+.p3 {
+  color: #FFF;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: normal;
+  display: inline;
+  margin-left: 20px;
+}
+
+.details-rectangle {
+  background-color: #195860;
+  height: auto;
+  width: 1224px;
+  border: 1px solid #ffffff;
+  left: 100px;
+  top: 200px;
+  position: absolute;
+}
+
+/* user details */
+.p4 {
+  color: #ffffff;
+  text-align: left;
+  font-size: 18px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 15px;
+  margin-left: 40px;
+  margin-bottom: 15px;
+  margin-right: 40px;
+  line-height: auto;
+  border-style: hidden;
+  outline: none;
+  display: block;
+}
+
+.accept {
+  background-color: #D6EFEE;
+  border: none;
+  color: black;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: solid;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: block;
+  margin-top: 20px;
+  margin-right: 20px;
+  float: right;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.accept:hover {
+  background-color: #D6EFEE;
+  color: black;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.bottombuttoncontainer {
+  padding: 0;
+  height: auto;
+  text-align: right;
+  display: inline;
+  position: absolute;
+  bottom: 40px;
+  width: 90%;
+}
+
+.reject {
+  background-color: #D82E57;
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: solid;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: block;
+  margin-top: 20px;
+  margin-right: 30px;
+  float: right;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reject:hover {
+  background-color: #D82E57;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
