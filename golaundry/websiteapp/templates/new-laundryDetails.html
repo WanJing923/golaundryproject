@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+{% include 'messages.html' %}
+
+<body>
+
+  <!-- Include the Firebase JavaScript configuration -->
+  <!-- <script src="firebase/firebase.js"></script> -->
+
+  <!-- first top bar with icon -->
+  <div class="top-bar">
+    <img src="{% static 'img/Go-Laundry.png' %}" alt="Go-Laundry">
+  </div>
+
+  <!-- second top bar with title, menu icon and admin ID -->
+  <div class="second-top-bar">
+    {% include 'sideNavi.html' %}
+    <!-- side menu icon -->
+    <div class="sidenav-icon"><img src="{% static 'img/menu.svg' %}" alt="Sidenav Icon">
+      <script>
+
+        const sidenav = document.querySelector('.sidenav');
+        const sidenavIcon = document.querySelector('.sidenav-icon');
+        const closeButton = document.querySelector('.close-button');
+
+        sidenavIcon.addEventListener('click', () => {
+          sidenav.style.left = '0';
+        });
+
+        closeButton.addEventListener('click', () => {
+          sidenav.style.left = '-350px';
+        });
+
+      </script>
+    </div>
+    <div class="page-title">New Users</div>
+    <!-- admin id icon -->
+    <div class="admin-id-icon">
+      <img src="{% static 'img/admin_icon.png' %}" alt="Admin Icon">
+      <div class="admin-id-popup"></div>
+
+      <!-- when cursor pointing, show admin id -->
+      <script>
+        const adminIdIcon = document.querySelector('.admin-id-icon');
+        const adminIdPopup = document.querySelector('.admin-id-popup');
+        adminIdIcon.addEventListener('mouseenter', () => {
+          adminIdPopup.style.opacity = '1';
+          adminIdPopup.textContent = '1111';
+        });
+        adminIdIcon.addEventListener('mouseleave', () => {
+          adminIdPopup.style.opacity = '0';
+          adminIdPopup.textContent = '';
+        })
+      </script>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="back-button">
+    <a href="{{ request.META.HTTP_REFERER|escape }}">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="p3">Laundry Shop</div>
+  </div>
+
+
+  <div class='details-rectangle'>
+
+    <div class='p4'>Shop Name:</div>
+
+    <div class='p4'>Contact Number:</div>
+
+    <div class='p4'>Email Address:</div>
+
+    <div class='p4'>Address:</div>
+
+    <div class='p4'>Address Details:</div>
+
+    <div class='p4'>Business License:</div>
+
+    <div class='p4'>Owner Full Name:</div>
+
+    <div class='p4'>Phone Number:</div>
+
+    <div class='p4'>Identification No:</div>
+
+  </div>
+
+  <br>
+
+  <div class="bottombuttoncontainer">
+    <input type="submit" class="accept" value="Accept"></input>
+    <input type="submit" class="reject" value="Reject"></input>
+  </div>
+
+
+</body>
+{% endblock content %}
+
+</html>

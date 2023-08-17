@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+{% include 'messages.html' %}
+
+<body>
+
+  <!-- Include the Firebase JavaScript configuration -->
+  <!-- <script src="firebase/firebase.js"></script> -->
+
+  <!-- first top bar with icon -->
+  <div class="top-bar">
+    <img src="{% static 'img/Go-Laundry.png' %}" alt="Go-Laundry">
+  </div>
+
+  <!-- second top bar with title, menu icon and admin ID -->
+  <div class="second-top-bar">
+    {% include 'sideNavi.html' %}
+    <!-- side menu icon -->
+    <div class="sidenav-icon"><img src="{% static 'img/menu.svg' %}" alt="Sidenav Icon">
+      <script>
+
+        const sidenav = document.querySelector('.sidenav');
+        const sidenavIcon = document.querySelector('.sidenav-icon');
+        const closeButton = document.querySelector('.close-button');
+
+        sidenavIcon.addEventListener('click', () => {
+          sidenav.style.left = '0';
+        });
+
+        closeButton.addEventListener('click', () => {
+          sidenav.style.left = '-350px';
+        });
+
+      </script>
+    </div>
+    <div class="page-title">Ratings Reports</div>
+    <!-- admin id icon -->
+    <div class="admin-id-icon">
+      <img src="{% static 'img/admin_icon.png' %}" alt="Admin Icon">
+      <div class="admin-id-popup"></div>
+
+      <!-- when cursor pointing, show admin id -->
+      <script>
+        const adminIdIcon = document.querySelector('.admin-id-icon');
+        const adminIdPopup = document.querySelector('.admin-id-popup');
+        adminIdIcon.addEventListener('mouseenter', () => {
+          adminIdPopup.style.opacity = '1';
+          adminIdPopup.textContent = '1111';
+        });
+        adminIdIcon.addEventListener('mouseleave', () => {
+          adminIdPopup.style.opacity = '0';
+          adminIdPopup.textContent = '';
+        })
+      </script>
+    </div>
+  </div>
+
+  <center>
+    <table class="data-table">
+
+      <thead>
+        <tr>
+          <th class="column1">Order ID</th>
+          <th class="column2">User Name</th>
+          <th class="column3">Reporter Name</th>
+          <th class="column4">Ratings Status</th>
+          <th class="column5"> </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        
+        <tr>
+          <td class="column1">Order ID</td>
+          <td class="column2">User Name</td>
+          <td class="column3">Reporter Name</td>
+          <td class="column4">Ratings Status</td>
+          <td class="column5">View</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </center>
+
+</body>
+{% endblock content %}
+
+</html>

@@ -378,6 +378,7 @@ img {
   left: 100px;
   top: 200px;
   position: absolute;
+  margin-bottom: 20px;
 }
 
 /* user details */
@@ -426,7 +427,7 @@ img {
   text-align: right;
   display: inline;
   position: absolute;
-  bottom: 40px;
+  bottom: 30px;
   width: 90%;
 }
 
@@ -452,4 +453,48 @@ img {
   background-color: #D82E57;
   color: white;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.reply-container {
+  display: block;
+  margin-top: 20px;
+  position: absolute;
+}
+
+.reply-rectangle {
+  background-color: #195860;
+  height: 200px;
+  width: 1224px;
+  border: 1px solid #ffffff;
+  left: 100px;
+  top: 420px;
+  position: absolute;
+  margin-bottom: 20px;
+}
+
+.help-rectangle {
+  background-color: #195860;
+  height: 150px;
+  width: 1224px;
+  border: 1px solid #ffffff;
+  left: 100px;
+  top: 200px;
+  position: absolute;
+  margin-bottom: 20px;
+}
+
+.reply {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  vertical-align: text-middle;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 200;
+  left: 80px;
+  top: 370px;
+  position: absolute;
+  line-height: auto;
+  border-style: hidden;
+  outline: none;
 }
