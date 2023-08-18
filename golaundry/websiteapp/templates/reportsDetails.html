@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+{% include 'messages.html' %}
+
+<body>
+
+    <!-- Include the Firebase JavaScript configuration -->
+    <!-- <script src="firebase/firebase.js"></script> -->
+
+    <!-- first top bar with icon -->
+    <div class="top-bar">
+        <img src="{% static 'img/Go-Laundry.png' %}" alt="Go-Laundry">
+    </div>
+
+    <!-- second top bar with title, menu icon and admin ID -->
+    <div class="second-top-bar">
+        {% include 'sideNavi.html' %}
+        <!-- side menu icon -->
+        <div class="sidenav-icon"><img src="{% static 'img/menu.svg' %}" alt="Sidenav Icon">
+            <script>
+
+                const sidenav = document.querySelector('.sidenav');
+                const sidenavIcon = document.querySelector('.sidenav-icon');
+                const closeButton = document.querySelector('.close-button');
+
+                sidenavIcon.addEventListener('click', () => {
+                    sidenav.style.left = '0';
+                });
+
+                closeButton.addEventListener('click', () => {
+                    sidenav.style.left = '-350px';
+                });
+
+            </script>
+        </div>
+        <div class="page-title">Ratings Reports</div>
+        <!-- admin id icon -->
+        <div class="admin-id-icon">
+            <img src="{% static 'img/admin_icon.png' %}" alt="Admin Icon">
+            <div class="admin-id-popup"></div>
+
+            <!-- when cursor pointing, show admin id -->
+            <script>
+                const adminIdIcon = document.querySelector('.admin-id-icon');
+                const adminIdPopup = document.querySelector('.admin-id-popup');
+                adminIdIcon.addEventListener('mouseenter', () => {
+                    adminIdPopup.style.opacity = '1';
+                    adminIdPopup.textContent = '1111';
+                });
+                adminIdIcon.addEventListener('mouseleave', () => {
+                    adminIdPopup.style.opacity = '0';
+                    adminIdPopup.textContent = '';
+                })
+            </script>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="back-button">
+        <a href="{{ request.META.HTTP_REFERER|escape }}">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="p3">Order ID: </div>
+    </div>
+
+    <div class="content-container">
+
+        <!-- left side content -->
+        <div class="left-column">
+
+            <br>
+
+            <div class="p4-underline">Order Details </div>
+
+            <div class="p5-left">Laundry Shop: </div>
+            <div class="p5-left">
+                <a style="color: #C0AB88;" href=#>
+                    View
+                </a>
+            </div>
+
+            <br>
+
+            <div class="p5-left">Rider: </div>
+            <div class="p5-left">
+                <a style="color: #C0AB88;" href=#>
+                    View
+                </a>
+            </div>
+
+            <div class="left-rectangle">
+
+                <!-- loop services -->
+                <div class="left-rectangle-service-text">Washing</div>
+                <div class="left-rectangle-right-text">RM </div>
+                <div class="left-rectangle-right-text">Qty: </div>
+
+                <!-- divider -->
+                <hr>
+
+                <!-- fees -->
+                <div class="p5">Delivery fee: RM &nbsp;</div>
+
+                <br><br>
+
+                <div class="p5" style="color: #C0AB88;">Membership Rate(): -20% : -RM &nbsp;</div>
+
+                <br><br>
+
+                <div class="p5">Laundry fee: RM &nbsp;</div>
+
+                <br><br>
+
+                <!-- divider -->
+                <div class="divider-container"></div>
+
+                <!-- total -->
+                <div class="p5" style="color: #C0AB88;">Total: RM &nbsp;</div>
+
+                <br><br><br>
+
+            </div>
+
+            <div class="p4-delivered">Delivered on 28-7-2023 </div>
+
+            <div class="left-rectangle2">
+                <!-- loop the history -->
+                <div class="p5-left">Date - Time</div>
+                <div class="divider"></div>
+                <div class="p5-left">Content</div>
+            </div>
+
+            <br>
+
+            <div class="p4-underline">Note to Laundry Shop</div>
+
+            <div class="p4">Content</div>
+
+            <br>
+
+            <div class="p4-underline">Note to Rider</div>
+
+            <div class="p4">Content</div>
+
+
+        </div>
+
+        <!-- right side content -->
+        <div class="right-column">
+
+            <div class="p5">
+                <a style="color: #C0AB88;" href=#>
+                    View
+                </a>
+            </div>
+            <div class="p5">Reporter: </div>
+
+            <br><br>
+
+            <div class="p5">
+                <a style="color: #C0AB88;" href=#>
+                    View
+                </a>
+            </div>
+            <div class="p5">User: </div>
+
+            <br>
+
+            <div class="right-rectangle">
+                <div class="p4-underline">Review Details </div>
+
+                <div class="p4-small">From: </div>
+
+                <div class="p4-small">Ratings: </div>
+
+                <div class="p4-small">Date: </div>
+
+            </div>
+
+            <br><br>
+
+            <div class="right-rectangle2">
+                <div class="p4-underline">Reporter Note</div>
+                <div class="scroll">
+                    <div class="p4-small">It is a good platform to learn programming.
+                        It is an educational website. Prepare for the Recruitment drive
+                        of product based companies like Microsoft, Amazon, Adobe etc with
+                        a free online placement preparation course. The course focuses
+                        on various MCQ's & Coding question likely to be asked in the
+                        interviews & make your upcoming placement season efficient and
+                        successful. Also, any geeks can help other geeks by writing
+                        articles on the GeeksforGeeks, publishing articles follow few
+                        steps that are Articles that need little modification/improvement
+                        from reviewers are published first. To quickly get your articles
+                        reviewed, please refer existing articles, their formatting style,
+                        coding style, and try to</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bottombuttoncontainer">
+            <input type="submit" class="accept" value="Accept"></input>
+            <input type="submit" class="reject" value="Reject"></input>
+        </div>
+    </div>
+</body>
+{% endblock content %}
+
+</html>

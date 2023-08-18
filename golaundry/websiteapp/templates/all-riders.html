@@ -43,7 +43,7 @@
 
       </script>
     </div>
-    <div class="page-title">Help Center Messages</div>
+    <div class="page-title">Manage All Users</div>
     <!-- admin id icon -->
     <div class="admin-id-icon">
       <img src="{% static 'img/admin_icon.png' %}" alt="Admin Icon">
@@ -65,25 +65,52 @@
     </div>
   </div>
 
+  <!-- bar -->
+  <div class="tab">
+    <button>Users</button>
+    <button>Laundry Shops</button>
+    <button>Riders</button>
+  </div>
+
+  <br>
+
+  <!-- subtitle -->
+  <div class="subtitle-container">
+    <div class="p3">Riders</div>
+  </div>
+
+  <!-- search bar -->
+  <div class="center-container">
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Search Name...">
+      <button class="search-button">
+        <img src="{% static 'img/search.png' %}" alt="Search Icon">
+      </button>
+    </div>
+  </div>
+
+  <!-- table -->
   <center>
-    <table class="help-table">
+    <table class="data-table">
 
       <thead>
         <tr>
-          <th class="help-column1">Email Address</th>
-          <th class="help-column2">Title</th>
-          <th class="help-column3">Status</th>
-          <th class="help-column4"> </th>
+          <th class="column1">Full Name</th>
+          <th class="column2">Email Address</th>
+          <th class="column3">Phone Number</th>
+          <th class="column4">Status</th>
+          <th class="column5"> </th>
         </tr>
       </thead>
 
       <tbody>
-        
+
         <tr>
-          <td class="help-column1">Email Address</td>
-          <td class="help-column2">Title</td>
-          <td class="help-column3">Status</td>
-          <td class="help-column4">View</td>
+          <td class="column1">Full Name</td>
+          <td class="column2">Email Address</td>
+          <td class="column3">Phone Number</td>
+          <td class="column4">Status</td>
+          <td class="column5">View</td>
         </tr>
 
       </tbody>

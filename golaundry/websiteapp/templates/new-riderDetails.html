@@ -43,7 +43,7 @@
 
       </script>
     </div>
-    <div class="page-title">Help Center Messages</div>
+    <div class="page-title">New Users</div>
     <!-- admin id icon -->
     <div class="admin-id-icon">
       <img src="{% static 'img/admin_icon.png' %}" alt="Admin Icon">
@@ -65,30 +65,41 @@
     </div>
   </div>
 
-  <center>
-    <table class="help-table">
+  <br>
 
-      <thead>
-        <tr>
-          <th class="help-column1">Email Address</th>
-          <th class="help-column2">Title</th>
-          <th class="help-column3">Status</th>
-          <th class="help-column4"> </th>
-        </tr>
-      </thead>
+  <div class="back-button">
+    <a href="{{ request.META.HTTP_REFERER|escape }}">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="p3">Rider</div>
+  </div>
 
-      <tbody>
-        
-        <tr>
-          <td class="help-column1">Email Address</td>
-          <td class="help-column2">Title</td>
-          <td class="help-column3">Status</td>
-          <td class="help-column4">View</td>
-        </tr>
 
-      </tbody>
-    </table>
-  </center>
+  <div class='details-rectangle'>
+
+    <div class='p4'>Full Name:</div>
+
+    <div class='p4'>Contact Number:</div>
+
+    <div class='p4'>Email Address:</div>
+
+    <div class='p4'>Plate Number:</div>
+
+    <div class='p4'>Face Photo:</div>
+
+    <div class='p4'>Driving License:</div>
+
+    <div class='p4'>Identification No:</div>
+
+  </div>
+
+  <br>
+
+  <div class="bottombuttoncontainer">
+    <input type="submit" class="accept" value="Accept"></input>
+    <input type="submit" class="reject" value="Reject"></input>
+  </div>
+
 
 </body>
 {% endblock content %}
