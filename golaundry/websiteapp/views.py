@@ -30,7 +30,13 @@ def helpcentermessages(request):
     return render(request, 'helpMessage.html')
 
 def manageallusers(request):
-    return render(request, 'allUsers.html')
+    return render(request, 'all-users.html')
+
+def managealllaundry(request):
+    return render(request, 'all-laundry.html')
+
+def manageallriders(request):
+    return render(request, 'all-riders.html')
 
 def newlaundrydetails(request):
     return render(request, 'new-laundryDetails.html')
@@ -43,3 +49,12 @@ def helpdetails(request):
 
 def reportsdetails(request):
     return render(request, 'reportsDetails.html')
+
+def allusersUserDetails(request):
+    return render(request, 'all-userDetails.html')
+
+def allusersLaundryDetails(request):
+    return render(request, 'all-laundryDetails.html')
+
+def allusersRiderDetails(request):
+    return render(request, 'all-riderDetails.html')

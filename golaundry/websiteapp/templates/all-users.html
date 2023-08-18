@@ -43,7 +43,7 @@
 
       </script>
     </div>
-    <div class="page-title">New Users</div>
+    <div class="page-title">Manage All Users</div>
     <!-- admin id icon -->
     <div class="admin-id-icon">
       <img src="{% static 'img/admin_icon.png' %}" alt="Admin Icon">
@@ -65,35 +65,62 @@
     </div>
   </div>
 
-  <br>
-
-  <div class="back-button">
-    <a href="{{ request.META.HTTP_REFERER|escape }}">
-      <i class="fas fa-arrow-left"></i>
-    </a>
-    <div class="p3">User</div>
-  </div>
-
-
-  <div class='details-rectangle'>
-
-    <div class='p4'>Email Address:</div>
-
-    <div class='p4'>Phone Number: </div>
-
-    <div class='p4'>Gender:</div>
-
-    <div class='p4'>Identification No:</div>
-
+  <!-- bar -->
+  <div class="tab">
+    <button>Users</button>
+    <button>Laundry Shops</button>
+    <button>Riders</button>
   </div>
 
   <br>
 
-  <div class="bottombuttoncontainer">
-    <input type="submit" class="accept" value="Activate"></input>
-    <input type="submit" class="reject" value="Terminate"></input>
+  <!-- subtitle -->
+  <div class="subtitle-container">
+    <div class="p3">Users</div>
   </div>
 
+  <!-- search bar -->
+  <div class="center-container">
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Search Name...">
+      <button class="search-button">
+        <img src="{% static 'img/search.png' %}" alt="Search Icon">
+      </button>
+    </div>
+  </div>
+
+
+  <!-- table -->
+  <center>
+    <table class="data-table">
+
+      <thead>
+        <tr>
+          <th class="column1">Name</th>
+          <th class="column2">Email Address</th>
+          <th class="column3">Phone Number</th>
+          <th class="column4">Status</th>
+          <th class="column5"> </th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td class="column1">Name</td>
+          <td class="column2">Email Address</td>
+          <td class="column3">Phone Number</td>
+          <td class="column4">Status</td>
+          <td class="column5">View</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+
+
+
+  </center>
 
 </body>
 {% endblock content %}

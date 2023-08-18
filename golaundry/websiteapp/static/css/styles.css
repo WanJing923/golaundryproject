@@ -723,3 +723,77 @@ div.scroll {
   overflow-y: auto;
   text-align:justify;
 }
+
+.tab {
+  overflow: hidden;
+  background-color: #134147;
+  text-align: center;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  border: none;
+  display: inline;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #195860;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #195860;
+}
+
+.subtitle-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 40px;
+  width: 500px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  margin-left: 20px;
+}
+
+.search-button {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.search-button img {
+  width: 25px;
+  height: 25px;
+}
