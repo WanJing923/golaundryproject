@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Registration</title>
+</head>
+
+{% include 'messages.html' %}
+
+<body>
+    <h2>Admin Registration</h2>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <label for="email_address">Email Address:</label>
+        <input type="text" id="email_address" name="email_address" required>
+
+        <br><br>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <br><br><br><br>
+        
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

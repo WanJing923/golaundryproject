@@ -35,9 +35,27 @@
         <a href="{% url 'allusers' %}"><i class="fas fa-users-cog"></i>Manage All Users</a>
       </li>
 
-      <li>
+      <li id="logout-link">
         <a href="#"><i class="fas fa-sign-out-alt"></i>Log Out</a>
-      </li>
+    </li>
+    
+    <form id="logout-form" method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" hidden>Logout</button>
+    </form>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoutLink = document.getElementById('logout-link');
+            const logoutForm = document.getElementById('logout-form');
+        
+            logoutLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                logoutForm.submit();
+            });
+        });
+      </script>      
+    
 
     </ul>
   </div>

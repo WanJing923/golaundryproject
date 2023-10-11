@@ -1,10 +1,12 @@
-from django.urls import include, path
+from django.urls import path
 from websiteapp import views
+
 #URLConfig
 urlpatterns = [
     # login and logout feature
-    path('', views.login, name="login"),
-    # path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('', views.login_admin, name="login"),
+    path('register', views.register, name="register"),
+    path('logout/', views.CustomLogoutView.as_view(), name='logout'),
     
     # new laundry and rider feature
     path('newusers/', views.newusers, name="newusers"),
