@@ -1,5 +1,13 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render,redirect
 import pyrebase
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from django.contrib.auth import login
+from websiteapp.models import CustomUser
+from django.contrib.auth.views import LogoutView
+from django.urls import reverse_lazy
+from django.shortcuts import redirect
 
 config={
     "apiKey": "AIzaSyBTIjB4Zz60jlnjVRNBeLEc8YDOVjsErRU",
@@ -13,13 +21,48 @@ config={
 }
 
 firebase=pyrebase.initialize_app(config)
-# auth = firebase.auth()
+auth = firebase.auth()
 database=firebase.database()
 
+def register(request):
+    if request.method == 'POST':
+        email_address = request.POST.get('email_address')
+        password = request.POST.get('password')
+
+        try:
+            user = auth.create_user_with_email_and_password(email_address, password) 
+            custom_user = CustomUser.objects.create(email_address=email_address, firebase_uid=user['localId'])
+            messages.success(request, 'Admin registered successfully.')
+            return redirect('login')
+        except Exception as e:
+            messages.error(request, 'Failed to register admin: ' + str(e))
+    return render(request, 'register.html')
+
+
 # Create your views here.
-def login(request):
+def login_admin(request):
+    if request.method == 'POST':
+        email_address = request.POST.get('emailAddress')
+        password = request.POST.get('password')
+
+        try:
+            firebase_user_id = auth.sign_in_with_email_and_password(email_address, password)['localId']
+
+            # Perform a mapping to a Django user or create a new user if necessary
+            try:
+                user = CustomUser.objects.get(firebase_uid=firebase_user_id)
+            except CustomUser.DoesNotExist:
+                messages.error(request, 'Failed to login: ' + str(e))
+            login(request, user)
+            return redirect('newusers')
+
+        except Exception as e:
+            error_message = str(e)
+            messages.error(request, error_message)
+
     return render(request, 'login.html')
 
+@login_required
 def newusers(request):
     return render(request, 'newUsers.html')
 
@@ -58,3 +101,6 @@ def allusersLaundryDetails(request):
 
 def allusersRiderDetails(request):
     return render(request, 'all-riderDetails.html')
+
+class CustomLogoutView(LogoutView):
+    next_page = reverse_lazy('login')
