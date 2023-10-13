@@ -10,7 +10,7 @@ urlpatterns = [
     
     # new laundry and rider feature
     path('newusers/', views.newusers, name="newusers"),
-    path('newlaundrydetails/', views.newlaundrydetails, name="newlaundrydetails"),
+    path('newlaundrydetails/<str:laundryId>/', views.newlaundrydetails, name="newlaundrydetails"),
     path('newriderdetails/', views.newriderdetails, name="newriderdetails"),
     
     # ratings report feature

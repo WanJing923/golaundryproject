@@ -1,5 +1,6 @@
 from django.contrib import messages
-from django.shortcuts import render,redirect
+from django.http import Http404
+from django.shortcuts import render,redirect,get_object_or_404
 import pyrebase
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -9,6 +10,7 @@ from django.contrib.auth.views import LogoutView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from operator import itemgetter
+from .models import Laundry
 
 config={
     "apiKey": "AIzaSyBTIjB4Zz60jlnjVRNBeLEc8YDOVjsErRU",
@@ -63,13 +65,31 @@ def login_admin(request):
 
 @login_required
 def newusers(request):
+    #get data from db
     laundry_data = database.child("laundry").get().val()
     rider_data = database.child("riders").get().val()
-    
+    #sort data
     sorted_laundry_data = sorted(laundry_data.items(), key=lambda x: x[1]['registerDateTime'], reverse=True)
     sorted_rider_data = sorted(rider_data.items(), key=lambda x: x[1]['registerDateTime'], reverse=True)
-    
+    #pass
     return render(request, 'newUsers.html', {"laundry_data": sorted_laundry_data, "rider_data": sorted_rider_data})
+
+@login_required
+def newlaundrydetails(request, laundryId):
+    laundry_data  = database.child("laundry").child(laundryId).get().val()
+    if laundry_data is not None:
+        context = {'laundry_data': laundry_data}
+        return render(request, 'new-laundryDetails.html', context)
+    else:
+        return render(request, 'new-laundryDetails.html') 
+
+
+@login_required
+def newriderdetails(request):
+    return render(request, 'new-riderDetails.html')
+
+
+
 
 
 
@@ -92,14 +112,6 @@ def managealllaundry(request):
 @login_required
 def manageallriders(request):
     return render(request, 'all-riders.html')
-
-@login_required
-def newlaundrydetails(request):
-    return render(request, 'new-laundryDetails.html')
-
-@login_required
-def newriderdetails(request):
-    return render(request, 'new-riderDetails.html')
 
 @login_required
 def helpdetails(request):
