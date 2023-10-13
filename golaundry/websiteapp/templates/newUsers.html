@@ -55,7 +55,7 @@
         const adminIdPopup = document.querySelector('.admin-id-popup');
         adminIdIcon.addEventListener('mouseenter', () => {
           adminIdPopup.style.opacity = '1';
-          adminIdPopup.textContent = '1111';
+          adminIdPopup.textContent = '';
         });
         adminIdIcon.addEventListener('mouseleave', () => {
           adminIdPopup.style.opacity = '0';
@@ -79,22 +79,65 @@
       </thead>
 
       <tbody>
-        
+
+        {% for laundry in laundry_data %}
         <tr>
-          <td class="column1">User Type</td>
-          <td class="column2">Full Name</td>
-          <td class="column3">Contact Number</td>
-          <td class="column4">Status</td>
+          <td class="column1">Laundry</td>
+          <td class="column2">{{ laundry.1.shopName }}</td>
+          <td class="column3">{{ laundry.1.phoneNo }}</td>
+          <td class="column4 {% if laundry.1.status == 'terminated' %}red-text{% endif %}">{{ laundry.1.status }}</td>
           <td class="column5">View</td>
         </tr>
+        {% endfor %}
+
+        {% for rider in rider_data %}
+        <tr>
+          <td class="column1">Rider</td>
+          <td class="column2">{{ rider.1.fullName }}</td>
+          <td class="column3">{{ rider.1.contactNo }}</td>
+          <td class="column4 {% if rider.1.status == 'terminated' %}red-text{% endif %}">{{ rider.1.status }}</td>
+          <td class="column5">View</td>
+        </tr>
+        {% endfor %}
+
 
       </tbody>
     </table>
-
-
-
-
   </center>
+
+  <!-- <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+
+  <script>
+    const database = getDatabase();
+    const laundryRef = database.ref('laundry');
+
+    const userTableBody = document.getElementById('user-table-body');
+
+    laundryRef.on('value', (snapshot) => {
+      userTableBody.innerHTML = '';
+
+      snapshot.forEach((childSnapshot) => {
+        const laundryData = childSnapshot.val();
+        const userType = "laundry";
+        const fullName = laundryData.fullName;
+        const contactNumber = laundryData.phoneNo;
+        const status = laundryData.status;
+
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+          <td class="column1">${userType}</td>
+          <td class="column2">${fullName}</td>
+          <td class="column3">${contactNumber}</td>
+          <td class="column4">${status}</td>
+          <td class="column5">View</td>
+        `;
+
+        userTableBody.appendChild(newRow);
+      });
+    });
+  </script> -->
+
 
 </body>
 {% endblock content %}

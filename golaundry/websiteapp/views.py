@@ -8,6 +8,7 @@ from websiteapp.models import CustomUser
 from django.contrib.auth.views import LogoutView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
+from operator import itemgetter
 
 config={
     "apiKey": "AIzaSyBTIjB4Zz60jlnjVRNBeLEc8YDOVjsErRU",
@@ -38,8 +39,6 @@ def register(request):
             messages.error(request, 'Failed to register admin: ' + str(e))
     return render(request, 'register.html')
 
-
-# Create your views here.
 def login_admin(request):
     if request.method == 'POST':
         email_address = request.POST.get('emailAddress')
@@ -64,41 +63,61 @@ def login_admin(request):
 
 @login_required
 def newusers(request):
-    return render(request, 'newUsers.html')
+    laundry_data = database.child("laundry").get().val()
+    rider_data = database.child("riders").get().val()
+    
+    sorted_laundry_data = sorted(laundry_data.items(), key=lambda x: x[1]['registerDateTime'], reverse=True)
+    sorted_rider_data = sorted(rider_data.items(), key=lambda x: x[1]['registerDateTime'], reverse=True)
+    
+    return render(request, 'newUsers.html', {"laundry_data": sorted_laundry_data, "rider_data": sorted_rider_data})
 
+
+
+@login_required
 def ratingsreports(request):
     return render(request, 'reports.html')
 
+@login_required
 def helpcentermessages(request):
     return render(request, 'helpMessage.html')
 
+@login_required
 def manageallusers(request):
     return render(request, 'all-users.html')
 
+@login_required
 def managealllaundry(request):
     return render(request, 'all-laundry.html')
 
+@login_required
 def manageallriders(request):
     return render(request, 'all-riders.html')
 
+@login_required
 def newlaundrydetails(request):
     return render(request, 'new-laundryDetails.html')
 
+@login_required
 def newriderdetails(request):
     return render(request, 'new-riderDetails.html')
 
+@login_required
 def helpdetails(request):
     return render(request, 'helpDetails.html')
 
+@login_required
 def reportsdetails(request):
     return render(request, 'reportsDetails.html')
 
+@login_required
 def allusersUserDetails(request):
     return render(request, 'all-userDetails.html')
 
+@login_required
 def allusersLaundryDetails(request):
     return render(request, 'all-laundryDetails.html')
 
+@login_required
 def allusersRiderDetails(request):
     return render(request, 'all-riderDetails.html')
 
