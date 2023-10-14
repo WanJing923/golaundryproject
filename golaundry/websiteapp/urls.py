@@ -19,7 +19,7 @@ urlpatterns = [
     
     # help center message feature
     path('helpmessages/', views.helpcentermessages, name="helpmessages"),
-    path('helpdetails/', views.helpdetails, name="helpdetails"),
+    path('helpdetails/<str:helpId>/', views.helpdetails, name="helpdetails"),
     
     # manage all users feature
     path('allusers/', views.manageallusers, name="allusers"),

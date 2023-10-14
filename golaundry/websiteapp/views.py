@@ -255,19 +255,33 @@ def allusersRiderDetails(request, riderId):
     else:
         return render(request, 'all-riderDetails.html')
 
-
-
-
-
-
-
-
-
-
-
 @login_required
 def helpcentermessages(request):
-    return render(request, 'helpMessage.html')
+    #get data from db
+    help_data = database.child("helpCenter").get().val()
+    #sort data
+    sorted_help_data = sorted(help_data.items(), key=lambda x: x[1]['dateTime'], reverse=True)
+    #pass
+    return render(request, 'helpMessage.html', {"help_data": sorted_help_data})
+
+@login_required
+def helpdetails(request,helpId):
+    help_data  = database.child("helpCenter").child(helpId).get().val()
+    if help_data is not None:
+        context = {'help_data': help_data}
+        return render(request, 'helpDetails.html', context)
+    else:
+        return render(request, 'helpDetails.html')
+
+
+
+
+
+
+
+
+
+
 
 @login_required
 def manageallusers(request):
@@ -280,12 +294,6 @@ def managealllaundry(request):
 @login_required
 def manageallriders(request):
     return render(request, 'all-riders.html')
-
-@login_required
-def helpdetails(request):
-    return render(request, 'helpDetails.html')
-
-
 
 
 

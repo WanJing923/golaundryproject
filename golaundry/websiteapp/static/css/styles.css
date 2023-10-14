@@ -465,7 +465,7 @@ img {
 .reply-rectangle {
   background-color: #195860;
   height: 200px;
-  width: 1224px;
+  width: 1100px;
   border: 1px solid #ffffff;
   left: 100px;
   top: 420px;
@@ -808,4 +808,12 @@ div.scroll {
 
 .white-text-link {
   color: #9DCAEB;
+}
+
+.pretty-message {
+  background-color: #f8d7da;
+  color: #721c24; 
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  margin-bottom: 10px;
 }
