@@ -7,6 +7,7 @@ from websiteapp.models import CustomUser
 from django.contrib.auth.views import LogoutView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
+from datetime import datetime
 
 config={
     "apiKey": "AIzaSyBTIjB4Zz60jlnjVRNBeLEc8YDOVjsErRU",
@@ -124,7 +125,6 @@ def ratingsreports(request):
     context = {"reports_data": sorted_reports_with_data}
     return render(request, 'reports.html', context)
 
-
 @login_required
 def reportsdetails(request, reportId):
     report_details_data  = database.child("reports").child(reportId).get().val()
@@ -140,12 +140,33 @@ def reportsdetails(request, reportId):
             user_data = database.child("users").child(user_id).get().val()
             order_data = database.child("userOrder").child(order_id).get().val()
             rate_data = database.child("ratings").child(rate_id).get().val()
-            
             laundry_shop_data = database.child("laundry").child(reporter_id).get().val()
 
             riderId = order_data.get("riderId")
             rider_data = database.child("riders").child(riderId).get().val()
         
+            pick_up_date_str = order_data.get("pickUpDate")
+            try:
+                pick_up_date = datetime.strptime(pick_up_date_str, "%m/%d/%Y")
+                order_data["pickUpDate"] = pick_up_date.strftime("%d/%m/%Y")
+            except ValueError:
+                order_data["pickUpDate"] = "Invalid Date"
+                
+            order_status_data = database.child("orderStatus").child(order_id).get().val()
+            if order_status_data:
+                formatted_status_data = []
+                for status_id, status_info in order_status_data.items():
+                    status_datetime_str = status_info.get("dateTime")
+                    try:
+                        status_datetime = datetime.strptime(status_datetime_str, "%Y%m%d_%H%M%S")
+                        
+                        status_info["formatted_datetime"] = status_datetime.strftime("%Y/%m/%d %H:%M")
+                    except ValueError:
+                        status_info["formatted_datetime"] = "Invalid Date/Time"
+                    formatted_status_data.append((status_id, status_info))
+
+                # Sort the list of status items by date in reverse order
+                sorted_order_status_data = sorted(formatted_status_data, key=lambda x: x[1]["formatted_datetime"], reverse=True)
 
             if reporter_data is not None and user_data is not None:
                 context = {
@@ -155,7 +176,8 @@ def reportsdetails(request, reportId):
                     'order_data': order_data,
                     'rate_data': rate_data,
                     'laundry_shop_data': laundry_shop_data,
-                    'rider_data': rider_data
+                    'rider_data': rider_data,
+                    'sorted_order_status_data':sorted_order_status_data
                 }
                 return render(request, 'reportsDetails.html', context)
         else:
@@ -163,11 +185,33 @@ def reportsdetails(request, reportId):
             user_data = database.child("users").child(user_id).get().val()
             order_data = database.child("userOrder").child(order_id).get().val()
             rate_data = database.child("ratings").child(rate_id).get().val()
-            
             rider_data = database.child("riders").child(reporter_id).get().val()
 
             laundryId = order_data.get(laundryId)
             laundry_data = database.child("laundry").child(laundryId).get().val()
+            
+            pick_up_date_str = order_data.get("pickUpDate")
+            try:
+                pick_up_date = datetime.strptime(pick_up_date_str, "%m/%d/%Y")
+                order_data["pickUpDate"] = pick_up_date.strftime("%d/%m/%Y")
+            except ValueError:
+                order_data["pickUpDate"] = "Invalid Date"
+
+            order_status_data = database.child("orderStatus").child(order_id).get().val()
+            if order_status_data:
+                formatted_status_data = []
+                for status_id, status_info in order_status_data.items():
+                    status_datetime_str = status_info.get("dateTime")
+                    try:
+                        status_datetime = datetime.strptime(status_datetime_str, "%Y%m%d_%H%M%S")
+                        
+                        status_info["formatted_datetime"] = status_datetime.strftime("%Y/%m/%d %H:%M")
+                    except ValueError:
+                        status_info["formatted_datetime"] = "Invalid Date/Time"
+                    formatted_status_data.append((status_id, status_info))
+
+                # Sort the list of status items by date in reverse order
+                sorted_order_status_data = sorted(formatted_status_data, key=lambda x: x[1]["formatted_datetime"], reverse=True)
 
             if reporter_data is not None and user_data is not None:
                 context = {
@@ -177,11 +221,45 @@ def reportsdetails(request, reportId):
                     'order_data': order_data,
                     'rate_data': rate_data,
                     'rider_data':rider_data,
-                    'laundry_data':laundry_data
+                    'laundry_data':laundry_data,
+                    'sorted_order_status_data':sorted_order_status_data
                 }
                 return render(request, 'reportsDetails.html', context)
     else:
         return render(request, 'reportsDetails.html')
+
+@login_required
+def allusersLaundryDetails(request, laundryId):
+    laundry_data  = database.child("laundry").child(laundryId).get().val()
+    if laundry_data is not None:
+        context = {'laundry_data': laundry_data}
+        return render(request, 'all-laundryDetails.html', context)
+    else:
+        return render(request, 'all-laundryDetails.html')
+
+@login_required
+def allusersUserDetails(request, userId):
+    user_data  = database.child("users").child(userId).get().val()
+    if user_data is not None:
+        context = {'user_data': user_data}
+        return render(request, 'all-userDetails.html', context)
+    else:
+        return render(request, 'all-userDetails.html')
+
+@login_required
+def allusersRiderDetails(request, riderId):
+    rider_data  = database.child("riders").child(riderId).get().val()
+    if rider_data is not None:
+        context = {'rider_data': rider_data}
+        return render(request, 'all-riderDetails.html', context)
+    else:
+        return render(request, 'all-riderDetails.html')
+
+
+
+
+
+
 
 
 
@@ -209,17 +287,7 @@ def helpdetails(request):
 
 
 
-@login_required
-def allusersUserDetails(request):
-    return render(request, 'all-userDetails.html')
 
-@login_required
-def allusersLaundryDetails(request):
-    return render(request, 'all-laundryDetails.html')
-
-@login_required
-def allusersRiderDetails(request):
-    return render(request, 'all-riderDetails.html')
 
 class CustomLogoutView(LogoutView):
     next_page = reverse_lazy('login')

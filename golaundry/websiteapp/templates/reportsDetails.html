@@ -78,11 +78,12 @@
 
             <br>
 
-            <div class="p4-underline">Order Details </div>
+            <div class="p4-underline">Order Details</div>
 
             <div class="p5-left">Laundry Shop: {{ laundry_shop_data.shopName }}</div>
             <div class="p5-left">
-                <a style="color: #C0AB88;" href=#>
+                <a style="color: #C0AB88;" href="{% url 'allusersLaundryDetails' laundry_shop_data.laundryId %}"
+                    target="_blank">
                     View
                 </a>
             </div>
@@ -91,7 +92,7 @@
 
             <div class="p5-left">Rider: {{ rider_data.fullName }}</div>
             <div class="p5-left">
-                <a style="color: #C0AB88;" href=#>
+                <a style="color: #C0AB88;" href="{% url 'allusersRiderDetails' rider_data.riderId %}" target="_blank">
                     View
                 </a>
             </div>
@@ -99,31 +100,31 @@
             <div class="left-rectangle">
 
                 <!-- loop services -->
-                <div class="left-rectangle-service-text">Washing</div>
-                <div class="left-rectangle-right-text">RM </div>
-                <div class="left-rectangle-right-text">Qty: </div>
+                {% for service, quantity in order_data.selectedServices.items %}
+                <div class="service-quantity">
+                    <div class="left-rectangle-service-text">{{ service }}</div>
+                    <div class="left-rectangle-right-text">Qty: {{ quantity }}</div>
+                </div>
+                {% endfor %}
 
                 <!-- divider -->
                 <hr>
 
                 <!-- fees -->
-                <div class="p5">Delivery fee: RM {{ order_data.deliveryFee }}&nbsp;</div>
-
-                <br><br>
-
-                <div class="p5" style="color: #C0AB88;">Membership Rate(): -20% : -RM &nbsp;</div>
-
-                <br><br>
 
                 <div class="p5">Laundry fee: RM {{ order_data.laundryFee }} &nbsp;</div>
-
+                <br><br>
+                <div class="p5" style="color: #C0AB88;">Membership Rate: {{ order_data.membershipDiscount }} &nbsp;
+                </div>
+                <br><br>
+                <div class="p5">Delivery fee: RM {{ order_data.deliveryFee|floatformat:2 }} &nbsp;</div>
                 <br><br>
 
                 <!-- divider -->
                 <div class="divider-container"></div>
 
                 <!-- total -->
-                <div class="p5" style="color: #C0AB88;">Total: RM {{ order_data.totalFee }}&nbsp;</div>
+                <div class="p5" style="color: #C0AB88;">Total: RM {{ order_data.totalFee }} &nbsp;</div>
 
                 <br><br><br>
 
@@ -132,23 +133,25 @@
             <div class="p4-delivered">Pick up on {{ order_data.pickUpDate }} </div>
 
             <div class="left-rectangle2">
-                <!-- loop the history -->
-                <div class="p5-left">Date - Time</div>
-                <div class="divider"></div>
-                <div class="p5-left">Content</div>
+                {% for status_id, status_info in sorted_order_status_data %}
+                    <div class="p5-left">{{ status_info.formatted_datetime }}</div>
+                    <div class="divider"></div>
+                    <div class="p5-left">{{ status_info.statusContent }}</div>
+                {% endfor %}
             </div>
+            
 
             <br>
 
             <div class="p4-underline">Note to Laundry Shop</div>
 
-            <div class="p4">{{ order_data.noteToLaundry }}</div>
+            <div class="p4">{{ order_data.noteToLaundry|default:'-' }}</div>
 
             <br>
 
             <div class="p4-underline">Note to Rider</div>
 
-            <div class="p4">{{ order_data.noteToRider }}</div>
+            <div class="p4">{{ order_data.noteToRider|default:'-' }}</div>
 
 
         </div>
@@ -157,9 +160,15 @@
         <div class="right-column">
 
             <div class="p5">
-                <a style="color: #C0AB88;" href=#>
-                    View
-                </a>
+
+                {% if report_details_data.reporterRole == "laundry" %}
+                <a style="color: #C0AB88;" href="{% url 'allusersLaundryDetails' laundry_shop_data.laundryId %}"
+                    target="_blank">View</a>
+                {% else %}
+                <a style="color: #C0AB88;" href="{% url 'allusersRiderDetails' rider_data.riderId %}"
+                    target="_blank">View</a>
+                {% endif %}
+
             </div>
 
             <div class="p5">Reporter:
@@ -176,7 +185,7 @@
             <br><br>
 
             <div class="p5">
-                <a style="color: #C0AB88;" href=#>
+                <a style="color: #C0AB88;" href="{% url 'allusersUserDetails' user_data.userId %}" target="_blank">
                     View
                 </a>
             </div>

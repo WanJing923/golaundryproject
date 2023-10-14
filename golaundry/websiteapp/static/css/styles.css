@@ -646,11 +646,7 @@ img {
   color: #ffffff;
   text-align: left;
   vertical-align: text-middle;
-  font-size: 18px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border-style: hidden;
-  margin-top: 15px;
-  margin-left: 20px;
   display: inline-block;
 }
 
@@ -658,14 +654,21 @@ img {
   color: #ffffff;
   text-align: right;
   vertical-align: text-middle;
-  font-size: 18px;
-  float: right;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: right;
   line-height: auto;
   border-style: hidden;
   outline: none;
-  display: inline;
-  padding: 15px;
+  display: inline-block;
+}
+
+.service-quantity {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-left: 20px;
+  font-size: 18px;
+  margin-right: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 hr {

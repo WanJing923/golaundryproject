@@ -25,7 +25,7 @@ urlpatterns = [
     path('allusers/', views.manageallusers, name="allusers"),
     path('alllaundry/', views.managealllaundry, name="alllaundry"),
     path('allriders/', views.manageallriders, name="allriders"),
-    path('allusersUserDetails/', views.allusersUserDetails, name="allusersUserDetails"),
-    path('allusersLaundryDetails/', views.allusersLaundryDetails, name="allusersLaundryDetails"),
-    path('allusersRiderDetails/', views.allusersRiderDetails, name="allusersRiderDetails"),
+    path('allusersUserDetails/<str:userId>/', views.allusersUserDetails, name="allusersUserDetails"),
+    path('allusersLaundryDetails/<str:laundryId>/', views.allusersLaundryDetails, name="allusersLaundryDetails"),
+    path('allusersRiderDetails/<str:riderId>/', views.allusersRiderDetails, name="allusersRiderDetails"),
 ]
