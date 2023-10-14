@@ -67,9 +67,9 @@
 
   <!-- bar -->
   <div class="tab">
-    <button>Users</button>
-    <button>Laundry Shops</button>
-    <button>Riders</button>
+    <button><a href="{% url 'allusers' %}" style="color: white; text-decoration: none;">Users</a></button>
+    <button><a href="{% url 'alllaundry' %}" style="color: white; text-decoration: none;">Laundry Shops</a></button>
+    <button><a href="{% url 'allriders' %}" style="color: white; text-decoration: none;">Riders</a></button>
   </div>
 
   <br>
@@ -105,13 +105,20 @@
 
       <tbody>
 
+        {% for laudry_id, laundry_info in laundry_data.items %}
         <tr>
-          <td class="column1">Shop Name</td>
-          <td class="column2">Email Address</td>
-          <td class="column3">Contact Number</td>
-          <td class="column4">Status</td>
-          <td class="column5">View</td>
+          <td class="column1">{{ laundry_info.shopName }}</td>
+          <td class="column2">{{ laundry_info.emailAddress }}</td>
+          <td class="column3">{{ laundry_info.contactNo }}</td>
+          <td class="column4 {% if laundry_info.status == 'terminated' %}red-text{% endif %}">{{ laundry_info.status }}</td>
+
+          {% with laundryId=laudry_id %}
+          <td class="column5">
+            <a href="{% url 'allusersLaundryDetails' laundryId %}">View</a>
+          </td>
+          {% endwith %}
         </tr>
+        {% endfor %}
 
       </tbody>
     </table>

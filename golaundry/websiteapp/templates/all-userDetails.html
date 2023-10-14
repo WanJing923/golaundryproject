@@ -77,13 +77,19 @@
 
   <div class='details-rectangle'>
 
-    <div class='p4'>Email Address:</div>
+    <div class='p4'>Email Address: {{ user_data.emailAddress }}</div>
 
-    <div class='p4'>Phone Number: </div>
+    <div class='p4'>Phone Number: +60{{ user_data.phoneNo }}</div>
 
-    <div class='p4'>Gender:</div>
+    <div class='p4'>Gender: {{ user_data.gender }}</div>
 
-    <div class='p4'>Identification No:</div>
+    <div class='p4'>Identification No: {{ user_data.icNo }}</div>
+
+    <div class='p4'>Current Membership: {{ user_data.membershipRate }}</div>
+
+    <div class='p4'>Current Balance: {{ user_data.balance|floatformat:2 }}</div>
+
+    <div class='p4'>Account Status: {{ user_data.status }}</div>
 
   </div>
 

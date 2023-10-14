@@ -273,29 +273,32 @@ def helpdetails(request,helpId):
     else:
         return render(request, 'helpDetails.html')
 
-
-
-
-
-
-
-
-
-
-
 @login_required
 def manageallusers(request):
-    return render(request, 'all-users.html')
+    user_data  = database.child("users").get().val()
+    if user_data is not None:
+        context = {'user_data': user_data}
+        return render(request, 'all-users.html', context)
+    else:
+        return render(request, 'all-users.html')
 
 @login_required
 def managealllaundry(request):
-    return render(request, 'all-laundry.html')
+    laundry_data  = database.child("laundry").get().val()
+    if laundry_data is not None:
+        context = {'laundry_data': laundry_data}
+        return render(request, 'all-laundry.html', context)
+    else:
+        return render(request, 'all-laundry.html')
 
 @login_required
 def manageallriders(request):
-    return render(request, 'all-riders.html')
-
-
+    rider_data  = database.child("riders").get().val()
+    if rider_data is not None:
+        context = {'rider_data': rider_data}
+        return render(request, 'all-riders.html', context)
+    else:
+        return render(request, 'all-riders.html')
 
 class CustomLogoutView(LogoutView):
     next_page = reverse_lazy('login')

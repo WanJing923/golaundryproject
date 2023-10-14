@@ -95,6 +95,10 @@
 
     <div class='p4'>Identification No: {{ rider_data.icNo }}</div>
 
+    <div class='p4'>Current Balance: {{ rider_data.balance|floatformat:2 }}</div>
+
+    <div class='p4'>Account Status: {{ rider_data.status }}</div>
+
   </div>
 
   <div class="bottombuttoncontainer">
