@@ -14,9 +14,6 @@
 
 <body>
 
-    <!-- Include the Firebase JavaScript configuration -->
-    <!-- <script src="firebase/firebase.js"></script> -->
-
     <!-- first top bar with icon -->
     <div class="top-bar">
         <img src="{% static 'img/Go-Laundry.png' %}" alt="Go-Laundry">
@@ -55,7 +52,7 @@
                 const adminIdPopup = document.querySelector('.admin-id-popup');
                 adminIdIcon.addEventListener('mouseenter', () => {
                     adminIdPopup.style.opacity = '1';
-                    adminIdPopup.textContent = '1111';
+                    adminIdPopup.textContent = 'Admin';
                 });
                 adminIdIcon.addEventListener('mouseleave', () => {
                     adminIdPopup.style.opacity = '0';
@@ -71,7 +68,7 @@
         <a href="{{ request.META.HTTP_REFERER|escape }}">
             <i class="fas fa-arrow-left"></i>
         </a>
-        <div class="p3">Order ID: </div>
+        <div class="p3">Order ID: {{ report_details_data.orderId }}</div>
     </div>
 
     <div class="content-container">
@@ -83,7 +80,7 @@
 
             <div class="p4-underline">Order Details </div>
 
-            <div class="p5-left">Laundry Shop: </div>
+            <div class="p5-left">Laundry Shop: {{ laundry_shop_data.shopName }}</div>
             <div class="p5-left">
                 <a style="color: #C0AB88;" href=#>
                     View
@@ -92,7 +89,7 @@
 
             <br>
 
-            <div class="p5-left">Rider: </div>
+            <div class="p5-left">Rider: {{ rider_data.fullName }}</div>
             <div class="p5-left">
                 <a style="color: #C0AB88;" href=#>
                     View
@@ -110,7 +107,7 @@
                 <hr>
 
                 <!-- fees -->
-                <div class="p5">Delivery fee: RM &nbsp;</div>
+                <div class="p5">Delivery fee: RM {{ order_data.deliveryFee }}&nbsp;</div>
 
                 <br><br>
 
@@ -118,7 +115,7 @@
 
                 <br><br>
 
-                <div class="p5">Laundry fee: RM &nbsp;</div>
+                <div class="p5">Laundry fee: RM {{ order_data.laundryFee }} &nbsp;</div>
 
                 <br><br>
 
@@ -126,13 +123,13 @@
                 <div class="divider-container"></div>
 
                 <!-- total -->
-                <div class="p5" style="color: #C0AB88;">Total: RM &nbsp;</div>
+                <div class="p5" style="color: #C0AB88;">Total: RM {{ order_data.totalFee }}&nbsp;</div>
 
                 <br><br><br>
 
             </div>
 
-            <div class="p4-delivered">Delivered on 28-7-2023 </div>
+            <div class="p4-delivered">Pick up on {{ order_data.pickUpDate }} </div>
 
             <div class="left-rectangle2">
                 <!-- loop the history -->
@@ -145,13 +142,13 @@
 
             <div class="p4-underline">Note to Laundry Shop</div>
 
-            <div class="p4">Content</div>
+            <div class="p4">{{ order_data.noteToLaundry }}</div>
 
             <br>
 
             <div class="p4-underline">Note to Rider</div>
 
-            <div class="p4">Content</div>
+            <div class="p4">{{ order_data.noteToRider }}</div>
 
 
         </div>
@@ -164,7 +161,17 @@
                     View
                 </a>
             </div>
-            <div class="p5">Reporter: </div>
+
+            <div class="p5">Reporter:
+
+                {% if report_details_data.reporterRole == "laundry" %}
+                {{ reporter_data.shopName }}
+                {% else %}
+                {{ reporter_data.fullName }}
+                {% endif %}
+                &nbsp;
+
+            </div>
 
             <br><br>
 
@@ -173,38 +180,33 @@
                     View
                 </a>
             </div>
-            <div class="p5">User: </div>
+            <div class="p5">Customer: {{ user_data.fullName }} &nbsp;</div>
 
             <br>
 
             <div class="right-rectangle">
                 <div class="p4-underline">Review Details </div>
 
-                <div class="p4-small">From: </div>
+                <div class="p4-small">From: {{ user_data.fullName }}</div>
 
-                <div class="p4-small">Ratings: </div>
+                <div class="p4-small">Ratings:
+                    {% if report_details_data.reporterRole == "laundry" %}
+                    {{ rate_data.rateToLaundry }}
+                    {% else %}
+                    {{ rate_data.rateToRider }}
+                    {% endif %}
+                </div>
 
-                <div class="p4-small">Date: </div>
+                <div class="p4-small">Date: {{ rate_data.dateTime }}</div>
 
             </div>
 
-            <br><br>
+            <br>
 
             <div class="right-rectangle2">
                 <div class="p4-underline">Reporter Note</div>
                 <div class="scroll">
-                    <div class="p4-small">It is a good platform to learn programming.
-                        It is an educational website. Prepare for the Recruitment drive
-                        of product based companies like Microsoft, Amazon, Adobe etc with
-                        a free online placement preparation course. The course focuses
-                        on various MCQ's & Coding question likely to be asked in the
-                        interviews & make your upcoming placement season efficient and
-                        successful. Also, any geeks can help other geeks by writing
-                        articles on the GeeksforGeeks, publishing articles follow few
-                        steps that are Articles that need little modification/improvement
-                        from reviewers are published first. To quickly get your articles
-                        reviewed, please refer existing articles, their formatting style,
-                        coding style, and try to</div>
+                    <div class="p4-small">{{ report_details_data.messageFromReporter }}</div>
                 </div>
             </div>
 

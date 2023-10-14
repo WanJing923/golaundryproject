@@ -55,7 +55,7 @@
         const adminIdPopup = document.querySelector('.admin-id-popup');
         adminIdIcon.addEventListener('mouseenter', () => {
           adminIdPopup.style.opacity = '1';
-          adminIdPopup.textContent = '';
+          adminIdPopup.textContent = 'Admin';
         });
         adminIdIcon.addEventListener('mouseleave', () => {
           adminIdPopup.style.opacity = '0';
@@ -82,7 +82,6 @@
 
         {% for laundry in laundry_data %}
         <tr>
-
           <td class="column1">Laundry</td>
           <td class="column2">{{ laundry.1.shopName }}</td>
           <td class="column3">{{ laundry.1.phoneNo }}</td>
@@ -93,7 +92,6 @@
             <a href="{% url 'newlaundrydetails' laundryId %}">View</a>
           </td>
           {% endwith %}
-
         </tr>
         {% endfor %}
 
@@ -103,7 +101,11 @@
           <td class="column2">{{ rider.1.fullName }}</td>
           <td class="column3">{{ rider.1.contactNo }}</td>
           <td class="column4 {% if rider.1.status == 'terminated' %}red-text{% endif %}">{{ rider.1.status }}</td>
-          <td class="column5">View</td>
+          {% with riderId=rider.1.riderId %}
+          <td class="column5">
+            <a href="{% url 'newriderdetails' riderId %}">View</a>
+          </td>
+          {% endwith %}
         </tr>
         {% endfor %}
 

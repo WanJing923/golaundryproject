@@ -14,9 +14,6 @@
 
 <body>
 
-  <!-- Include the Firebase JavaScript configuration -->
-  <!-- <script src="firebase/firebase.js"></script> -->
-
   <!-- first top bar with icon -->
   <div class="top-bar">
     <img src="{% static 'img/Go-Laundry.png' %}" alt="Go-Laundry">
@@ -79,14 +76,38 @@
       </thead>
 
       <tbody>
-        
+
+        {% for report in reports_data %}
         <tr>
-          <td class="column1">Order ID</td>
-          <td class="column2">User Name</td>
-          <td class="column3">Reporter Name</td>
-          <td class="column4">Ratings Status</td>
-          <td class="column5">View</td>
+          <td class="column1">{{ report.report_info.orderId }}</td>
+          <td class="column2">{{ report.user_data.fullName }}</td>
+
+          <td class="column3">
+            {% if report.report_info.reporterRole == "laundry" %}
+            {{ report.reporterAll_data.shopName }}
+            {% else %}
+            {{ report.reporterAll_data.fullName }}
+            {% endif %}
+          </td>
+
+          <td class="column4 {% if not report.report_info.adminResponse %}red-text{% endif %}">
+            {% if not report.report_info.adminResponse %}
+            Pending
+            {% else %}
+            Solved
+            {% endif %}
+          </td>
+
+
+          {% with reportId=report.report_id %}
+          <td class="column5">
+            <a href="{% url 'reportsdetails' reportId %}">View</a>
+          </td>
+          {% endwith %}
+
         </tr>
+        {% endfor %}
+
 
       </tbody>
     </table>

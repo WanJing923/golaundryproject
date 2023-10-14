@@ -1,16 +1,12 @@
 from django.contrib import messages
-from django.http import Http404
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render,redirect
 import pyrebase
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
 from django.contrib.auth import login
 from websiteapp.models import CustomUser
 from django.contrib.auth.views import LogoutView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
-from operator import itemgetter
-from .models import Laundry
 
 config={
     "apiKey": "AIzaSyBTIjB4Zz60jlnjVRNBeLEc8YDOVjsErRU",
@@ -83,19 +79,113 @@ def newlaundrydetails(request, laundryId):
     else:
         return render(request, 'new-laundryDetails.html') 
 
-
 @login_required
-def newriderdetails(request):
-    return render(request, 'new-riderDetails.html')
-
-
-
-
-
-
+def newriderdetails(request, riderId):
+    rider_data  = database.child("riders").child(riderId).get().val()
+    if rider_data is not None:
+        context = {'rider_data': rider_data}
+        return render(request, 'new-riderDetails.html', context)
+    else:
+        return render(request, 'new-riderDetails.html') 
+    
 @login_required
 def ratingsreports(request):
-    return render(request, 'reports.html')
+    reports_data = database.child("reports").get().val()
+    reports_with_user_and_role_data = []
+
+    for report_id, report_info in reports_data.items():
+        user_id = report_info["userId"]
+        reporter_role = report_info["reporterRole"]
+        reporter_id = report_info["reporterId"]
+
+        user_data = database.child("users").child(user_id).get().val()
+
+        reporterAll_data = None
+
+        if reporter_role == "laundry":
+            # Fetch laundry data using the reporterId
+            reporterAll_data = database.child("laundry").child(reporter_id).get().val()
+        else:
+            # Fetch rider data using the reporterId
+            reporterAll_data = database.child("riders").child(reporter_id).get().val()
+
+        if user_data and reporterAll_data:
+            report_with_data = {
+                "report_id": report_id,
+                "report_info": report_info,
+                "user_data": user_data,
+                "reporterAll_data": reporterAll_data,
+            }
+
+            reports_with_user_and_role_data.append(report_with_data)
+
+    sorted_reports_with_data = sorted(reports_with_user_and_role_data, key=lambda x: x["report_info"]["currentDateTime"], reverse=True)
+
+    context = {"reports_data": sorted_reports_with_data}
+    return render(request, 'reports.html', context)
+
+
+@login_required
+def reportsdetails(request, reportId):
+    report_details_data  = database.child("reports").child(reportId).get().val()
+    if report_details_data is not None:
+        reporter_role = report_details_data.get("reporterRole")
+        reporter_id = report_details_data.get("reporterId")
+        user_id = report_details_data.get("userId")
+        order_id = report_details_data.get("orderId")
+        rate_id = report_details_data.get("rateId")
+        
+        if reporter_role == "laundry":
+            reporter_data = database.child("laundry").child(reporter_id).get().val()
+            user_data = database.child("users").child(user_id).get().val()
+            order_data = database.child("userOrder").child(order_id).get().val()
+            rate_data = database.child("ratings").child(rate_id).get().val()
+            
+            laundry_shop_data = database.child("laundry").child(reporter_id).get().val()
+
+            riderId = order_data.get("riderId")
+            rider_data = database.child("riders").child(riderId).get().val()
+        
+
+            if reporter_data is not None and user_data is not None:
+                context = {
+                    'report_details_data': report_details_data,
+                    'reporter_data': reporter_data,
+                    'user_data': user_data,
+                    'order_data': order_data,
+                    'rate_data': rate_data,
+                    'laundry_shop_data': laundry_shop_data,
+                    'rider_data': rider_data
+                }
+                return render(request, 'reportsDetails.html', context)
+        else:
+            reporter_data = database.child("riders").child(reporter_id).get().val()
+            user_data = database.child("users").child(user_id).get().val()
+            order_data = database.child("userOrder").child(order_id).get().val()
+            rate_data = database.child("ratings").child(rate_id).get().val()
+            
+            rider_data = database.child("riders").child(reporter_id).get().val()
+
+            laundryId = order_data.get(laundryId)
+            laundry_data = database.child("laundry").child(laundryId).get().val()
+
+            if reporter_data is not None and user_data is not None:
+                context = {
+                    'report_details_data': report_details_data,
+                    'reporter_data': reporter_data,
+                    'user_data': user_data,
+                    'order_data': order_data,
+                    'rate_data': rate_data,
+                    'rider_data':rider_data,
+                    'laundry_data':laundry_data
+                }
+                return render(request, 'reportsDetails.html', context)
+    else:
+        return render(request, 'reportsDetails.html')
+
+
+
+
 
 @login_required
 def helpcentermessages(request):
@@ -117,9 +207,7 @@ def manageallriders(request):
 def helpdetails(request):
     return render(request, 'helpDetails.html')
 
-@login_required
-def reportsdetails(request):
-    return render(request, 'reportsDetails.html')
+
 
 @login_required
 def allusersUserDetails(request):

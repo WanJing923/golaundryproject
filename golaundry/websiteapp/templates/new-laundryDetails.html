@@ -14,6 +14,24 @@
 
 <body>
 
+  <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js"></script>
+  <script>
+    var firebaseConfig = {
+      "apiKey": "AIzaSyBTIjB4Zz60jlnjVRNBeLEc8YDOVjsErRU",
+      "authDomain": "golaundry-906c7.firebaseapp.com",
+      "databaseURL": "https://golaundry-906c7-default-rtdb.firebaseio.com",
+      "projectId": "golaundry-906c7",
+      "storageBucket": "golaundry-906c7.appspot.com",
+      "messagingSenderId": "63734818081",
+      "appId": "1:63734818081:web:24fa422edc2802ac47ca60",
+      "measurementId": "G-2000030N7P"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+
   <!-- first top bar with icon -->
   <div class="top-bar">
     <img src="{% static 'img/Go-Laundry.png' %}" alt="Go-Laundry">
@@ -84,8 +102,9 @@
 
     <div class='p4'>Address Details: {{ laundry_data.addressDetails }}</div>
 
-    <div class='p4'>Business License: <a href="{{ laundry_data.businessLicensePhoto }}" class="white-text-link" target="_blank">View Image</a> </div>
-    
+    <div class='p4'>Business License: <a href="{{ laundry_data.businessLicensePhoto }}" class="white-text-link"
+        target="_blank">View Image</a> </div>
+
     <div class='p4'>Owner Full Name: {{ laundry_data.fullName }} </div>
 
     <div class='p4'>Phone Number: {{ laundry_data.phoneNo }}</div>
@@ -97,9 +116,27 @@
   <br>
 
   <div class="bottombuttoncontainer">
-    <input type="submit" class="accept" value="Accept"></input>
-    <input type="submit" class="reject" value="Reject"></input>
+    <input type="submit" class="accept" value="Accept" id="acceptButton">
+    <input type="submit" class="reject" value="Reject">
   </div>
+
+  <script>
+    document.querySelector('#acceptButton').addEventListener('click', function () {
+  
+      var laundryId = "{{ laundry_data.laundryId }}";
+      var database = firebase.getDatabase();
+      var statusRef = database.ref("laundry/" + laundryId + "/status");
+  
+      statusRef.set("active").then(function () {
+        console.log("Status updated to 'active'");
+
+      }).catch(function (error) {
+        console.error("Error updating status:", error);
+      });
+    });
+  </script>
+  
+
 
 
 </body>

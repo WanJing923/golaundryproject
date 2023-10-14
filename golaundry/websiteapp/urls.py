@@ -11,11 +11,11 @@ urlpatterns = [
     # new laundry and rider feature
     path('newusers/', views.newusers, name="newusers"),
     path('newlaundrydetails/<str:laundryId>/', views.newlaundrydetails, name="newlaundrydetails"),
-    path('newriderdetails/', views.newriderdetails, name="newriderdetails"),
+    path('newriderdetails/<str:riderId>/', views.newriderdetails, name="newriderdetails"),
     
     # ratings report feature
     path('ratingsreports/', views.ratingsreports, name="ratingsreports"),
-    path('reportsdetails/', views.reportsdetails, name="reportsdetails"),
+    path('reportsdetails/<str:reportId>/', views.reportsdetails, name="reportsdetails"),
     
     # help center message feature
     path('helpmessages/', views.helpcentermessages, name="helpmessages"),

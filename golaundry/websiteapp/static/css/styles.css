@@ -178,6 +178,7 @@ img {
   background-color: #D6EFEE;
   overflow-x: hidden;
   transition: 0.3s;
+  z-index: 2;
 }
 
 .sidenav-icon {
@@ -422,12 +423,12 @@ img {
 }
 
 .bottombuttoncontainer {
-  padding: 0;
+  padding: 15px;
   height: auto;
   text-align: right;
   display: inline;
   position: absolute;
-  bottom: 8px;
+  bottom: 15px;
   width: 90%;
 }
 
