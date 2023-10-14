@@ -77,7 +77,7 @@
 
   <div class='details-rectangle'>
 
-    <div class='p4'>Shop Name: {{ laundry_data.shopName }}</div> 
+    <div class='p4'>Shop Name: {{ laundry_data.shopName }}</div>
 
     <div class='p4'>Contact Number: {{ laundry_data.contactNo }}</div>
 
@@ -88,7 +88,7 @@
     <div class='p4'>Address Details: {{ laundry_data.addressDetails }}</div>
 
     <div class='p4'>Business License: <a href="{{ laundry_data.businessLicensePhoto }}" class="white-text-link"
-      target="_blank">View Image</a> </div>
+        target="_blank">View Image</a> </div>
 
     <div class='p4'>Owner Full Name: {{ laundry_data.fullName }}</div>
 
@@ -103,10 +103,25 @@
   </div>
 
   <div class="bottombuttoncontainer">
-    <input type="submit" class="accept" value="Activate"></input>
-    <input type="submit" class="reject" value="Terminate"></input>
-  </div>
+    {% if laundry_data.status == "active" %}
 
+    {% with laundryId=laundry_data.laundryId %}
+    <form method="post" action="{% url 'terminate_laundry' laundryId %}">
+      {% csrf_token %}
+      <input type="submit" class="reject" value="Terminate"></input>
+    </form>
+    {% endwith %}
+
+    {% elif laundry_data.status == "terminated" %}
+    {% with laundryId=laundry_data.laundryId %}
+    <form method="post" action="{% url 'activate_laundry' laundryId %}">
+      {% csrf_token %}
+      <input type="submit" class="accept" value="Activate"></input>
+    </form>
+    {% endwith %}
+
+    {% endif %}
+  </div>
 
 </body>
 {% endblock content %}

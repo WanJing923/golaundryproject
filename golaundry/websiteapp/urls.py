@@ -28,4 +28,7 @@ urlpatterns = [
     path('allusersUserDetails/<str:userId>/', views.allusersUserDetails, name="allusersUserDetails"),
     path('allusersLaundryDetails/<str:laundryId>/', views.allusersLaundryDetails, name="allusersLaundryDetails"),
     path('allusersRiderDetails/<str:riderId>/', views.allusersRiderDetails, name="allusersRiderDetails"),
+    
+    path('terminate_laundry/<str:laundryId>/', views.terminate_laundry, name='terminate_laundry'),
+    path('activate_laundry/<str:laundryId>/', views.activate_laundry, name='activate_laundry'),
 ]

@@ -314,3 +314,45 @@ def manageallriders(request):
 
 class CustomLogoutView(LogoutView):
     next_page = reverse_lazy('login')
+    
+    
+    
+# terminate laundry shop
+def terminate_laundry(request, laundryId):
+    try:
+        laundry_data = database.child("laundry").child(laundryId).get().val()
+        
+        if laundry_data:
+            
+            laundry_data["status"] = "terminated"
+            database.child("laundry").child(laundryId).update({"status": "terminated"})
+
+            messages.success(request, f'Laundry shop "{laundry_data["shopName"]}" has been terminated.')
+        else:
+            messages.error(request, 'Laundry shop not found.')
+    except Exception as e:
+        messages.error(request, f'Error terminating laundry shop: {str(e)}')
+
+    return redirect('alllaundry') 
+
+
+
+def activate_laundry(request, laundryId):
+
+    try:
+        laundry_data = database.child("laundry").child(laundryId).get().val()
+
+        if laundry_data:
+            laundry_data["status"] = "active"
+            database.child("laundry").child(laundryId).update({"status": "active"})
+
+            messages.success(request, f'Laundry shop "{laundry_data["shopName"]}" has been activated.')
+        else:
+            messages.error(request, 'Laundry shop not found.')
+    except Exception as e:
+        messages.error(request, f'Error activating laundry shop: {str(e)}')
+
+    return redirect('alllaundry')
+    
+    
+    
