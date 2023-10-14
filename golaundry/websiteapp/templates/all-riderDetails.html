@@ -71,25 +71,29 @@
     <a href="{{ request.META.HTTP_REFERER|escape }}">
       <i class="fas fa-arrow-left"></i>
     </a>
-    <div class="p3">Laundry Shop</div>
+    <div class="p3">Rider</div>
   </div>
 
 
   <div class='details-rectangle'>
 
-    <div class='p4'>Full Name:</div>
+    <div class='p4'>Full Name: {{ rider_data.fullName }}</div>
 
-    <div class='p4'>Contact Number:</div>
+    <div class='p4'>Contact Number: {{ rider_data.contactNo }}</div>
 
-    <div class='p4'>Email Address:</div>
+    <div class='p4'>Email Address: {{ rider_data.emailAddress }}</div>
 
-    <div class='p4'>Plate Number:</div>
+    <div class='p4'>Plate Number: {{ rider_data.plateNumber }}</div>
 
-    <div class='p4'>Face Photo:</div>
+    <div class='p4'>Face Photo:
+      <a href="{{ rider_data.facePhoto }}" class="white-text-link" target="_blank">View Image</a>
+    </div>
 
-    <div class='p4'>Driving License:</div>
+    <div class='p4'>Driving License:
+      <a href="{{ rider_data.drivingLicensePhoto }}" class="white-text-link" target="_blank">View Image</a>
+    </div>
 
-    <div class='p4'>Identification No:</div>
+    <div class='p4'>Identification No: {{ rider_data.icNo }}</div>
 
   </div>
 

@@ -77,23 +77,24 @@
 
   <div class='details-rectangle'>
 
-    <div class='p4'>Shop Name:</div>
+    <div class='p4'>Shop Name: {{ laundry_data.shopName }}</div> 
 
-    <div class='p4'>Contact Number:</div>
+    <div class='p4'>Contact Number: {{ laundry_data.contactNo }}</div>
 
-    <div class='p4'>Email Address:</div>
+    <div class='p4'>Email Address: {{ laundry_data.emailAddress }}</div>
 
-    <div class='p4'>Address:</div>
+    <div class='p4'>Address: {{ laundry_data.address }}</div>
 
-    <div class='p4'>Address Details:</div>
+    <div class='p4'>Address Details: {{ laundry_data.addressDetails }}</div>
 
-    <div class='p4'>Business License:</div>
+    <div class='p4'>Business License: <a href="{{ laundry_data.businessLicensePhoto }}" class="white-text-link"
+      target="_blank">View Image</a> </div>
 
-    <div class='p4'>Owner Full Name:</div>
+    <div class='p4'>Owner Full Name: {{ laundry_data.fullName }}</div>
 
-    <div class='p4'>Phone Number:</div>
+    <div class='p4'>Phone Number: {{ laundry_data.phoneNo }}</div>
 
-    <div class='p4'>Identification No:</div>
+    <div class='p4'>Identification No: {{ laundry_data.icNo }}</div>
 
   </div>
 
