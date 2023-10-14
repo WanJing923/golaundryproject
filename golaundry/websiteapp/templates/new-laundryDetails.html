@@ -116,25 +116,22 @@
   <br>
 
   <div class="bottombuttoncontainer">
-    <input type="submit" class="accept" value="Accept" id="acceptButton">
-    <input type="submit" class="reject" value="Reject">
+  
+    {% with laundryId=laundry_data.laundryId %}
+    <form method="post" action="{% url 'reject_laundry' laundryId %}">
+      {% csrf_token %}
+      <input type="submit" class="reject" value="Terminate"></input>
+    </form>
+    {% endwith %}
+
+    {% with laundryId=laundry_data.laundryId %}
+    <form method="post" action="{% url 'accept_laundry' laundryId %}">
+      {% csrf_token %}
+      <input type="submit" class="accept" value="Accept"></input>
+    </form>
+    {% endwith %}
+
   </div>
-
-  <script>
-    document.querySelector('#acceptButton').addEventListener('click', function () {
-  
-      var laundryId = "{{ laundry_data.laundryId }}";
-      var database = firebase.getDatabase();
-      var statusRef = database.ref("laundry/" + laundryId + "/status");
-  
-      statusRef.set("active").then(function () {
-        console.log("Status updated to 'active'");
-
-      }).catch(function (error) {
-        console.error("Error updating status:", error);
-      });
-    });
-  </script>
   
 
 

@@ -31,4 +31,7 @@ urlpatterns = [
     
     path('terminate_laundry/<str:laundryId>/', views.terminate_laundry, name='terminate_laundry'),
     path('activate_laundry/<str:laundryId>/', views.activate_laundry, name='activate_laundry'),
+    
+    path('reject_laundry/<str:laundryId>/', views.reject_laundry, name='reject_laundry'),
+    path('accept_laundry/<str:laundryId>/', views.accept_laundry, name='accept_laundry'),
 ]

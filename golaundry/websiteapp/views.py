@@ -8,6 +8,9 @@ from django.contrib.auth.views import LogoutView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from datetime import datetime
+import firebase_admin
+from firebase_admin import auth
+import os
 
 config={
     "apiKey": "AIzaSyBTIjB4Zz60jlnjVRNBeLEc8YDOVjsErRU",
@@ -21,8 +24,14 @@ config={
 }
 
 firebase=pyrebase.initialize_app(config)
-auth = firebase.auth()
+authFirebase = firebase.auth()
 database=firebase.database()
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+keyfile_path = os.path.join(BASE_DIR, 'keyfile.json')
+
+cred = firebase_admin.credentials.Certificate(keyfile_path)
+firebase_admin.initialize_app(cred)
 
 def register(request):
     if request.method == 'POST':
@@ -30,7 +39,7 @@ def register(request):
         password = request.POST.get('password')
 
         try:
-            user = auth.create_user_with_email_and_password(email_address, password) 
+            user = authFirebase.create_user_with_email_and_password(email_address, password) 
             custom_user = CustomUser.objects.create(email_address=email_address, firebase_uid=user['localId'])
             messages.success(request, 'Admin registered successfully.')
             return redirect('login')
@@ -44,7 +53,7 @@ def login_admin(request):
         password = request.POST.get('password')
 
         try:
-            firebase_user_id = auth.sign_in_with_email_and_password(email_address, password)['localId']
+            firebase_user_id = authFirebase.sign_in_with_email_and_password(email_address, password)['localId']
 
             # Perform a mapping to a Django user or create a new user if necessary
             try:
@@ -316,43 +325,73 @@ class CustomLogoutView(LogoutView):
     next_page = reverse_lazy('login')
     
     
-    
-# terminate laundry shop
+
+# terminate/activate laundry shop
 def terminate_laundry(request, laundryId):
     try:
         laundry_data = database.child("laundry").child(laundryId).get().val()
         
         if laundry_data:
-            
             laundry_data["status"] = "terminated"
             database.child("laundry").child(laundryId).update({"status": "terminated"})
-
             messages.success(request, f'Laundry shop "{laundry_data["shopName"]}" has been terminated.')
         else:
             messages.error(request, 'Laundry shop not found.')
     except Exception as e:
         messages.error(request, f'Error terminating laundry shop: {str(e)}')
-
     return redirect('alllaundry') 
 
-
-
 def activate_laundry(request, laundryId):
-
     try:
         laundry_data = database.child("laundry").child(laundryId).get().val()
 
         if laundry_data:
             laundry_data["status"] = "active"
             database.child("laundry").child(laundryId).update({"status": "active"})
-
             messages.success(request, f'Laundry shop "{laundry_data["shopName"]}" has been activated.')
         else:
             messages.error(request, 'Laundry shop not found.')
     except Exception as e:
         messages.error(request, f'Error activating laundry shop: {str(e)}')
-
     return redirect('alllaundry')
-    
-    
-    
+
+# reject or accept new laundry shop
+def reject_laundry(request, laundryId):
+    try:
+        laundry_data = database.child("laundry").child(laundryId).get().val()
+
+        if laundry_data:
+            database.child("laundry").child(laundryId).remove()
+
+            user_uid = laundry_data.get("uid")
+            if user_uid:
+                delete_firebase_user_by_uid(user_uid)
+
+            messages.success(request, f'Laundry shop "{laundry_data["shopName"]}" has been removed.')
+        else:
+            messages.error(request, 'Laundry shop not found.')
+    except Exception as e:
+        messages.error(request, f'Error terminating laundry shop: {str(e)}')
+    return redirect('newusers')
+
+def delete_firebase_user_by_uid(uid):
+    try:
+        auth.delete_user(uid)
+    except auth.AuthError as e:
+        print(f"Error deleting Firebase user: {e}")
+        
+        
+        
+def accept_laundry(request, laundryId):
+    try:
+        laundry_data = database.child("laundry").child(laundryId).get().val()
+
+        if laundry_data:
+            laundry_data["status"] = "active"
+            database.child("laundry").child(laundryId).update({"status": "active"})
+            messages.success(request, f'Laundry shop "{laundry_data["shopName"]}" has been accepted.')
+        else:
+            messages.error(request, 'Laundry shop not found.')
+    except Exception as e:
+        messages.error(request, f'Error accepting laundry shop: {str(e)}')
+    return redirect('newusers')
