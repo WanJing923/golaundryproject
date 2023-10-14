@@ -65,9 +65,21 @@ def newusers(request):
     #get data from db
     laundry_data = database.child("laundry").get().val()
     rider_data = database.child("riders").get().val()
+    
+    sorted_laundry_data = []
+    sorted_rider_data = []
+
+    for laundry_id, laundry_info in laundry_data.items():
+        if laundry_info.get("status") == "terminated":
+            sorted_laundry_data.append((laundry_id, laundry_info))
+
+    for rider_id, rider_info in rider_data.items():
+        if rider_info.get("status") == "terminated":
+            sorted_rider_data.append((rider_id, rider_info))
+            
     #sort data
-    sorted_laundry_data = sorted(laundry_data.items(), key=lambda x: x[1]['registerDateTime'], reverse=True)
-    sorted_rider_data = sorted(rider_data.items(), key=lambda x: x[1]['registerDateTime'], reverse=True)
+    sorted_laundry_data = sorted(sorted_laundry_data, key=lambda x: x[1]['registerDateTime'], reverse=True)
+    sorted_rider_data = sorted(sorted_rider_data, key=lambda x: x[1]['registerDateTime'], reverse=True)
     #pass
     return render(request, 'newUsers.html', {"laundry_data": sorted_laundry_data, "rider_data": sorted_rider_data})
 
