@@ -212,8 +212,8 @@ def reportsdetails(request, reportId):
             rate_data = database.child("ratingsRider").child(rate_id).get().val()
             rider_data = database.child("riders").child(reporter_id).get().val()
 
-            laundryId = order_data.get(laundryId)
-            laundry_data = database.child("laundry").child(laundryId).get().val()
+            laundryId = order_data.get("laundryId")
+            laundry_shop_data = database.child("laundry").child(laundryId).get().val()
             
             pick_up_date_str = order_data.get("pickUpDate")
             try:
@@ -246,7 +246,7 @@ def reportsdetails(request, reportId):
                     'order_data': order_data,
                     'rate_data': rate_data,
                     'rider_data': rider_data,
-                    'laundry_data':laundry_data,
+                    'laundry_shop_data':laundry_shop_data,
                     'sorted_order_status_data': sorted_order_status_data
                 }
                 return render(request, 'reportsDetails.html', context)
@@ -534,8 +534,34 @@ def reject_ratings(request, reportId):
                     database.child("reports").child(reportId).remove()
 
                     messages.success(request, f'Ratings from customer "{rate_id}" have been removed.')
-                    messages.success(request, f'New laundry average: {average_rate}')
+                    messages.success(request, f'New ratings average for the laundry shop: {average_rate}')
+                    
+            else: #rider
+                database.child("ratingsRider").child(rate_id).remove()
+                # calculate average and set value again
+                current_ratings_rider = database.child("ratingsRider").get().val()
+                if current_ratings_rider is not None:
+                    rider_ratings_data_final = []
+                    for rider_ratings_data_id, ratings_data in current_ratings_rider.items():
+                        if ratings_data.get("riderId") == reporter_id:
+                            rider_ratings_data_final.append(ratings_data)
+                            
+                    total_rate = 0
+                    num_ratings = 0
+                    for data in rider_ratings_data_final:
+                        total_rate += data.get("rateToRider")
+                        num_ratings += 1
+                    if num_ratings > 0:
+                        average_rate = total_rate / num_ratings
+                    else:
+                        average_rate = 0
+                        
+                    database.child("riders").child(reporter_id).update({"ratingsAverage": average_rate})
+                    database.child("reports").child(reportId).remove()
 
+                    messages.success(request, f'Ratings from customer "{rate_id}" have been removed.')
+                    messages.success(request, f'New ratings average for the rider: {average_rate}')
+                    
         else:
             messages.error(request, 'Ratings report not found.')
     except Exception as e:
