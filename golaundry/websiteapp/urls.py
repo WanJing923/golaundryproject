@@ -48,7 +48,9 @@ urlpatterns = [
     path('terminate_user/<str:userId>/', views.terminate_user, name='terminate_user'),
     path('activate_user/<str:userId>/', views.activate_user, name='activate_user'),
     
-    
+    #accept or reject ratings ratings
+    path('reject_ratings/<str:reportId>/', views.reject_ratings, name='reject_ratings'),
+    path('accept_ratings/<str:reportId>/', views.accept_ratings, name='accept_ratings'),
     
     
     

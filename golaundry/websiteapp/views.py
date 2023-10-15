@@ -115,36 +115,40 @@ def ratingsreports(request):
     reports_data = database.child("reports").get().val()
     reports_with_user_and_role_data = []
 
-    for report_id, report_info in reports_data.items():
-        user_id = report_info["userId"]
-        reporter_role = report_info["reporterRole"]
-        reporter_id = report_info["reporterId"]
+    if reports_data:
+        for report_id, report_info in reports_data.items():
+            user_id = report_info["userId"]
+            reporter_role = report_info["reporterRole"]
+            reporter_id = report_info["reporterId"]
 
-        user_data = database.child("users").child(user_id).get().val()
+            user_data = database.child("users").child(user_id).get().val()
 
-        reporterAll_data = None
+            reporterAll_data = None
 
-        if reporter_role == "laundry":
-            # Fetch laundry data using the reporterId
-            reporterAll_data = database.child("laundry").child(reporter_id).get().val()
-        else:
-            # Fetch rider data using the reporterId
-            reporterAll_data = database.child("riders").child(reporter_id).get().val()
+            if reporter_role == "laundry":
+                # Fetch laundry data using the reporterId
+                reporterAll_data = database.child("laundry").child(reporter_id).get().val()
+            else:
+                # Fetch rider data using the reporterId
+                reporterAll_data = database.child("riders").child(reporter_id).get().val()
 
-        if user_data and reporterAll_data:
-            report_with_data = {
-                "report_id": report_id,
-                "report_info": report_info,
-                "user_data": user_data,
-                "reporterAll_data": reporterAll_data,
-            }
+            if user_data and reporterAll_data:
+                report_with_data = {
+                    "report_id": report_id,
+                    "report_info": report_info,
+                    "user_data": user_data,
+                    "reporterAll_data": reporterAll_data,
+                }
 
-            reports_with_user_and_role_data.append(report_with_data)
+                reports_with_user_and_role_data.append(report_with_data)
 
-    sorted_reports_with_data = sorted(reports_with_user_and_role_data, key=lambda x: x["report_info"]["currentDateTime"], reverse=True)
+        sorted_reports_with_data = sorted(reports_with_user_and_role_data, key=lambda x: x["report_info"]["currentDateTime"], reverse=True)
 
-    context = {"reports_data": sorted_reports_with_data}
-    return render(request, 'reports.html', context)
+        context = {"reports_data": sorted_reports_with_data}
+        return render(request, 'reports.html', context)
+    else:
+        return render(request, 'reports.html')
+        
 
 @login_required
 def reportsdetails(request, reportId):
@@ -160,7 +164,7 @@ def reportsdetails(request, reportId):
             reporter_data = database.child("laundry").child(reporter_id).get().val()
             user_data = database.child("users").child(user_id).get().val()
             order_data = database.child("userOrder").child(order_id).get().val()
-            rate_data = database.child("ratings").child(rate_id).get().val()
+            rate_data = database.child("ratingsLaundry").child(rate_id).get().val()
             laundry_shop_data = database.child("laundry").child(reporter_id).get().val()
 
             riderId = order_data.get("riderId")
@@ -189,7 +193,7 @@ def reportsdetails(request, reportId):
                 # Sort the list of status items by date in reverse order
                 sorted_order_status_data = sorted(formatted_status_data, key=lambda x: x[1]["formatted_datetime"], reverse=True)
 
-            if reporter_data is not None and user_data is not None:
+            if reporter_data is not None:
                 context = {
                     'report_details_data': report_details_data,
                     'reporter_data': reporter_data,
@@ -198,14 +202,14 @@ def reportsdetails(request, reportId):
                     'rate_data': rate_data,
                     'laundry_shop_data': laundry_shop_data,
                     'rider_data': rider_data,
-                    'sorted_order_status_data':sorted_order_status_data
+                    'sorted_order_status_data': sorted_order_status_data
                 }
                 return render(request, 'reportsDetails.html', context)
         else:
             reporter_data = database.child("riders").child(reporter_id).get().val()
             user_data = database.child("users").child(user_id).get().val()
             order_data = database.child("userOrder").child(order_id).get().val()
-            rate_data = database.child("ratings").child(rate_id).get().val()
+            rate_data = database.child("ratingsRider").child(rate_id).get().val()
             rider_data = database.child("riders").child(reporter_id).get().val()
 
             laundryId = order_data.get(laundryId)
@@ -234,16 +238,16 @@ def reportsdetails(request, reportId):
                 # Sort the list of status items by date in reverse order
                 sorted_order_status_data = sorted(formatted_status_data, key=lambda x: x[1]["formatted_datetime"], reverse=True)
 
-            if reporter_data is not None and user_data is not None:
+            if reporter_data is not None:
                 context = {
                     'report_details_data': report_details_data,
                     'reporter_data': reporter_data,
                     'user_data': user_data,
                     'order_data': order_data,
                     'rate_data': rate_data,
-                    'rider_data':rider_data,
+                    'rider_data': rider_data,
                     'laundry_data':laundry_data,
-                    'sorted_order_status_data':sorted_order_status_data
+                    'sorted_order_status_data': sorted_order_status_data
                 }
                 return render(request, 'reportsDetails.html', context)
     else:
@@ -494,6 +498,68 @@ def activate_user(request, userId):
     except Exception as e:
         messages.error(request, f'Error activating user: {str(e)}')
     return redirect('allusers')
+
+############################################
+
+def reject_ratings(request, reportId):
+    try:
+        report_data = database.child("reports").child(reportId).get().val()
+        
+        if report_data:
+            reporter_role = report_data.get("reporterRole")
+            reporter_id = report_data.get("reporterId")
+            rate_id = report_data.get("rateId")
+            
+            if reporter_role == "laundry":
+                database.child("ratingsLaundry").child(rate_id).remove()
+                # calculate average and set value again
+                current_ratings_laundry = database.child("ratingsLaundry").get().val()
+                if current_ratings_laundry is not None:
+                    laundry_ratings_data_final = []
+                    for laundry_ratings_data_id, ratings_data in current_ratings_laundry.items():
+                        if ratings_data.get("laundryId") == reporter_id:
+                            laundry_ratings_data_final.append(ratings_data)
+                            
+                    total_rate = 0
+                    num_ratings = 0
+                    for data in laundry_ratings_data_final:
+                        total_rate += data.get("rateToLaundry")
+                        num_ratings += 1
+                    if num_ratings > 0:
+                        average_rate = total_rate / num_ratings
+                    else:
+                        average_rate = 0
+                        
+                    database.child("laundry").child(reporter_id).update({"ratingsAverage": average_rate})
+                    database.child("reports").child(reportId).remove()
+
+                    messages.success(request, f'Ratings from customer "{rate_id}" have been removed.')
+                    messages.success(request, f'New laundry average: {average_rate}')
+
+        else:
+            messages.error(request, 'Ratings report not found.')
+    except Exception as e:
+        messages.error(request, f'Error removing ratings: {str(e)}')
+    return redirect('ratingsreports')
+
+def accept_ratings(request, reportId):
+    try:
+        database.child("reports").child(reportId).update({"adminResponse": True})
+        # send email
+        messages.error(request, 'Ratings accepted.')
+    except Exception as e:
+        messages.error(request, f'Error accepting ratings: {str(e)}')
+    return redirect('ratingsreports')
+
+
+
+
+
+
+
+
+
+
 
 
 
