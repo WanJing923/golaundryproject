@@ -100,8 +100,21 @@
   <br>
 
   <div class="bottombuttoncontainer">
-    <input type="submit" class="accept" value="Accept"></input>
-    <input type="submit" class="reject" value="Reject"></input>
+
+    {% with riderId=rider_data.riderId %}
+    <form method="post" action="{% url 'reject_rider' riderId %}">
+      {% csrf_token %}
+      <input type="submit" class="reject" value="Reject"></input>
+    </form>
+    {% endwith %}
+
+    {% with riderId=rider_data.riderId %}
+    <form method="post" action="{% url 'accept_rider' riderId %}">
+      {% csrf_token %}
+      <input type="submit" class="accept" value="Accept"></input>
+    </form>
+    {% endwith %}
+
   </div>
 
 

@@ -106,6 +106,27 @@
     <input type="submit" class="reject" value="Terminate"></input>
   </div>
 
+  <div class="bottombuttoncontainer">
+    {% if rider_data.status == "active" %}
+
+    {% with riderId=rider_data.riderId %}
+    <form method="post" action="{% url 'terminate_rider' riderId %}">
+      {% csrf_token %}
+      <input type="submit" class="reject" value="Terminate"></input>
+    </form>
+    {% endwith %}
+
+    {% elif rider_data.status == "terminated" %}
+    {% with riderId=rider_data.riderId %}
+    <form method="post" action="{% url 'activate_rider' riderId %}">
+      {% csrf_token %}
+      <input type="submit" class="accept" value="Activate"></input>
+    </form>
+    {% endwith %}
+
+    {% endif %}
+  </div>
+
 
 </body>
 {% endblock content %}

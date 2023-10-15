@@ -29,9 +29,18 @@ urlpatterns = [
     path('allusersLaundryDetails/<str:laundryId>/', views.allusersLaundryDetails, name="allusersLaundryDetails"),
     path('allusersRiderDetails/<str:riderId>/', views.allusersRiderDetails, name="allusersRiderDetails"),
     
+    #terminate and activate laundry shop
     path('terminate_laundry/<str:laundryId>/', views.terminate_laundry, name='terminate_laundry'),
     path('activate_laundry/<str:laundryId>/', views.activate_laundry, name='activate_laundry'),
     
+    #reject and accept new laundry shop
     path('reject_laundry/<str:laundryId>/', views.reject_laundry, name='reject_laundry'),
     path('accept_laundry/<str:laundryId>/', views.accept_laundry, name='accept_laundry'),
+    
+    #terminate and activate rider
+    path('terminate_rider/<str:riderId>/', views.terminate_rider, name='terminate_rider'),
+    path('activate_rider/<str:riderId>/', views.activate_rider, name='activate_rider'),
+    
+    path('reject_rider/<str:riderId>/', views.reject_rider, name='reject_rider'),
+    path('accept_rider/<str:riderId>/', views.accept_rider, name='accept_rider'),
 ]

@@ -324,7 +324,7 @@ def manageallriders(request):
 class CustomLogoutView(LogoutView):
     next_page = reverse_lazy('login')
     
-    
+##########################################################
 
 # terminate/activate laundry shop
 def terminate_laundry(request, laundryId):
@@ -371,7 +371,7 @@ def reject_laundry(request, laundryId):
         else:
             messages.error(request, 'Laundry shop not found.')
     except Exception as e:
-        messages.error(request, f'Error terminating laundry shop: {str(e)}')
+        messages.error(request, f'Error removing laundry shop: {str(e)}')
     return redirect('newusers')
 
 def delete_firebase_user_by_uid(uid):
@@ -379,8 +379,6 @@ def delete_firebase_user_by_uid(uid):
         auth.delete_user(uid)
     except auth.AuthError as e:
         print(f"Error deleting Firebase user: {e}")
-        
-        
         
 def accept_laundry(request, laundryId):
     try:
@@ -395,3 +393,79 @@ def accept_laundry(request, laundryId):
     except Exception as e:
         messages.error(request, f'Error accepting laundry shop: {str(e)}')
     return redirect('newusers')
+
+################################################
+
+# terminate/activate rider
+def terminate_rider(request, riderId):
+    try:
+        rider_data = database.child("riders").child(riderId).get().val()
+        
+        if rider_data:
+            rider_data["status"] = "terminated"
+            database.child("riders").child(riderId).update({"status": "terminated"})
+            messages.success(request, f'Rider "{rider_data["fullName"]}" has been terminated.')
+        else:
+            messages.error(request, 'Rider not found.')
+    except Exception as e:
+        messages.error(request, f'Error terminating rider: {str(e)}')
+    return redirect('allriders') 
+
+def activate_rider(request, riderId):
+    try:
+        rider_data = database.child("laundry").child(riderId).get().val()
+
+        if rider_data:
+            rider_data["status"] = "active"
+            database.child("riders").child(riderId).update({"status": "active"})
+            messages.success(request, f'Rider "{rider_data["fullName"]}" has been activated.')
+        else:
+            messages.error(request, 'Rider not found.')
+    except Exception as e:
+        messages.error(request, f'Error activating rider: {str(e)}')
+    return redirect('allriders')
+
+def reject_rider(request, riderId):
+    try:
+        rider_data = database.child("riders").child(riderId).get().val()
+
+        if rider_data:
+            database.child("riders").child(riderId).remove()
+
+            user_uid = rider_data.get("uid")
+            if user_uid:
+                delete_firebase_user_by_uid(user_uid)
+
+            messages.success(request, f'Rider "{rider_data["fullName"]}" has been removed.')
+        else:
+            messages.error(request, 'Rider not found.')
+    except Exception as e:
+        messages.error(request, f'Error removing rider: {str(e)}')
+    return redirect('newusers')
+        
+def accept_rider(request, riderId):
+    try:
+        rider_data = database.child("riders").child(riderId).get().val()
+
+        if rider_data:
+            rider_data["status"] = "active"
+            database.child("riders").child(riderId).update({"status": "active"})
+            messages.success(request, f'Rider "{rider_data["fullName"]}" has been accepted.')
+        else:
+            messages.error(request, 'Rider not found.')
+    except Exception as e:
+        messages.error(request, f'Error accepting rider: {str(e)}')
+    return redirect('newusers')
+
+
+
+
+
+
+
+
+
+
+
+
+

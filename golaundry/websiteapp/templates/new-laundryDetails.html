@@ -120,7 +120,7 @@
     {% with laundryId=laundry_data.laundryId %}
     <form method="post" action="{% url 'reject_laundry' laundryId %}">
       {% csrf_token %}
-      <input type="submit" class="reject" value="Terminate"></input>
+      <input type="submit" class="reject" value="Reject"></input>
     </form>
     {% endwith %}
 
