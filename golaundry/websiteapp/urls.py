@@ -43,4 +43,14 @@ urlpatterns = [
     
     path('reject_rider/<str:riderId>/', views.reject_rider, name='reject_rider'),
     path('accept_rider/<str:riderId>/', views.accept_rider, name='accept_rider'),
+    
+    #terminate and activate user
+    path('terminate_user/<str:userId>/', views.terminate_user, name='terminate_user'),
+    path('activate_user/<str:userId>/', views.activate_user, name='activate_user'),
+    
+    
+    
+    
+    
+    
 ]

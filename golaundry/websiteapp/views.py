@@ -298,7 +298,10 @@ def helpdetails(request,helpId):
 def manageallusers(request):
     user_data  = database.child("users").get().val()
     if user_data is not None:
-        context = {'user_data': user_data}
+        # Sort user_data by fullName
+        sorted_user_data = sorted(user_data.items(), key=lambda item: item[1]['fullName'].lower())
+        
+        context = {'user_data': sorted_user_data}
         return render(request, 'all-users.html', context)
     else:
         return render(request, 'all-users.html')
@@ -307,7 +310,9 @@ def manageallusers(request):
 def managealllaundry(request):
     laundry_data  = database.child("laundry").get().val()
     if laundry_data is not None:
-        context = {'laundry_data': laundry_data}
+        sorted_laundry_data = sorted(laundry_data.items(), key=lambda item: item[1]['shopName'].lower())
+        
+        context = {'laundry_data': sorted_laundry_data}
         return render(request, 'all-laundry.html', context)
     else:
         return render(request, 'all-laundry.html')
@@ -316,7 +321,9 @@ def managealllaundry(request):
 def manageallriders(request):
     rider_data  = database.child("riders").get().val()
     if rider_data is not None:
-        context = {'rider_data': rider_data}
+        sorted_rider_data = sorted(rider_data.items(), key=lambda item: item[1]['fullName'].lower())
+        
+        context = {'rider_data': sorted_rider_data}
         return render(request, 'all-riders.html', context)
     else:
         return render(request, 'all-riders.html')
@@ -457,8 +464,36 @@ def accept_rider(request, riderId):
         messages.error(request, f'Error accepting rider: {str(e)}')
     return redirect('newusers')
 
+###############################################
 
+# terminate/activate user
+def terminate_user(request, userId):
+    try:
+        user_data = database.child("users").child(userId).get().val()
+        
+        if user_data:
+            user_data["status"] = "terminated"
+            database.child("users").child(userId).update({"status": "terminated"})
+            messages.success(request, f'User "{user_data["fullName"]}" has been terminated.')
+        else:
+            messages.error(request, 'User not found.')
+    except Exception as e:
+        messages.error(request, f'Error terminating user: {str(e)}')
+    return redirect('allusers') 
 
+def activate_user(request, userId):
+    try:
+        user_data = database.child("users").child(userId).get().val()
+
+        if user_data:
+            user_data["status"] = "active"
+            database.child("users").child(userId).update({"status": "active"})
+            messages.success(request, f'User "{user_data["fullName"]}" has been activated.')
+        else:
+            messages.error(request, 'User not found.')
+    except Exception as e:
+        messages.error(request, f'Error activating user: {str(e)}')
+    return redirect('allusers')
 
 
 

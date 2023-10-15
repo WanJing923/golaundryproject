@@ -96,8 +96,24 @@
   <br>
 
   <div class="bottombuttoncontainer">
-    <input type="submit" class="accept" value="Activate"></input>
-    <input type="submit" class="reject" value="Terminate"></input>
+    {% if user_data.status == "active" %}
+
+    {% with userId=user_data.userId %}
+    <form method="post" action="{% url 'terminate_user' userId %}">
+      {% csrf_token %}
+      <input type="submit" class="reject" value="Terminate"></input>
+    </form>
+    {% endwith %}
+
+    {% elif user_data.status == "terminated" %}
+    {% with userId=user_data.userId %}
+    <form method="post" action="{% url 'activate_user' userId %}">
+      {% csrf_token %}
+      <input type="submit" class="accept" value="Activate"></input>
+    </form>
+    {% endwith %}
+
+    {% endif %}
   </div>
 
 
