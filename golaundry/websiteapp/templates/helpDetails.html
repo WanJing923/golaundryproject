@@ -78,15 +78,16 @@
     <div class="help-rectangle">
         <div class="p4">{{ help_data.title }}: {{ help_data.message }}</div>
     </div>
+    
+    {% if help_data.status == "Pending" %}
 
     <div class="reply">Reply:</div>
 
     {% with helpId=help_data.helpId %}
     <form method="post" action="{% url 'reply_help' helpId %}">
         {% csrf_token %}
-        <textarea name="reply_message" class="reply-rectangle" style="color: white; padding: 15px;" rows="4" cols="40"required></textarea>
+        <textarea name="reply_message" class="reply-rectangle" style="color: white; padding: 15px;" rows="4" cols="40" required></textarea>
         <br>
-
         <div class="bottombuttoncontainer">
             <input type="submit" class="accept" value="Reply" onclick="return confirmReply();"></input>
         </div>
@@ -103,6 +104,12 @@
             }
         }
     </script>
+
+    {% elif help_data.status == "Solved" %}
+
+    <div class="reply">You have replied to this help message before</div>
+
+    {% endif %}
 
 </body>
 {% endblock content %}
