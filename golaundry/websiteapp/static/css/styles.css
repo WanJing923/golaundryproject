@@ -178,6 +178,7 @@ img {
   background-color: #D6EFEE;
   overflow-x: hidden;
   transition: 0.3s;
+  z-index: 2;
 }
 
 .sidenav-icon {
@@ -422,12 +423,12 @@ img {
 }
 
 .bottombuttoncontainer {
-  padding: 0;
+  padding: 15px;
   height: auto;
   text-align: right;
   display: inline;
   position: absolute;
-  bottom: 8px;
+  bottom: 15px;
   width: 90%;
 }
 
@@ -463,8 +464,8 @@ img {
 
 .reply-rectangle {
   background-color: #195860;
-  height: 200px;
-  width: 1224px;
+  height: 150px;
+  width: 1100px;
   border: 1px solid #ffffff;
   left: 100px;
   top: 420px;
@@ -475,7 +476,7 @@ img {
 .help-rectangle {
   background-color: #195860;
   height: 150px;
-  width: 1224px;
+  width: 1220px;
   border: 1px solid #ffffff;
   left: 100px;
   top: 200px;
@@ -645,11 +646,7 @@ img {
   color: #ffffff;
   text-align: left;
   vertical-align: text-middle;
-  font-size: 18px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border-style: hidden;
-  margin-top: 15px;
-  margin-left: 20px;
   display: inline-block;
 }
 
@@ -657,14 +654,21 @@ img {
   color: #ffffff;
   text-align: right;
   vertical-align: text-middle;
-  font-size: 18px;
-  float: right;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: right;
   line-height: auto;
   border-style: hidden;
   outline: none;
-  display: inline;
-  padding: 15px;
+  display: inline-block;
+}
+
+.service-quantity {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-left: 20px;
+  font-size: 18px;
+  margin-right: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 hr {
@@ -796,4 +800,20 @@ div.scroll {
 .search-button img {
   width: 25px;
   height: 25px;
+}
+
+.red-text {
+  color: red;
+}
+
+.white-text-link {
+  color: #9DCAEB;
+}
+
+.pretty-message {
+  background-color: #f8d7da;
+  color: #721c24; 
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  margin-bottom: 10px;
 }

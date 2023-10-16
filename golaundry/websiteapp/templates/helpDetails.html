@@ -55,7 +55,7 @@
                 const adminIdPopup = document.querySelector('.admin-id-popup');
                 adminIdIcon.addEventListener('mouseenter', () => {
                     adminIdPopup.style.opacity = '1';
-                    adminIdPopup.textContent = '1111';
+                    adminIdPopup.textContent = 'Admin';
                 });
                 adminIdIcon.addEventListener('mouseleave', () => {
                     adminIdPopup.style.opacity = '0';
@@ -71,25 +71,45 @@
         <a href="{{ request.META.HTTP_REFERER|escape }}">
             <i class="fas fa-arrow-left"></i>
         </a>
-        <div class="p3">Title</div>
+        <div class="p3">{{ help_data.emailAddress }}</div>
     </div>
 
 
     <div class="help-rectangle">
-        <div class="p4">Messages</div>
+        <div class="p4">{{ help_data.title }}: {{ help_data.message }}</div>
     </div>
+    
+    {% if help_data.status == "Pending" %}
 
     <div class="reply">Reply:</div>
 
-    <div class="reply-rectangle">
-        <div class="p4">Replying</div>
-    </div>
-    
-    <br>
+    {% with helpId=help_data.helpId %}
+    <form method="post" action="{% url 'reply_help' helpId %}">
+        {% csrf_token %}
+        <textarea name="reply_message" class="reply-rectangle" style="color: white; padding: 15px;" rows="4" cols="40" required></textarea>
+        <br>
+        <div class="bottombuttoncontainer">
+            <input type="submit" class="accept" value="Reply" onclick="return confirmReply();"></input>
+        </div>
+    </form>
+    {% endwith %}
 
-    <div class="bottombuttoncontainer">
-        <input type="submit" class="accept" value="Reply"></input>
-    </div>
+    <script LANGUAGE="JavaScript">
+        function confirmReply() {
+            var agree = confirm("Are you sure you want to reply this message?");
+            if (agree) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+
+    {% elif help_data.status == "Solved" %}
+
+    <div class="reply">You have replied to this help message before</div>
+
+    {% endif %}
 
 </body>
 {% endblock content %}

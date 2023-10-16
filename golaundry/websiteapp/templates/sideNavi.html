@@ -18,17 +18,17 @@
 
       <li>
         <a href="{% url 'newusers' %}"><i class="fas fa-user-plus"></i>New Users</a>
-        <span class="notification-count">11</span>
+        <!-- <span class="notification-count">99</span> -->
       </li>
 
       <li>
         <a href="{% url 'ratingsreports' %}"><i class="fas fa-chart-bar"></i>Ratings Reports</a>
-        <span class="notification-count">11</span>
+        <!-- <span class="notification-count">99</span> -->
       </li>
 
       <li>
         <a href="{% url 'helpmessages' %}"><i class="fas fa-envelope"></i>Help Center Messages</a>
-        <span class="notification-count">11</span>
+        <!-- <span class="notification-count">99</span> -->
       </li>
 
       <li>
@@ -44,7 +44,7 @@
         <button type="submit" hidden>Logout</button>
     </form>
 
-      <script>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             const logoutLink = document.getElementById('logout-link');
             const logoutForm = document.getElementById('logout-form');
@@ -54,7 +54,7 @@
                 logoutForm.submit();
             });
         });
-      </script>      
+    </script>      
     
 
     </ul>

@@ -55,7 +55,7 @@
         const adminIdPopup = document.querySelector('.admin-id-popup');
         adminIdIcon.addEventListener('mouseenter', () => {
           adminIdPopup.style.opacity = '1';
-          adminIdPopup.textContent = '1111';
+          adminIdPopup.textContent = 'Admin';
         });
         adminIdIcon.addEventListener('mouseleave', () => {
           adminIdPopup.style.opacity = '0';
@@ -77,31 +77,73 @@
 
   <div class='details-rectangle'>
 
-    <div class='p4'>Shop Name:</div>
+    <div class='p4'>Shop Name: {{ laundry_data.shopName }}</div>
 
-    <div class='p4'>Contact Number:</div>
+    <div class='p4'>Contact Number: {{ laundry_data.contactNo }}</div>
 
-    <div class='p4'>Email Address:</div>
+    <div class='p4'>Email Address: {{ laundry_data.emailAddress }}</div>
 
-    <div class='p4'>Address:</div>
+    <div class='p4'>Address: {{ laundry_data.address }}</div>
 
-    <div class='p4'>Address Details:</div>
+    <div class='p4'>Address Details: {{ laundry_data.addressDetails }}</div>
 
-    <div class='p4'>Business License:</div>
+    <div class='p4'>Business License: <a href="{{ laundry_data.businessLicensePhoto }}" class="white-text-link"
+        target="_blank">View Image</a> </div>
 
-    <div class='p4'>Owner Full Name:</div>
+    <div class='p4'>Owner Full Name: {{ laundry_data.fullName }}</div>
 
-    <div class='p4'>Phone Number:</div>
+    <div class='p4'>Phone Number: {{ laundry_data.phoneNo }}</div>
 
-    <div class='p4'>Identification No:</div>
+    <div class='p4'>Identification No: {{ laundry_data.icNo }}</div>
+
+    <div class='p4'>Current Balance: RM{{ laundry_data.balance|floatformat:2 }}</div>
+
+    <div class='p4'>Account Status: {{ laundry_data.status }}</div>
 
   </div>
 
   <div class="bottombuttoncontainer">
-    <input type="submit" class="accept" value="Activate"></input>
-    <input type="submit" class="reject" value="Terminate"></input>
-  </div>
+    {% if laundry_data.status == "active" %}
 
+    {% with laundryId=laundry_data.laundryId %}
+    <form method="post" action="{% url 'terminate_laundry' laundryId %}">
+      {% csrf_token %}
+      <input type="submit" class="reject" value="Terminate" onclick="return confirmTerminateLaundry();"></input>
+    </form>
+    {% endwith %}
+
+    <script LANGUAGE="JavaScript">
+      function confirmTerminateLaundry() {
+        var agree = confirm("Are you sure you want to terminate this laundry?");
+        if (agree) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
+
+    {% elif laundry_data.status == "terminated" %}
+    {% with laundryId=laundry_data.laundryId %}
+    <form method="post" action="{% url 'activate_laundry' laundryId %}">
+      {% csrf_token %}
+      <input type="submit" class="accept" value="Activate" onclick="return confirmActivateLaundry();"></input>
+    </form>
+    {% endwith %}
+
+    <script LANGUAGE="JavaScript">
+      function confirmActivateLaundry() {
+        var agree = confirm("Are you sure you want to activate this laundry?");
+        if (agree) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
+
+    {% endif %}
+  </div>
 
 </body>
 {% endblock content %}

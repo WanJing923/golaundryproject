@@ -55,7 +55,7 @@
         const adminIdPopup = document.querySelector('.admin-id-popup');
         adminIdIcon.addEventListener('mouseenter', () => {
           adminIdPopup.style.opacity = '1';
-          adminIdPopup.textContent = '1111';
+          adminIdPopup.textContent = 'Admin';
         });
         adminIdIcon.addEventListener('mouseleave', () => {
           adminIdPopup.style.opacity = '0';
@@ -77,21 +77,65 @@
 
   <div class='details-rectangle'>
 
-    <div class='p4'>Email Address:</div>
+    <div class='p4'>Email Address: {{ user_data.emailAddress }}</div>
 
-    <div class='p4'>Phone Number: </div>
+    <div class='p4'>Phone Number: +60{{ user_data.phoneNo }}</div>
 
-    <div class='p4'>Gender:</div>
+    <div class='p4'>Gender: {{ user_data.gender }}</div>
 
-    <div class='p4'>Identification No:</div>
+    <div class='p4'>Identification No: {{ user_data.icNo }}</div>
+
+    <div class='p4'>Current Membership: {{ user_data.membershipRate }}</div>
+
+    <div class='p4'>Current Balance: RM{{ user_data.balance|floatformat:2 }}</div>
+
+    <div class='p4'>Account Status: {{ user_data.status }}</div>
 
   </div>
 
   <br>
 
   <div class="bottombuttoncontainer">
-    <input type="submit" class="accept" value="Activate"></input>
-    <input type="submit" class="reject" value="Terminate"></input>
+    {% if user_data.status == "active" %}
+
+    {% with userId=user_data.userId %}
+    <form method="post" action="{% url 'terminate_user' userId %}">
+      {% csrf_token %}
+      <input type="submit" class="reject" value="Terminate" onclick="return confirmTerminateUser();"></input>
+    </form>
+    {% endwith %}
+
+    <script LANGUAGE="JavaScript">
+      function confirmTerminateUser() {
+        var agree = confirm("Are you sure you want to terminate this user?");
+        if (agree) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
+
+    {% elif user_data.status == "terminated" %}
+    {% with userId=user_data.userId %}
+    <form method="post" action="{% url 'activate_user' userId %}">
+      {% csrf_token %}
+      <input type="submit" class="accept" value="Activate" onclick="return confirmActivateUser();"></input>
+    </form>
+    {% endwith %}
+
+    <script LANGUAGE="JavaScript">
+      function confirmActivateUser() {
+        var agree = confirm("Are you sure you want to activate this user?");
+        if (agree) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
+
+    {% endif %}
   </div>
 
 

@@ -14,8 +14,23 @@
 
 <body>
 
-  <!-- Include the Firebase JavaScript configuration -->
-  <!-- <script src="firebase/firebase.js"></script> -->
+  <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js"></script>
+  <script>
+    var firebaseConfig = {
+      "apiKey": "AIzaSyBTIjB4Zz60jlnjVRNBeLEc8YDOVjsErRU",
+      "authDomain": "golaundry-906c7.firebaseapp.com",
+      "databaseURL": "https://golaundry-906c7-default-rtdb.firebaseio.com",
+      "projectId": "golaundry-906c7",
+      "storageBucket": "golaundry-906c7.appspot.com",
+      "messagingSenderId": "63734818081",
+      "appId": "1:63734818081:web:24fa422edc2802ac47ca60",
+      "measurementId": "G-2000030N7P"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
 
   <!-- first top bar with icon -->
   <div class="top-bar">
@@ -55,7 +70,7 @@
         const adminIdPopup = document.querySelector('.admin-id-popup');
         adminIdIcon.addEventListener('mouseenter', () => {
           adminIdPopup.style.opacity = '1';
-          adminIdPopup.textContent = '1111';
+          adminIdPopup.textContent = 'Admin';
         });
         adminIdIcon.addEventListener('mouseleave', () => {
           adminIdPopup.style.opacity = '0';
@@ -77,32 +92,70 @@
 
   <div class='details-rectangle'>
 
-    <div class='p4'>Shop Name:</div>
+    <div class='p4'>Shop Name: {{ laundry_data.shopName }}</div>
 
-    <div class='p4'>Contact Number:</div>
+    <div class='p4'>Contact Number: {{ laundry_data.contactNo }} </div>
 
-    <div class='p4'>Email Address:</div>
+    <div class='p4'>Email Address: {{ laundry_data.emailAddress }} </div>
 
-    <div class='p4'>Address:</div>
+    <div class='p4'>Address: {{ laundry_data.address }} </div>
 
-    <div class='p4'>Address Details:</div>
+    <div class='p4'>Address Details: {{ laundry_data.addressDetails }}</div>
 
-    <div class='p4'>Business License:</div>
+    <div class='p4'>Business License: <a href="{{ laundry_data.businessLicensePhoto }}" class="white-text-link"
+        target="_blank">View Image</a> </div>
 
-    <div class='p4'>Owner Full Name:</div>
+    <div class='p4'>Owner Full Name: {{ laundry_data.fullName }} </div>
 
-    <div class='p4'>Phone Number:</div>
+    <div class='p4'>Phone Number: {{ laundry_data.phoneNo }}</div>
 
-    <div class='p4'>Identification No:</div>
+    <div class='p4'>Identification No: {{ laundry_data.icNo }} </div>
 
   </div>
 
   <br>
 
   <div class="bottombuttoncontainer">
-    <input type="submit" class="accept" value="Accept"></input>
-    <input type="submit" class="reject" value="Reject"></input>
+  
+    {% with laundryId=laundry_data.laundryId %}
+    <form method="post" action="{% url 'reject_laundry' laundryId %}">
+      {% csrf_token %}
+      <input type="submit" class="reject" value="Reject" onclick="return confirmRejectLaundry();"></input>
+    </form>
+    {% endwith %}
+
+    <script LANGUAGE="JavaScript">
+      function confirmRejectLaundry() {
+        var agree = confirm("Are you sure you want to reject this laundry?");
+        if (agree) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
+
+    {% with laundryId=laundry_data.laundryId %}
+    <form method="post" action="{% url 'accept_laundry' laundryId %}">
+      {% csrf_token %}
+      <input type="submit" class="accept" value="Accept" onclick="return confirmAcceptLaundry();"></input>
+    </form>
+    {% endwith %}
+
+    <script LANGUAGE="JavaScript">
+      function confirmAcceptLaundry() {
+        var agree = confirm("Are you sure you want to accept this laundry?");
+        if (agree) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
+
   </div>
+  
+
 
 
 </body>

@@ -55,7 +55,7 @@
         const adminIdPopup = document.querySelector('.admin-id-popup');
         adminIdIcon.addEventListener('mouseenter', () => {
           adminIdPopup.style.opacity = '1';
-          adminIdPopup.textContent = '1111';
+          adminIdPopup.textContent = 'Admin';
         });
         adminIdIcon.addEventListener('mouseleave', () => {
           adminIdPopup.style.opacity = '0';
@@ -79,12 +79,16 @@
 
       <tbody>
         
+        {% for help in help_data %}
         <tr>
-          <td class="help-column1">Email Address</td>
-          <td class="help-column2">Title</td>
-          <td class="help-column3">Status</td>
-          <td class="help-column4">View</td>
+          <td class="help-column1">{{ help.1.emailAddress }}</td>
+          <td class="help-column2">{{ help.1.title }}</td>
+          <td class="help-column3 {% if help.1.status == 'Pending' %}red-text{% endif %}">{{ help.1.status }}</td>
+          {% with helpId=help.1.helpId %}
+          <td class="help-column4"><a href="{% url 'helpdetails' helpId %}">View</a></td>
+          {% endwith %}
         </tr>
+        {% endfor %}
 
       </tbody>
     </table>
