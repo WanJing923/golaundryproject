@@ -120,15 +120,6 @@
           return false;
         }
       }
-
-      function confirmActivateRider() {
-        var agree = confirm("Are you sure you want to activate this rider?");
-        if (agree) {
-          return true;
-        } else {
-          return false;
-        }
-      }
     </script>
 
     {% elif rider_data.status == "terminated" %}
@@ -138,6 +129,17 @@
       <input type="submit" class="accept" value="Activate" onclick="return confirmActivateRider();"></input>
     </form>
     {% endwith %}
+
+    <script LANGUAGE="JavaScript">
+      function confirmActivateRider() {
+        var agree = confirm("Are you sure you want to activate this rider?");
+        if (agree) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
 
     {% endif %}
   </div>

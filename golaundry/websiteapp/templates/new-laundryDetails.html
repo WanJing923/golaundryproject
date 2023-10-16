@@ -133,7 +133,16 @@
           return false;
         }
       }
+    </script>
 
+    {% with laundryId=laundry_data.laundryId %}
+    <form method="post" action="{% url 'accept_laundry' laundryId %}">
+      {% csrf_token %}
+      <input type="submit" class="accept" value="Accept" onclick="return confirmAcceptLaundry();"></input>
+    </form>
+    {% endwith %}
+
+    <script LANGUAGE="JavaScript">
       function confirmAcceptLaundry() {
         var agree = confirm("Are you sure you want to accept this laundry?");
         if (agree) {
@@ -143,13 +152,6 @@
         }
       }
     </script>
-
-    {% with laundryId=laundry_data.laundryId %}
-    <form method="post" action="{% url 'accept_laundry' laundryId %}">
-      {% csrf_token %}
-      <input type="submit" class="accept" value="Accept" onclick="return confirmAcceptLaundry();"></input>
-    </form>
-    {% endwith %}
 
   </div>
   

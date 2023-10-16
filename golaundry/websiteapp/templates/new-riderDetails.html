@@ -117,7 +117,16 @@
           return false;
         }
       }
+    </script>
 
+    {% with riderId=rider_data.riderId %}
+    <form method="post" action="{% url 'accept_rider' riderId %}">
+      {% csrf_token %}
+      <input type="submit" class="accept" value="Accept" onclick="return confirmAcceptRider();"></input>
+    </form>
+    {% endwith %}
+
+    <script LANGUAGE="JavaScript">
       function confirmAcceptRider() {
         var agree = confirm("Are you sure you want to activate this rider?");
         if (agree) {
@@ -127,13 +136,6 @@
         }
       }
     </script>
-
-    {% with riderId=rider_data.riderId %}
-    <form method="post" action="{% url 'accept_rider' riderId %}">
-      {% csrf_token %}
-      <input type="submit" class="accept" value="Accept" onclick="return confirmAcceptRider();"></input>
-    </form>
-    {% endwith %}
 
   </div>
 

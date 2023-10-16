@@ -114,15 +114,6 @@
           return false;
         }
       }
-
-      function confirmActivateUser() {
-        var agree = confirm("Are you sure you want to activate this user?");
-        if (agree) {
-          return true;
-        } else {
-          return false;
-        }
-      }
     </script>
 
     {% elif user_data.status == "terminated" %}
@@ -132,6 +123,17 @@
       <input type="submit" class="accept" value="Activate" onclick="return confirmActivateUser();"></input>
     </form>
     {% endwith %}
+
+    <script LANGUAGE="JavaScript">
+      function confirmActivateUser() {
+        var agree = confirm("Are you sure you want to activate this user?");
+        if (agree) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
 
     {% endif %}
   </div>

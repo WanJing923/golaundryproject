@@ -348,15 +348,15 @@ def terminate_laundry(request, laundryId):
         if laundry_data:
             laundry_data["status"] = "terminated"
             database.child("laundry").child(laundryId).update({"status": "terminated"})
-            messages.success(request, f'Laundry shop "{laundry_data["shopName"]}" has been terminated.')
             
             # send email to inform
             subject = 'Go-Laundry: Your account has been terminated'
-            message = f'Laundry shop {laundry_data["shopName"]} has been terminated.\nPlease contact us via help center if you have any concern\n\nFrom: Go-Laundry Official\nEmail address: golaundryapp.official@gmail.com'
+            message = f'Dear owner of {laundry_data["shopName"]}, \n\nWe would like to inform you about your account has been terminated.\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
             email_from = settings.EMAIL_HOST_USER
             recipient_list = [laundry_data["emailAddress"]]
             send_mail( subject, message, email_from, recipient_list )
             
+            messages.success(request, f'Laundry shop "{laundry_data["shopName"]}" has been terminated. An email has been sent.')
         else:
             messages.error(request, 'Laundry shop not found.')
     except Exception as e:
@@ -370,7 +370,15 @@ def activate_laundry(request, laundryId):
         if laundry_data:
             laundry_data["status"] = "active"
             database.child("laundry").child(laundryId).update({"status": "active"})
-            messages.success(request, f'Laundry shop "{laundry_data["shopName"]}" has been activated.')
+            
+            # send email to inform
+            subject = 'Go-Laundry: Your account has been activated'
+            message = f'Dear owner of {laundry_data["shopName"]}, \n\nWe would like to inform you about your account has been activated.\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [laundry_data["emailAddress"]]
+            send_mail( subject, message, email_from, recipient_list )
+            
+            messages.success(request, f'Laundry shop "{laundry_data["shopName"]}" has been activated. An email has been sent.')
         else:
             messages.error(request, 'Laundry shop not found.')
     except Exception as e:
@@ -383,13 +391,20 @@ def reject_laundry(request, laundryId):
         laundry_data = database.child("laundry").child(laundryId).get().val()
 
         if laundry_data:
+            # send email to inform
+            subject = 'Go-Laundry: Your new account has been rejected'
+            message = f'Dear owner of {laundry_data["shopName"]}, \n\nWe would like to inform you about your new account has been rejected and removed by the admin due to insufficient or invalid information.\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [laundry_data["emailAddress"]]
+            send_mail( subject, message, email_from, recipient_list )
+            
             database.child("laundry").child(laundryId).remove()
 
             user_uid = laundry_data.get("uid")
             if user_uid:
                 delete_firebase_user_by_uid(user_uid)
 
-            messages.success(request, f'Laundry shop "{laundry_data["shopName"]}" has been removed.')
+            messages.success(request, f'Laundry shop "{laundry_data["shopName"]}" has been removed. An email has been sent.')
         else:
             messages.error(request, 'Laundry shop not found.')
     except Exception as e:
@@ -407,9 +422,16 @@ def accept_laundry(request, laundryId):
         laundry_data = database.child("laundry").child(laundryId).get().val()
 
         if laundry_data:
+            # send email to inform
+            subject = 'Go-Laundry: Your new account has been activated'
+            message = f'Dear owner of {laundry_data["shopName"]}, \n\nWe would like to inform you about your new account has been activated by the admin. You can login into account and setup your shop now! Please be noted that you must provide full shop information and services information to complete the shop setup.\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [laundry_data["emailAddress"]]
+            send_mail( subject, message, email_from, recipient_list )
+            
             laundry_data["status"] = "active"
             database.child("laundry").child(laundryId).update({"status": "active"})
-            messages.success(request, f'Laundry shop "{laundry_data["shopName"]}" has been accepted.')
+            messages.success(request, f'Laundry shop "{laundry_data["shopName"]}" has been accepted. An email has been sent.')
         else:
             messages.error(request, 'Laundry shop not found.')
     except Exception as e:
@@ -424,9 +446,18 @@ def terminate_rider(request, riderId):
         rider_data = database.child("riders").child(riderId).get().val()
         
         if rider_data:
+            
             rider_data["status"] = "terminated"
             database.child("riders").child(riderId).update({"status": "terminated"})
-            messages.success(request, f'Rider "{rider_data["fullName"]}" has been terminated.')
+            
+            # send email to inform
+            subject = 'Go-Laundry: Your account has been terminated'
+            message = f'Dear {rider_data["fullName"]}, \n\nWe would like to inform you about your account has been terminated.\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [rider_data["emailAddress"]]
+            send_mail( subject, message, email_from, recipient_list )
+            
+            messages.success(request, f'Rider "{rider_data["fullName"]}" has been terminated. An email has been sent.')
         else:
             messages.error(request, 'Rider not found.')
     except Exception as e:
@@ -440,7 +471,15 @@ def activate_rider(request, riderId):
         if rider_data:
             rider_data["status"] = "active"
             database.child("riders").child(riderId).update({"status": "active"})
-            messages.success(request, f'Rider "{rider_data["fullName"]}" has been activated.')
+            
+            # send email to inform
+            subject = 'Go-Laundry: Your account has been activated'
+            message = f'Dear {rider_data["fullName"]}, \n\nWe would like to inform you about your account has been activated.\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [rider_data["emailAddress"]]
+            send_mail( subject, message, email_from, recipient_list )
+            
+            messages.success(request, f'Rider "{rider_data["fullName"]}" has been activated. An email has been sent.')
         else:
             messages.error(request, 'Rider not found.')
     except Exception as e:
@@ -452,13 +491,20 @@ def reject_rider(request, riderId):
         rider_data = database.child("riders").child(riderId).get().val()
 
         if rider_data:
+            # send email to inform
+            subject = 'Go-Laundry: Your new account has been rejected'
+            message = f'Dear {rider_data["fullName"]}, \n\nWe would like to inform you about your new account has been rejected and removed by the admin due to insufficient or invalid information.\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [rider_data["emailAddress"]]
+            send_mail( subject, message, email_from, recipient_list )
+            
             database.child("riders").child(riderId).remove()
 
             user_uid = rider_data.get("uid")
             if user_uid:
                 delete_firebase_user_by_uid(user_uid)
 
-            messages.success(request, f'Rider "{rider_data["fullName"]}" has been removed.')
+            messages.success(request, f'Rider "{rider_data["fullName"]}" has been removed. An email has been sent.')
         else:
             messages.error(request, 'Rider not found.')
     except Exception as e:
@@ -472,7 +518,15 @@ def accept_rider(request, riderId):
         if rider_data:
             rider_data["status"] = "active"
             database.child("riders").child(riderId).update({"status": "active"})
-            messages.success(request, f'Rider "{rider_data["fullName"]}" has been accepted.')
+            
+            # send email to inform
+            subject = 'Go-Laundry: Your new account has been activated'
+            message = f'Dear {rider_data["fullName"]}, \n\nWe would like to inform you about your new account has been activated by the admin. You can login into account and find available order within the working hours now!\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [rider_data["emailAddress"]]
+            send_mail( subject, message, email_from, recipient_list )
+            
+            messages.success(request, f'Rider "{rider_data["fullName"]}" has been accepted. An email has been sent.')
         else:
             messages.error(request, 'Rider not found.')
     except Exception as e:
@@ -492,7 +546,7 @@ def terminate_user(request, userId):
             
             # send email to inform
             subject = 'Go-Laundry: Your account has been terminated'
-            message = f'User {user_data["fullName"]} has been terminated.\nPlease contact us via help center if you have any concern\n\nFrom: Go-Laundry Official\nEmail address: golaundryapp.official@gmail.com'
+            message = f'Dear {user_data["fullName"]}, \n\nWe would like to inform you about your account "{user_data["fullName"]}" has been terminated.\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
             email_from = settings.EMAIL_HOST_USER
             recipient_list = [user_data["emailAddress"]]
             send_mail( subject, message, email_from, recipient_list )
@@ -511,7 +565,15 @@ def activate_user(request, userId):
         if user_data:
             user_data["status"] = "active"
             database.child("users").child(userId).update({"status": "active"})
-            messages.success(request, f'User "{user_data["fullName"]}" has been activated.')
+            
+            # send email to inform
+            subject = 'Go-Laundry: Your account has been activated'
+            message = f'Dear {user_data["fullName"]}, \n\nWe would like to inform you about your account "{user_data["fullName"]}" has been activated. Welcome to Go-Laundry application.\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [user_data["emailAddress"]]
+            send_mail( subject, message, email_from, recipient_list )
+            
+            messages.success(request, f'User "{user_data["fullName"]}" has been activated. An email has been sent.')
         else:
             messages.error(request, 'User not found.')
     except Exception as e:
@@ -530,6 +592,18 @@ def reject_ratings(request, reportId):
             rate_id = report_data.get("rateId")
             
             if reporter_role == "laundry":
+                
+                laundry_data = database.child("laundry").child(reporter_id).get().val()
+                laundry_email = laundry_data.get("emailAddress")
+                laundry_shopName = laundry_data.get("shopName")
+                
+                # send email to inform
+                subject = 'Go-Laundry: The ratings has been removed'
+                message = f'Dear owner of {laundry_shopName}, \n\nWe would like to inform you about your ratings report has been reviewed by the admin and the review from customer has been removed.\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
+                email_from = settings.EMAIL_HOST_USER
+                recipient_list = laundry_email
+                send_mail( subject, message, email_from, recipient_list )
+                    
                 database.child("ratingsLaundry").child(rate_id).remove()
                 # calculate average and set value again
                 current_ratings_laundry = database.child("ratingsLaundry").get().val()
@@ -552,10 +626,22 @@ def reject_ratings(request, reportId):
                     database.child("laundry").child(reporter_id).update({"ratingsAverage": average_rate})
                     database.child("reports").child(reportId).remove()
 
-                    messages.success(request, f'Ratings from customer "{rate_id}" have been removed.')
+                    messages.success(request, f'Ratings from customer "{rate_id}" have been removed. An email has been sent.')
                     messages.success(request, f'New ratings average for the laundry shop: {average_rate}')
                     
             else: #rider
+                
+                rider_data = database.child("riders").child(reporter_id).get().val()
+                rider_email = rider_data.get("emailAddress")
+                rider_fullName = rider_data.get("fullName")
+                    
+                # send email to inform
+                subject = 'Go-Laundry: The ratings has been removed'
+                message = f'Dear {rider_fullName}, \n\nWe would like to inform you about your ratings report has been reviewed by the admin and the review from customer has been removed.\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
+                email_from = settings.EMAIL_HOST_USER
+                recipient_list = rider_email
+                send_mail( subject, message, email_from, recipient_list )
+                    
                 database.child("ratingsRider").child(rate_id).remove()
                 # calculate average and set value again
                 current_ratings_rider = database.child("ratingsRider").get().val()
@@ -578,7 +664,7 @@ def reject_ratings(request, reportId):
                     database.child("riders").child(reporter_id).update({"ratingsAverage": average_rate})
                     database.child("reports").child(reportId).remove()
 
-                    messages.success(request, f'Ratings from customer "{rate_id}" have been removed.')
+                    messages.success(request, f'Ratings from customer "{rate_id}" have been removed. An email has been sent.')
                     messages.success(request, f'New ratings average for the rider: {average_rate}')
                     
         else:
@@ -590,8 +676,38 @@ def reject_ratings(request, reportId):
 def accept_ratings(request, reportId):
     try:
         database.child("reports").child(reportId).update({"adminResponse": True})
-        # send email
-        messages.error(request, 'Ratings accepted.')
+        report_data = database.child("reports").child(reportId).get().val()
+        
+        if report_data:
+            reporter_role = report_data.get("reporterRole")
+            reporter_id = report_data.get("reporterId")
+            
+            if reporter_role == "laundry":
+        
+                laundry_data = database.child("laundry").child(reporter_id).get().val()
+                laundry_email = laundry_data.get("emailAddress")
+                laundry_shopName = laundry_data.get("shopName")
+                    
+                # send email to inform
+                subject = 'Go-Laundry: The ratings report has been rejected'
+                message = f'Dear owner of {laundry_shopName}, \n\nWe would like to inform you about your ratings report has been reviewed by the admin and the review from customer has been accepted.\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
+                email_from = settings.EMAIL_HOST_USER
+                recipient_list = laundry_email
+                send_mail( subject, message, email_from, recipient_list )
+            
+            else:
+                rider_data = database.child("riders").child(reporter_id).get().val()
+                rider_email = rider_data.get("emailAddress")
+                rider_fullName = rider_data.get("fullName")
+                    
+                # send email to inform
+                subject = 'Go-Laundry: The ratings report has been rejected'
+                message = f'Dear {rider_fullName}, \n\nWe would like to inform you about your ratings report has been reviewed by the admin and the review from customer has been accepted.\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
+                email_from = settings.EMAIL_HOST_USER
+                recipient_list = rider_email
+                send_mail( subject, message, email_from, recipient_list )
+                    
+        messages.error(request, 'Ratings accepted. An email has been sent.')
     except Exception as e:
         messages.error(request, f'Error accepting ratings: {str(e)}')
     return redirect('ratingsreports')
