@@ -87,7 +87,7 @@
 
     <div class='p4'>Current Membership: {{ user_data.membershipRate }}</div>
 
-    <div class='p4'>Current Balance: {{ user_data.balance|floatformat:2 }}</div>
+    <div class='p4'>Current Balance: RM{{ user_data.balance|floatformat:2 }}</div>
 
     <div class='p4'>Account Status: {{ user_data.status }}</div>
 
@@ -101,15 +101,35 @@
     {% with userId=user_data.userId %}
     <form method="post" action="{% url 'terminate_user' userId %}">
       {% csrf_token %}
-      <input type="submit" class="reject" value="Terminate"></input>
+      <input type="submit" class="reject" value="Terminate" onclick="return confirmTerminateUser();"></input>
     </form>
     {% endwith %}
+
+    <script LANGUAGE="JavaScript">
+      function confirmTerminateUser() {
+        var agree = confirm("Are you sure you want to terminate this user?");
+        if (agree) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      function confirmActivateUser() {
+        var agree = confirm("Are you sure you want to activate this user?");
+        if (agree) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
 
     {% elif user_data.status == "terminated" %}
     {% with userId=user_data.userId %}
     <form method="post" action="{% url 'activate_user' userId %}">
       {% csrf_token %}
-      <input type="submit" class="accept" value="Activate"></input>
+      <input type="submit" class="accept" value="Activate" onclick="return confirmActivateUser();"></input>
     </form>
     {% endwith %}
 

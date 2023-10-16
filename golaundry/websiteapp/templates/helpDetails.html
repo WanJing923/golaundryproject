@@ -80,13 +80,25 @@
     </div>
 
     <div class="reply">Reply:</div>
-    <textarea class="reply-rectangle" style="color: white; padding: 15px;" rows="4" cols="40">Reply the user...</textarea>
-    
+    <textarea class="reply-rectangle" style="color: white; padding: 15px;" rows="4"
+        cols="40">Reply the user...</textarea>
+
     <br>
 
     <div class="bottombuttoncontainer">
-        <input type="submit" class="accept" value="Reply"></input>
+        <input type="submit" class="accept" value="Reply" onclick="return confirmReply();"></input>
     </div>
+
+    <script LANGUAGE="JavaScript">
+        function confirmReply() {
+            var agree = confirm("Are you sure you want to reply this message?");
+            if (agree) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
 
 </body>
 {% endblock content %}

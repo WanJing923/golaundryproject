@@ -11,6 +11,8 @@ from datetime import datetime
 import firebase_admin
 from firebase_admin import auth
 import os
+from django.conf import settings
+from django.core.mail import send_mail
 
 config={
     "apiKey": "AIzaSyBTIjB4Zz60jlnjVRNBeLEc8YDOVjsErRU",
@@ -32,6 +34,8 @@ keyfile_path = os.path.join(BASE_DIR, 'keyfile.json')
 
 cred = firebase_admin.credentials.Certificate(keyfile_path)
 firebase_admin.initialize_app(cred)
+
+########################################
 
 def register(request):
     if request.method == 'POST':
@@ -149,7 +153,6 @@ def ratingsreports(request):
     else:
         return render(request, 'reports.html')
         
-
 @login_required
 def reportsdetails(request, reportId):
     report_details_data  = database.child("reports").child(reportId).get().val()
@@ -346,6 +349,14 @@ def terminate_laundry(request, laundryId):
             laundry_data["status"] = "terminated"
             database.child("laundry").child(laundryId).update({"status": "terminated"})
             messages.success(request, f'Laundry shop "{laundry_data["shopName"]}" has been terminated.')
+            
+            # send email to inform
+            subject = 'Go-Laundry: Your account has been terminated'
+            message = f'Laundry shop {laundry_data["shopName"]} has been terminated.\nPlease contact us via help center if you have any concern\n\nFrom: Go-Laundry Official\nEmail address: golaundryapp.official@gmail.com'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [laundry_data["emailAddress"]]
+            send_mail( subject, message, email_from, recipient_list )
+            
         else:
             messages.error(request, 'Laundry shop not found.')
     except Exception as e:
@@ -478,7 +489,15 @@ def terminate_user(request, userId):
         if user_data:
             user_data["status"] = "terminated"
             database.child("users").child(userId).update({"status": "terminated"})
-            messages.success(request, f'User "{user_data["fullName"]}" has been terminated.')
+            
+            # send email to inform
+            subject = 'Go-Laundry: Your account has been terminated'
+            message = f'User {user_data["fullName"]} has been terminated.\nPlease contact us via help center if you have any concern\n\nFrom: Go-Laundry Official\nEmail address: golaundryapp.official@gmail.com'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [user_data["emailAddress"]]
+            send_mail( subject, message, email_from, recipient_list )
+            
+            messages.success(request, f'User "{user_data["fullName"]}" has been terminated. An email has been sent.')
         else:
             messages.error(request, 'User not found.')
     except Exception as e:

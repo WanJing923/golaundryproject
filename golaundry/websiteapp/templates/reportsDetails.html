@@ -227,18 +227,40 @@
             {% with reportId=report_details_data.reportId %}
             <form method="post" action="{% url 'reject_ratings' reportId  %}">
                 {% csrf_token %}
-                <input type="submit" class="reject" value="Reject ratings"></input>
+                <input type="submit" class="reject" value="Reject ratings"
+                    onclick="return confirmRejectReview();"></input>
             </form>
             {% endwith %}
+
+            <script LANGUAGE="JavaScript">
+                function confirmRejectReview() {
+                    var agree = confirm("Are you sure you want to reject and remove this review?");
+                    if (agree) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+
+                function confirmAcceptReview() {
+                    var agree = confirm("Are you sure you want to accept and maintain this review?");
+                    if (agree) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            </script>
 
             {% with reportId=report_details_data.reportId %}
             <form method="post" action="{% url 'accept_ratings' reportId %}">
                 {% csrf_token %}
-                <input type="submit" class="accept" value="Accept ratings"></input>
+                <input type="submit" class="accept" value="Accept ratings"
+                    onclick="return confirmAcceptReview();"></input>
             </form>
             {% endwith %}
             {% endif %}
-            
+
         </div>
     </div>
 </body>

@@ -77,7 +77,7 @@
 
   <div class='details-rectangle'>
 
-    <div class='p4'>Full Name: {{ rider_data.fullName }}</div> 
+    <div class='p4'>Full Name: {{ rider_data.fullName }}</div>
 
     <div class='p4'>Contact Number: {{ rider_data.contactNo }}</div>
 
@@ -104,14 +104,34 @@
     {% with riderId=rider_data.riderId %}
     <form method="post" action="{% url 'reject_rider' riderId %}">
       {% csrf_token %}
-      <input type="submit" class="reject" value="Reject"></input>
+      <input type="submit" class="reject" value="Reject" onclick="return confirmRejectRider();"></input>
     </form>
     {% endwith %}
+
+    <script LANGUAGE="JavaScript">
+      function confirmRejectRider() {
+        var agree = confirm("Are you sure you want to terminate this rider?");
+        if (agree) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      function confirmAcceptRider() {
+        var agree = confirm("Are you sure you want to activate this rider?");
+        if (agree) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
 
     {% with riderId=rider_data.riderId %}
     <form method="post" action="{% url 'accept_rider' riderId %}">
       {% csrf_token %}
-      <input type="submit" class="accept" value="Accept"></input>
+      <input type="submit" class="accept" value="Accept" onclick="return confirmAcceptRider();"></input>
     </form>
     {% endwith %}
 

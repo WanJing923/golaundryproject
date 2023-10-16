@@ -96,7 +96,7 @@
 
     <div class='p4'>Identification No: {{ laundry_data.icNo }}</div>
 
-    <div class='p4'>Current Balance: {{ laundry_data.balance|floatformat:2 }}</div>
+    <div class='p4'>Current Balance: RM{{ laundry_data.balance|floatformat:2 }}</div>
 
     <div class='p4'>Account Status: {{ laundry_data.status }}</div>
 
@@ -108,15 +108,35 @@
     {% with laundryId=laundry_data.laundryId %}
     <form method="post" action="{% url 'terminate_laundry' laundryId %}">
       {% csrf_token %}
-      <input type="submit" class="reject" value="Terminate"></input>
+      <input type="submit" class="reject" value="Terminate" onclick="return confirmTerminateLaundry();"></input>
     </form>
     {% endwith %}
+
+    <script LANGUAGE="JavaScript">
+      function confirmTerminateLaundry() {
+        var agree = confirm("Are you sure you want to terminate this laundry?");
+        if (agree) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      function confirmActivateLaundry() {
+        var agree = confirm("Are you sure you want to activate this laundry?");
+        if (agree) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
 
     {% elif laundry_data.status == "terminated" %}
     {% with laundryId=laundry_data.laundryId %}
     <form method="post" action="{% url 'activate_laundry' laundryId %}">
       {% csrf_token %}
-      <input type="submit" class="accept" value="Activate"></input>
+      <input type="submit" class="accept" value="Activate" onclick="return confirmActivateLaundry();"></input>
     </form>
     {% endwith %}
 
