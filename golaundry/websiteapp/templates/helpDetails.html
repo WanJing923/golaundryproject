@@ -71,23 +71,27 @@
         <a href="{{ request.META.HTTP_REFERER|escape }}">
             <i class="fas fa-arrow-left"></i>
         </a>
-        <div class="p3">{{ help_data.title }}</div>
+        <div class="p3">{{ help_data.emailAddress }}</div>
     </div>
 
 
     <div class="help-rectangle">
-        <div class="p4">{{ help_data.message }}</div>
+        <div class="p4">{{ help_data.title }}: {{ help_data.message }}</div>
     </div>
 
     <div class="reply">Reply:</div>
-    <textarea class="reply-rectangle" style="color: white; padding: 15px;" rows="4"
-        cols="40">Reply the user...</textarea>
 
-    <br>
+    {% with helpId=help_data.helpId %}
+    <form method="post" action="{% url 'reply_help' helpId %}">
+        {% csrf_token %}
+        <textarea name="reply_message" class="reply-rectangle" style="color: white; padding: 15px;" rows="4" cols="40"required></textarea>
+        <br>
 
-    <div class="bottombuttoncontainer">
-        <input type="submit" class="accept" value="Reply" onclick="return confirmReply();"></input>
-    </div>
+        <div class="bottombuttoncontainer">
+            <input type="submit" class="accept" value="Reply" onclick="return confirmReply();"></input>
+        </div>
+    </form>
+    {% endwith %}
 
     <script LANGUAGE="JavaScript">
         function confirmReply() {

@@ -52,7 +52,6 @@ urlpatterns = [
     path('reject_ratings/<str:reportId>/', views.reject_ratings, name='reject_ratings'),
     path('accept_ratings/<str:reportId>/', views.accept_ratings, name='accept_ratings'),
     
-    
-    
-    
+    #submit help center reply
+    path('reply_help/<str:helpId>/', views.reply_help, name='reply_help'),
 ]

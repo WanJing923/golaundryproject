@@ -712,7 +712,35 @@ def accept_ratings(request, reportId):
         messages.error(request, f'Error accepting ratings: {str(e)}')
     return redirect('ratingsreports')
 
+#############################################
 
+#reply help center message
+def reply_help(request, helpId):
+    help_data  = database.child("helpCenter").child(helpId).get().val()
+    context = {'help_data': help_data}
+
+    if request.method == 'POST':
+        reply_message = request.POST.get('reply_message')
+        
+        if not reply_message:
+            messages.error(request, 'Reply message cannot be empty.')
+        else:
+            help_data = database.child("helpCenter").child(helpId).get().val()
+            
+            help_data["status"] = "Solved"
+            database.child("helpCenter").child(helpId).update({"status": "Solved"})
+            
+            # send email to inform
+            subject = 'Go-Laundry: Replying from Help Center'
+            message = f'Dear user, \n\nFor the {help_data["title"]} problem, our admin has made response as below:\n\n"{reply_message}"\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [help_data["emailAddress"]]
+            send_mail( subject, message, email_from, recipient_list )
+        
+            messages.success(request, 'Reply message sent through email successfully.')
+            return redirect('helpmessages')
+        
+    return render(request, 'helpDetails.html', context)
 
 
 

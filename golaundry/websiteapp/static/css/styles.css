@@ -464,7 +464,7 @@ img {
 
 .reply-rectangle {
   background-color: #195860;
-  height: 200px;
+  height: 150px;
   width: 1100px;
   border: 1px solid #ffffff;
   left: 100px;
@@ -476,7 +476,7 @@ img {
 .help-rectangle {
   background-color: #195860;
   height: 150px;
-  width: 1224px;
+  width: 1220px;
   border: 1px solid #ffffff;
   left: 100px;
   top: 200px;
