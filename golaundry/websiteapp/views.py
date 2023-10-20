@@ -83,11 +83,11 @@ def newusers(request):
     sorted_rider_data = []
 
     for laundry_id, laundry_info in laundry_data.items():
-        if laundry_info.get("status") == "terminated":
+        if laundry_info.get("isNew") == True:
             sorted_laundry_data.append((laundry_id, laundry_info))
 
     for rider_id, rider_info in rider_data.items():
-        if rider_info.get("status") == "terminated":
+        if rider_info.get("isNew") == True:
             sorted_rider_data.append((rider_id, rider_info))
             
     #sort data
@@ -317,7 +317,13 @@ def manageallusers(request):
 def managealllaundry(request):
     laundry_data  = database.child("laundry").get().val()
     if laundry_data is not None:
-        sorted_laundry_data = sorted(laundry_data.items(), key=lambda item: item[1]['shopName'].lower())
+        sorted_laundry_data = []
+        
+        for laundry_id, laundry_info in laundry_data.items():
+            if laundry_info.get("isNew") == False:
+                sorted_laundry_data.append((laundry_id, laundry_info))
+            
+        sorted_laundry_data = sorted(sorted_laundry_data, key=lambda item: item[1]['shopName'].lower())
         
         context = {'laundry_data': sorted_laundry_data}
         return render(request, 'all-laundry.html', context)
@@ -328,7 +334,13 @@ def managealllaundry(request):
 def manageallriders(request):
     rider_data  = database.child("riders").get().val()
     if rider_data is not None:
-        sorted_rider_data = sorted(rider_data.items(), key=lambda item: item[1]['fullName'].lower())
+        sorted_rider_data = []
+        
+        for rider_id, rider_info in rider_data.items():
+            if rider_info.get("isNew") == False:
+                sorted_rider_data.append((rider_id, rider_info))
+                
+        sorted_rider_data = sorted(sorted_rider_data, key=lambda item: item[1]['fullName'].lower())
         
         context = {'rider_data': sorted_rider_data}
         return render(request, 'all-riders.html', context)
@@ -431,6 +443,10 @@ def accept_laundry(request, laundryId):
             
             laundry_data["status"] = "active"
             database.child("laundry").child(laundryId).update({"status": "active"})
+            
+            laundry_data["isNew"] = False
+            database.child("laundry").child(laundryId).update({"isNew": False})
+            
             messages.success(request, f'Laundry shop "{laundry_data["shopName"]}" has been accepted. An email has been sent.')
         else:
             messages.error(request, 'Laundry shop not found.')
@@ -466,7 +482,7 @@ def terminate_rider(request, riderId):
 
 def activate_rider(request, riderId):
     try:
-        rider_data = database.child("laundry").child(riderId).get().val()
+        rider_data = database.child("riders").child(riderId).get().val()
 
         if rider_data:
             rider_data["status"] = "active"
@@ -518,6 +534,9 @@ def accept_rider(request, riderId):
         if rider_data:
             rider_data["status"] = "active"
             database.child("riders").child(riderId).update({"status": "active"})
+            
+            rider_data["isNew"] = False
+            database.child("riders").child(riderId).update({"isNew": False})
             
             # send email to inform
             subject = 'Go-Laundry: Your new account has been activated'
