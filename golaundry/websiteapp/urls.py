@@ -5,7 +5,7 @@ from websiteapp import views
 urlpatterns = [
     # login and logout feature
     path('', views.login_admin, name="login"),
-    path('register', views.register, name="register"),
+    path('register/', views.register, name="register"),
     path('logout/', views.CustomLogoutView.as_view(), name='logout'),
     
     # new laundry and rider feature

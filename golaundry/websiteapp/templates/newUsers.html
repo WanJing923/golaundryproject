@@ -85,7 +85,14 @@
           <td class="column1">Laundry</td>
           <td class="column2">{{ laundry.1.shopName }}</td>
           <td class="column3">{{ laundry.1.phoneNo }}</td>
-          <td class="column4 {% if laundry.1.status == 'terminated' %}red-text{% endif %}">{{ laundry.1.status }}</td>
+
+          <td class="column4 {% if laundry.1.status == 'terminated' %}red-text{% endif %}">
+            {% if laundry.1.status == 'terminated' %}
+            Inactive
+            {% else %}
+            Active
+            {% endif %}
+          </td>
 
           {% with laundryId=laundry.1.laundryId %}
           <td class="column5">
@@ -100,7 +107,15 @@
           <td class="column1">Rider</td>
           <td class="column2">{{ rider.1.fullName }}</td>
           <td class="column3">{{ rider.1.contactNo }}</td>
-          <td class="column4 {% if rider.1.status == 'terminated' %}red-text{% endif %}">{{ rider.1.status }}</td>
+
+          <td class="column4 {% if rider.1.status == 'terminated' %}red-text{% endif %}">
+            {% if rider.1.status == 'terminated' %}
+            Inactive
+            {% else %}
+            Active
+            {% endif %}
+          </td>
+
           {% with riderId=rider.1.riderId %}
           <td class="column5">
             <a href="{% url 'newriderdetails' riderId %}">View</a>
