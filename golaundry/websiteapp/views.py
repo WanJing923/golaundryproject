@@ -37,29 +37,12 @@ firebase_admin.initialize_app(cred)
 
 ########################################
 
-def register(request):
-    if request.method == 'POST':
-        email_address = request.POST.get('email_address')
-        password = request.POST.get('password')
-
-        try:
-            user = authFirebase.create_user_with_email_and_password(email_address, password) 
-            custom_user = CustomUser.objects.create(email_address=email_address, firebase_uid=user['localId'])
-            messages.success(request, 'Admin registered successfully.')
-            return redirect('login')
-        except Exception as e:
-            messages.error(request, 'Failed to register admin: ' + str(e))
-    return render(request, 'register.html')
-
 def login_admin(request):
     if request.method == 'POST':
         email_address = request.POST.get('emailAddress')
         password = request.POST.get('password')
-
         try:
             firebase_user_id = authFirebase.sign_in_with_email_and_password(email_address, password)['localId']
-
-            # Perform a mapping to a Django user or create a new user if necessary
             try:
                 user = CustomUser.objects.get(firebase_uid=firebase_user_id)
             except CustomUser.DoesNotExist:
@@ -72,6 +55,21 @@ def login_admin(request):
             messages.error(request, error_message)
 
     return render(request, 'login.html')
+
+
+@login_required
+def register(request):
+    if request.method == 'POST':
+        email_address = request.POST.get('email_address')
+        password = request.POST.get('password')
+        try:
+            user = authFirebase.create_user_with_email_and_password(email_address, password) 
+            custom_user = CustomUser.objects.create(email_address=email_address, firebase_uid=user['localId'])
+            messages.success(request, 'Admin registered successfully.')
+            return redirect('register')
+        except Exception as e:
+            messages.error(request, 'Failed to register admin: ' + str(e))
+    return render(request, 'register.html')
 
 @login_required
 def newusers(request):
