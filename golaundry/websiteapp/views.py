@@ -56,15 +56,13 @@ def login_admin(request):
 
     return render(request, 'login.html')
 
-
 @login_required
 def register(request):
     if request.method == 'POST':
         email_address = request.POST.get('email_address')
         password = request.POST.get('password')
         try:
-            user = authFirebase.create_user_with_email_and_password(email_address, password) 
-            custom_user = CustomUser.objects.create(email_address=email_address, firebase_uid=user['localId'])
+            authFirebase.create_user_with_email_and_password(email_address, password) 
             messages.success(request, 'Admin registered successfully.')
             return redirect('register')
         except Exception as e:
@@ -410,7 +408,7 @@ def reject_laundry(request, laundryId):
             
             database.child("laundry").child(laundryId).remove()
 
-            user_uid = laundry_data.get("uid")
+            user_uid = laundry_data.get("laundryId")
             if user_uid:
                 delete_firebase_user_by_uid(user_uid)
 
@@ -514,7 +512,7 @@ def reject_rider(request, riderId):
             
             database.child("riders").child(riderId).remove()
 
-            user_uid = rider_data.get("uid")
+            user_uid = rider_data.get("riderId")
             if user_uid:
                 delete_firebase_user_by_uid(user_uid)
 
@@ -618,7 +616,7 @@ def reject_ratings(request, reportId):
                 subject = 'Go-Laundry: The ratings has been removed'
                 message = f'Dear owner of {laundry_shopName}, \n\nWe would like to inform you about your ratings report has been reviewed by the admin and the review from customer has been removed.\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
                 email_from = settings.EMAIL_HOST_USER
-                recipient_list = laundry_email
+                recipient_list = [laundry_email]
                 send_mail( subject, message, email_from, recipient_list )
                     
                 database.child("ratingsLaundry").child(rate_id).remove()
@@ -656,7 +654,7 @@ def reject_ratings(request, reportId):
                 subject = 'Go-Laundry: The ratings has been removed'
                 message = f'Dear {rider_fullName}, \n\nWe would like to inform you about your ratings report has been reviewed by the admin and the review from customer has been removed.\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
                 email_from = settings.EMAIL_HOST_USER
-                recipient_list = rider_email
+                recipient_list = [rider_email]
                 send_mail( subject, message, email_from, recipient_list )
                     
                 database.child("ratingsRider").child(rate_id).remove()
@@ -709,7 +707,7 @@ def accept_ratings(request, reportId):
                 subject = 'Go-Laundry: The ratings report has been rejected'
                 message = f'Dear owner of {laundry_shopName}, \n\nWe would like to inform you about your ratings report has been reviewed by the admin and the review from customer has been accepted.\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
                 email_from = settings.EMAIL_HOST_USER
-                recipient_list = laundry_email
+                recipient_list = [laundry_email]
                 send_mail( subject, message, email_from, recipient_list )
             
             else:
@@ -721,7 +719,7 @@ def accept_ratings(request, reportId):
                 subject = 'Go-Laundry: The ratings report has been rejected'
                 message = f'Dear {rider_fullName}, \n\nWe would like to inform you about your ratings report has been reviewed by the admin and the review from customer has been accepted.\n\nPlease contact us via help center or replying this email if you have any concern.\n\n\nRegards:\nGo-Laundry Official'
                 email_from = settings.EMAIL_HOST_USER
-                recipient_list = rider_email
+                recipient_list = [rider_email]
                 send_mail( subject, message, email_from, recipient_list )
                     
         messages.error(request, 'Ratings accepted. An email has been sent.')
